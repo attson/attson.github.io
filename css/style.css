@@ -2698,14 +2698,14 @@ pre .deletion {
 }
 @media (prefers-color-scheme: dark) {
   .first-screen-container {
-    background: url("https://evan.beee.top/img/wallhaven-wqery6-dark.webp") center center/cover no-repeat !important;
+    background: url("https://cn.bing.com/th?id=OHR.NorwayNYD_ZH-CN7856439066_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp") center center/cover no-repeat !important;
   }
 }
 .light-mode .first-screen-container {
   background: url("https://cn.bing.com/th?id=OHR.NorwayNYD_ZH-CN7856439066_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp") center center/cover no-repeat !important;
 }
 .dark-mode .first-screen-container {
-  background: url("https://evan.beee.top/img/wallhaven-wqery6-dark.webp") center center/cover no-repeat !important;
+  background: url("https://cn.bing.com/th?id=OHR.NorwayNYD_ZH-CN7856439066_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp") center center/cover no-repeat !important;
 }
 .image-viewer-container {
   position: fixed;
