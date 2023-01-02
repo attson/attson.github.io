@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>使用华硕AC68u做局域网透明代理</title>
+    <url>/2019/07/13/asus-ac68u-shadowsocks/</url>
+    <content><![CDATA[<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ol>
+<li>本文描述内容基于华硕固件384版本，</li>
+<li>路由界面的固件升级不支持第三方固件</li>
+<li>华硕官方梅林 不带软件中心页面</li>
+<li>如果需要持久化程序，路由器需开启jffs分区 因其他分区在路由重启的时候会进行清理，不能持久化，而jffs分区是不会的(可在管理界面开启)</li>
+</ol>
+<h4 id="尝试且失败"><a href="#尝试且失败" class="headerlink" title="尝试且失败"></a>尝试且失败</h4><h6 id="1-dnsmasq-ss-redir-ss-tunnel-ipset4-iptable"><a href="#1-dnsmasq-ss-redir-ss-tunnel-ipset4-iptable" class="headerlink" title="1.  dnsmasq + ss-redir + ss-tunnel + ipset4 + iptable"></a>1.  dnsmasq + ss-redir + ss-tunnel + ipset4 + iptable</h6><ul>
+<li><a class="link"   href="http://www.asussmart.com/smart/36.html" >开启ssh<i class="fa-solid fa-up-right-from-square"></i></a> 系统设置里开启ssh</li>
+<li><a class="link"   href="https://www.snbforums.com/threads/how-to-install-entware-to-jffs-without-usb-flashdrive.39700/" >如何安装软件包管理器opkg 不使用外置U盘<i class="fa-solid fa-up-right-from-square"></i></a> 原理主要是改安装文件&#x2F;usr&#x2F;sbin&#x2F;entware-setup.sh 的一个文件系统格式验证</li>
+</ul>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">Copy the file /usr/sbin/entware-setup.sh to jffs and then modify the PART_TYPES variables on line 23 and 27 to include the jffs partition</span><br><span class="line"></span><br><span class="line">Code:</span><br><span class="line">case $(uname -m) in</span><br><span class="line">  armv7l)</span><br><span class="line">    PART_TYPES=&#x27;ext2|ext3|ext4|jffs2&#x27;</span><br><span class="line">    INST_URL=&#x27;http://pkg.entware.net/binaries/armv7/installer/entware_install.sh&#x27;</span><br><span class="line">    ;;</span><br><span class="line">  mips)</span><br><span class="line">    PART_TYPES=&#x27;ext2|ext3|jffs2&#x27;</span><br><span class="line">    INST_URL=&#x27;http://pkg.entware.net/binaries/mipsel/installer/installer.sh&#x27;</span><br><span class="line">    ;;</span><br><span class="line">  *)</span><br><span class="line">    echo &quot;This is unsupported platform, sorry.&quot;</span><br><span class="line">    ;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><a class="link"   href="https://w2x.me/2018/09/20/ASUS-66u-%E6%90%AD%E5%BB%BA%E9%80%8F%E6%98%8E%E4%BB%A3%E7%90%86/" >参考文章<i class="fa-solid fa-up-right-from-square"></i></a> 按文章操作后路由器进入一直重启状态，原因未知 <strong>failed</strong></li>
+</ul>
+<h6 id="2-救援模式刷advancedtomato-参考文章"><a href="#2-救援模式刷advancedtomato-参考文章" class="headerlink" title="2. 救援模式刷advancedtomato 参考文章"></a>2. 救援模式刷advancedtomato <a class="link"   href="https://tedstechshack.com/2015/10/26/how-to-flash-advancedtomato-firmware-on-an-asus-rt-ac68u-router/" >参考文章<i class="fa-solid fa-up-right-from-square"></i></a></h6><ul>
+<li>刷完系统直接进入救援模式(原因未知) <strong>failed</strong></li>
+</ul>
+<h4 id="最终方案-koolshare-merlin"><a href="#最终方案-koolshare-merlin" class="headerlink" title="最终方案 koolshare-merlin"></a>最终方案 koolshare-merlin</h4><ol>
+<li>通过<a class="link"   href="http://52asus.com/thread-34-1-2.html" >救援模式<i class="fa-solid fa-up-right-from-square"></i></a>刷koolshare-merlin</li>
+</ol>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">Step1.安装程式，可以去ASUS官网下载公用程序,然后安装,如RT-AC68U可以在此链接下载 http://www.asus.com.cn/Networking/RTAC68U/#support</span><br><span class="line">Step2.让Router进入救援模式:此操作很关键,先关机,再按住路由器Reset 按钮不放的同时接通路由器电源，直到看到电源灯慢闪时放开Reset按钮.</span><br><span class="line">Step3.电脑接到路由器的Lan 端口，且需要固定IP地址(192.168.1.xxx)</span><br><span class="line"></span><br><span class="line">Step4.开启Firmware Restoration程式(如下图)，点击“Browse”button 选择固件存放路径后点击“Upload”button.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Step5.等待1~3分钟完成,按照提示重启路由器，最好再通过再用Reset按钮使路由器恢复出.</span><br><span class="line"></span><br><span class="line">//Step2 是进入救援模式 其他步骤为通过华硕官方程序(不支持macOs)刷固件</span><br><span class="line">//当进入救援模式后，访问路由地址192.168.x.x, 会进入miniWeb 界面，在界面中也可以刷固件，只是miniweb没有程序好用？偶尔打不开，而程序是一直ok的</span><br></pre></td></tr></table></figure></div>
+
+<ol start="2">
+<li><a class="link"   href="https://firmware.koolshare.cn/Koolshare_Merlin_Legacy_380/ASUS/RT-AC68U/X7.9/" >固件地址<i class="fa-solid fa-up-right-from-square"></i></a></li>
+<li>刷完后路由界面就增加软件中心了，这时候需完成 -&gt;开启jffs-&gt;更新软件中心</li>
+<li>当前固件版本不内置ss在软件列表中，可通过<a class="link"   href="https://www.codeidc.com/archives/99" >离线安装<i class="fa-solid fa-up-right-from-square"></i></a>模式安装 &#x2F;&#x2F;<a class="link"   href="https://raw.githubusercontent.com/hq450/fancyss_history_package/master/fancyss_arm/shadowsocks_4.0.5.tar.gz" >软件包<i class="fa-solid fa-up-right-from-square"></i></a></li>
+</ol>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /tmp</span><br><span class="line">wget --no-check-certificate https://github.com/hq450/fancyss/blob/master/fancyss_arm/shadowsocks.tar.gz</span><br><span class="line">tar -zxvf /tmp/shadowsocks.tar.gz</span><br><span class="line">chmod +x /tmp/shadowsocks/install.sh</span><br><span class="line">sh /tmp/shadowsocks/install.sh</span><br><span class="line"></span><br><span class="line"># 或者下载 shadowsocks.tar.gz 后在软件中心页离线安装中上传</span><br></pre></td></tr></table></figure></div>
+
+<ol start="5">
+<li>之后就是配置ss，配置完开启就ok了</li>
+</ol>
+<h6 id="备注-koolshare-merlin-为闭源固件，问题不是很大，但是毕竟未开源，有时间再折腾其他固件"><a href="#备注-koolshare-merlin-为闭源固件，问题不是很大，但是毕竟未开源，有时间再折腾其他固件" class="headerlink" title="备注:koolshare-merlin 为闭源固件，问题不是很大，但是毕竟未开源，有时间再折腾其他固件"></a>备注:koolshare-merlin 为闭源固件，问题不是很大，但是毕竟未开源，有时间再折腾其他固件</h6>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>shadowsocks</tag>
+        <tag>example</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo 博客搭建</title>
     <url>/2023/01/01/build-blog/</url>
     <content><![CDATA[<h1 id="Hexo-博客搭建"><a href="#Hexo-博客搭建" class="headerlink" title="Hexo 博客搭建"></a>Hexo 博客搭建</h1><h2 id="What-is-Hexo"><a href="#What-is-Hexo" class="headerlink" title="What is Hexo?"></a>What is Hexo?</h2><p>Hexo is a fast, simple and powerful blog framework. You write posts in Markdown (or other markup languages) and Hexo<br>generates static files with a beautiful theme in seconds.</p>
@@ -110,6 +156,419 @@
 ]]></content>
       <tags>
         <tag>example</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>centos 安装 shadowsocks</title>
+    <url>/2020/10/23/centos-shadowsocks/</url>
+    <content><![CDATA[<h2 id="使用版本"><a href="#使用版本" class="headerlink" title="使用版本"></a>使用版本</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">CentOS Linux release 7.6.1810 (Core)</span><br><span class="line">Linux ecs-w0xX6 3.10.0-957.12.2.el7.x86_64 #1 SMP Tue May 14 21:24:32 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</span><br><span class="line">Shadowsocks Libev 3.3.5</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="一、手动编译安装"><a href="#一、手动编译安装" class="headerlink" title="一、手动编译安装"></a>一、手动编译安装</h2><p>参考：<br>    - <a class="link"   href="https://github.com/shadowsocks/shadowsocks-libev#fedora%E2%80%94rhel" >https://github.com/shadowsocks/shadowsocks-libev#fedora—rhel<i class="fa-solid fa-up-right-from-square"></i></a><br>    - <a class="link"   href="https://b.awei.pub/2019/03/shadowsocks-libev/" >https://b.awei.pub/2019/03/shadowsocks-libev/<i class="fa-solid fa-up-right-from-square"></i></a></p>
+<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install epel-release -y</span><br><span class="line"></span><br><span class="line">yum install git gcc gettext autoconf libtool automake make pcre-devel asciidoc xmlto c-ares-devel libev-devel libsodium-devel mbedtls-devel -y</span><br><span class="line"></span><br><span class="line">git clone https://github.com/shadowsocks/shadowsocks-libev.git</span><br><span class="line"></span><br><span class="line">cd shadowsocks-libev</span><br><span class="line">git submodule update --init --recursive</span><br><span class="line"></span><br><span class="line">sh autogen.sh</span><br><span class="line"></span><br><span class="line">./configure --disable-documentation</span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="2-配置systemctl-管理"><a href="#2-配置systemctl-管理" class="headerlink" title="2. 配置systemctl 管理"></a>2. 配置systemctl 管理</h3><h5 id="添加服务配置"><a href="#添加服务配置" class="headerlink" title="+ 添加服务配置"></a>+ 添加服务配置</h5><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp shadowsocks-libev/rpm/SOURCES/systemd/shadowsocks-libev.service /usr/lib/systemd/system/</span><br><span class="line">cp shadowsocks-libev/rpm/SOURCES/systemd/shadowsocks-libev.default /etc/sysconfig/shadowsocks-libev</span><br></pre></td></tr></table></figure></div>
+
+<p>注意检查 shadowsocks-libev&#x2F;rpm&#x2F;SOURCES&#x2F;systemd&#x2F;shadowsocks-libev.service 文件</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">ExecStart=/usr/bin/ss-server -c &quot;$CONFFILE&quot; $DAEMON_ARGS</span><br></pre></td></tr></table></figure></div>
+
+<p>&#x2F;usr&#x2F;bin&#x2F;ss-server 改成 ss-server 的安装目录 默认是在 &#x2F;usr&#x2F;local&#x2F;bin&#x2F;ss-server</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">ExecStart=/usr/local/bin/ss-server -c &quot;$CONFFILE&quot; $DAEMON_ARGS</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="操作命令"><a href="#操作命令" class="headerlink" title="+ 操作命令"></a>+ 操作命令</h5><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl enable shadowsocks-libev</span><br><span class="line">systemctl start shadowsocks-libev</span><br><span class="line">systemctl stop shadowsocks-libev</span><br><span class="line">systemctl status shadowsocks-libev</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="相关问题和方案"><a href="#相关问题和方案" class="headerlink" title="相关问题和方案"></a>相关问题和方案</h2><h3 id="1-This-system-doesn’t-provide-enough-entropy-to-quickly-generate-high-quality-random-numbers"><a href="#1-This-system-doesn’t-provide-enough-entropy-to-quickly-generate-high-quality-random-numbers" class="headerlink" title="1. This system doesn’t provide enough entropy to quickly generate high-quality random numbers."></a>1. This system doesn’t provide enough entropy to quickly generate high-quality random numbers.</h3><p><a class="link"   href="https://github.com/shadowsocks/shadowsocks-libev/issues/1384" >参考<i class="fa-solid fa-up-right-from-square"></i></a></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">2020-10-23 22:27:03 INFO: binding to outbound IPv4 addr: 127.0.0.1</span><br><span class="line">2020-10-23 22:27:03 INFO: using tcp fast open</span><br><span class="line">2020-10-23 22:27:03 INFO: UDP relay enabled</span><br><span class="line">2020-10-23 22:27:03 INFO: initializing ciphers... chacha20</span><br><span class="line">2020-10-23 22:27:03 INFO: This system doesn&#x27;t provide enough entropy to quickly generate high-quality random numbers.</span><br><span class="line">Installing the rng-utils/rng-tools, jitterentropy or haveged packages may help.</span><br><span class="line">On virtualized Linux environments, also consider using virtio-rng.</span><br><span class="line">The service will not start until enough entropy has been collected.</span><br></pre></td></tr></table></figure></div>
+
+<p>解决方案: </p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install -y rng-tools</span><br><span class="line">rngd -r /dev/urandom</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="2-tcp-fast-open-未开启"><a href="#2-tcp-fast-open-未开启" class="headerlink" title="2. tcp fast open 未开启"></a>2. tcp fast open 未开启</h3><p>如果未开启<a class="link"   href="https://blog.csdn.net/Windgs_YF/article/details/94743088" >tcp fast open<i class="fa-solid fa-up-right-from-square"></i></a>会出现如下报错</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">2020-10-23 22:27:04 ERROR: fast open is not supported on this platform</span><br></pre></td></tr></table></figure></div>
+
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2020/10/23/centos-shadowsocks/fast_open.jpg"
+                      class="" title="tcp fast open"
+                >
+
+<p>解决方案: </p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo 1 &gt; /proc/sys/net/ipv4/tcp_fastopen</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="3-ss-sever-升级到3-2-0-时-fast-open-connect-Invalid-argument"><a href="#3-ss-sever-升级到3-2-0-时-fast-open-connect-Invalid-argument" class="headerlink" title="3. ss-sever 升级到3.2.0+ 时 fast_open_connect: Invalid argument"></a>3. ss-sever 升级到3.2.0+ 时 fast_open_connect: Invalid argument</h3><p><a class="link"   href="https://github.com/shadowsocks/shadowsocks-libev/issues/2196" >参考<i class="fa-solid fa-up-right-from-square"></i></a></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">2020-10-23 23:29:15 ERROR: fast_open_connect: Invalid argument</span><br><span class="line">2020-10-23 23:29:15 ERROR: getpeername: Transport endpoint is not connected</span><br></pre></td></tr></table></figure></div>
+
+<p>解决方案: </p>
+<p>删除配置中的 local_address local_port</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2020/10/23/centos-shadowsocks/getpeername.jpg"
+                      class="" title="getpeername"
+                >
+
+
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h4 id="centos7-记得配置防火墙"><a href="#centos7-记得配置防火墙" class="headerlink" title="centos7 记得配置防火墙"></a>centos7 记得配置防火墙</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">firewall-cmd --permanent --add-port=&#123;PORT/tcp,PORT/udp&#125;</span><br><span class="line">firewall-cmd --reload</span><br><span class="line">firewall-cmd --list-all</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>shadowsocks</tag>
+        <tag>centos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux 系列更换软件源</title>
+    <url>/2020/09/28/linux-source-mirror-change/</url>
+    <content><![CDATA[<h3 id="1-ubuntu-阿里云源"><a href="#1-ubuntu-阿里云源" class="headerlink" title="1. ubuntu-阿里云源"></a>1. ubuntu-阿里云源</h3><h4 id="要注意-x2F-etc-x2F-apt-x2F-sources-list-默认的是什么"><a href="#要注意-x2F-etc-x2F-apt-x2F-sources-list-默认的是什么" class="headerlink" title="要注意&#x2F;etc&#x2F;apt&#x2F;sources.list 默认的是什么"></a>要注意&#x2F;etc&#x2F;apt&#x2F;sources.list 默认的是什么</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line"># grep -Ev &quot;^$|[#]&quot; 过滤掉空行和#开头的</span><br><span class="line">cat /etc/apt/sources.list | grep -Ev &quot;^$|#&quot;</span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./linux-source-mirror-change/source-list.png"
+                      alt="list"
+                ></p>
+<p>看到域名都是 <code>cn.archive.ubuntu.com</code>; 可以手动将这些都改成阿里云的源 <code>mirrors.aliyun.com</code><br>也可以通过下面的命令直接替换</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 万事先备份</span><br><span class="line">cp /etc/apt/sources.list /etc/apt/sources.list.bk</span><br><span class="line">sed -i s/cn.archive.ubuntu.com/mirrors.aliyun.com/g /etc/apt/sources.list</span><br><span class="line"># 验证一波</span><br><span class="line">cat /etc/apt/sources.list | grep -Ev &quot;^$|#&quot;</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac php + xdebug安装</title>
+    <url>/2017/11/29/mac-php-xdebug/</url>
+    <content><![CDATA[<h1 id="mac-php-xdebug安装"><a href="#mac-php-xdebug安装" class="headerlink" title="mac php + xdebug安装"></a>mac php + xdebug安装</h1><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">背景：之前用的自带php 配置的xdebug，突然发现不能用了，error.log 也不记录在之前的日志文件里了</span><br><span class="line">查看php -v 成了7.1 的了，一脸xx</span><br><span class="line"></span><br><span class="line">最后进/usr/bin 看，php确实变成了7.1</span><br><span class="line">/ect 下面之前配置的php.ini 也不见了</span><br><span class="line">最后在查问题时，看到一篇https://www.cnblogs.com/ailhc/p/7398479.html，提到mac在系统更新</span><br><span class="line">时候，会将自带的配置给还原</span><br><span class="line">然后便想到，放弃自带php，再见</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="首先"><a href="#首先" class="headerlink" title="首先"></a>首先</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">//因为自带的php可能其他地方会用到，就不删除了，重新装一个</span><br><span class="line">brew update</span><br><span class="line">brew search php</span><br><span class="line">brew install php71</span><br><span class="line"></span><br><span class="line">安装后查看下php -v php-fpm -v 是不是最新的7.1.11 mac最新自带 7.1.7</span><br><span class="line">如果不是查看环境变量</span><br><span class="line">echo $PATH </span><br><span class="line">看看/usr/local/bin/和/usr/local/sbin 是不是写在/usr/bin和/usr/sbin之前</span><br><span class="line">没有则添加，不是则修改</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="安装个php-version-有需要安装多版本的可以安装"><a href="#安装个php-version-有需要安装多版本的可以安装" class="headerlink" title="安装个php-version(有需要安装多版本的可以安装)"></a>安装个php-version(有需要安装多版本的可以安装)</h4><div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="code"><pre><span class="line">brew install php-version</span><br><span class="line">source $(brew --prefix php-version)/php-version.sh &amp;&amp; php-version</span><br><span class="line">php-version 查看当前安装的版本(自带的是看不到的?)</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 只能在当前终端有效, 新切换的终端输入php -v不变，但是我们只要在切换过的终端，</span></span><br><span class="line"><span class="comment"> * 启动php-fpm，后台运行的就是切换后的fpm。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">php-version <span class="number">7.1</span>.<span class="number">11</span>  <span class="comment">//更换版本</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="配置php-php-fpm"><a href="#配置php-php-fpm" class="headerlink" title="配置php php-fpm"></a>配置php php-fpm</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">//brew 安装的php，配置文件在/usr/loacl/etc/php</span><br><span class="line">cd /usr/loacl/etc/php</span><br><span class="line">//找到对应的版本</span><br><span class="line">cd 7.1</span><br><span class="line">//vim php.ini 没有则增加</span><br><span class="line">display_errors = off //不显示错误信息(不输出到页面或屏幕上)</span><br><span class="line">log_errors = On</span><br><span class="line">error_log = &quot;/usr/local/lnmp/php/var/log/error_log&quot;(自定义，绝对路径)</span><br><span class="line">error_reporting=E_ALL</span><br><span class="line">date.timezone = PRC</span><br><span class="line"></span><br><span class="line">//vim php-fpm.conf 没有则增加</span><br><span class="line">catch_workers_output = yes</span><br><span class="line">error_log = &quot;/usr/local/lnmp/php/var/log/error_log&quot;(自定义，绝对路径)</span><br><span class="line"></span><br><span class="line">//注意!</span><br><span class="line">php_admin_value[error_log]参数会覆盖php.ini中的error_log 参数</span><br><span class="line"></span><br><span class="line">最终按phpinfo 里的error_log配置为准</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="启动php-fpm"><a href="#启动php-fpm" class="headerlink" title="启动php-fpm"></a>启动php-fpm</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">php-fpm -v  先查看是不是要启动的版本</span><br><span class="line">sudo php-fpm</span><br><span class="line"></span><br><span class="line">//出现问题 php-fpm 并不在后台运行</span><br><span class="line">终端输出</span><br><span class="line">NOTICE: fpm is running, pid 42540</span><br><span class="line">NOTICE: ready to handle connections</span><br><span class="line"></span><br><span class="line">结束php-fpm</span><br><span class="line">sudo killall php-fpm</span><br><span class="line">修改php-fpm.conf</span><br><span class="line">daemonize = yes  (如果设置为no, fpm会运行在前台)</span><br><span class="line">再启动</span><br><span class="line"></span><br><span class="line">在页面输出phpinfo()查看配置</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="安装Xdebug"><a href="#安装Xdebug" class="headerlink" title="安装Xdebug"></a>安装Xdebug</h4><p>寻找对应php版本的xdebug版本</p>
+<ol>
+<li><p>先将info输出到一个文件<br>php -i &gt; info.txt</p>
+</li>
+<li><p>打开info.txt 复制所有内容</p>
+</li>
+<li><p>打开寻找合适xdebug的页面<a class="link"   href="https://xdebug.org/wizard.php" >https://xdebug.org/wizard.php<i class="fa-solid fa-up-right-from-square"></i></a></p>
+</li>
+<li><p>将刚才复制的内容粘贴至提供的输入框中 点击Analyse my phpinfo() output 就会显示下载安装步骤，<br> 跟着一步步执行就好了</p>
+</li>
+</ol>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">出现问题 配置之后php -v | php -m 显示</span><br><span class="line">Zend OPcache requires Zend Engine API version 220090626.</span><br><span class="line">The Zend Engine API version 220100525 which is installed, is newer.</span><br><span class="line">Contact Zend Technologies at http://www.zend.com/ for a later version of Zend OPcache.</span><br><span class="line"></span><br><span class="line">解决办法，重新配置xdebug，删除之前的xdebug.so(移动过去的那个) 和 xdebug文件夹，</span><br><span class="line">重新解压</span><br><span class="line">按照上面执行步骤，在执行phpize 时候，使用绝对路径，php所在的路径 </span><br><span class="line">/usr/local/Cellar/php71/7.1.11_22/bin/phpize</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="配置xdebug"><a href="#配置xdebug" class="headerlink" title="配置xdebug"></a>配置xdebug</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">xdebug.remote_enable = 1</span><br><span class="line">xdebug.remote_handler = &quot;dbgp&quot;</span><br><span class="line">xdebug.remote_host = &quot;127.0.0.1&quot;</span><br><span class="line">xdebug.remote_port = 9001 </span><br><span class="line">xdebug.remote_log = &quot;/var/log/php-fpm/xdebug.log&quot;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h4><ul>
+<li><p>php error_log配置 <a class="link"   href="http://www.jb51.net/article/31499.htm" >http://www.jb51.net/article/31499.htm<i class="fa-solid fa-up-right-from-square"></i></a></p>
+</li>
+<li><p>php-fpm 配置详解 <a class="link"   href="https://www.cnblogs.com/jonsea/p/5522018.html" >https://www.cnblogs.com/jonsea/p/5522018.html<i class="fa-solid fa-up-right-from-square"></i></a></p>
+</li>
+<li><p>php-version 安装 <a class="link"   href="http://www.jianshu.com/p/bee30e411b00" >http://www.jianshu.com/p/bee30e411b00<i class="fa-solid fa-up-right-from-square"></i></a></p>
+</li>
+<li><p>xdbug配置 <a class="link"   href="https://www.awaimai.com/1290.html" >https://www.awaimai.com/1290.html<i class="fa-solid fa-up-right-from-square"></i></a> <a class="link"   href="https://www.cnblogs.com/purelightme/p/6605648.html" >https://www.cnblogs.com/purelightme/p/6605648.html<i class="fa-solid fa-up-right-from-square"></i></a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>example</tag>
+        <tag>php</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在macos下使用virtual-box安装ubuntu server</title>
+    <url>/2020/10/22/macos-vbox-ubuntu/</url>
+    <content><![CDATA[<h2 id="使用版本"><a href="#使用版本" class="headerlink" title="使用版本"></a>使用版本</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">MacOs Catalian 10.15.6</span><br><span class="line">VirtalBox 6.1.16</span><br><span class="line">Ubuntu Server ubuntu-20.04.1-live-server-amd64.iso</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="一、安装VirtualBox"><a href="#一、安装VirtualBox" class="headerlink" title="一、安装VirtualBox"></a>一、安装VirtualBox</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><ul>
+<li>下载地址: <a class="link"   href="https://www.virtualbox.org/wiki/Downloads" >https://www.virtualbox.org/wiki/Downloads<i class="fa-solid fa-up-right-from-square"></i></a> 国内下载比较慢，推荐借助神秘力量</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./macos-vbox-ubuntu/1603375584584.jpg"
+                      alt="download-vbox"
+                ></p>
+<ul>
+<li>不要忘记检查一下sha256值 <a class="link"   href="https://www.virtualbox.org/download/hashes/6.1.16/SHA256SUMS" >https://www.virtualbox.org/download/hashes/6.1.16/SHA256SUMS<i class="fa-solid fa-up-right-from-square"></i></a><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">shasum -a 256 VirtualBox-6.1.16-140961-OSX.dmg</span><br><span class="line">d7df0f05d9a9e7cba50ea01da264ac20948b1c9c0e0cccd2d628085c9f434d45  VirtualBox-6.1.16-140961-OSX.dmg</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
+<li><p>像正常安装软件一样即可</p>
+<p>  <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./macos-vbox-ubuntu/1603376858313.jpg"
+                      alt="install-vbox"
+                ></p>
+</li>
+<li><p>相关需要的权限都给</p>
+<p>  <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./macos-vbox-ubuntu/1603377152373.jpg"
+                      alt="install-vbox"
+                ></p>
+</li>
+</ul>
+<h2 id="二、安装ubuntu-server"><a href="#二、安装ubuntu-server" class="headerlink" title="二、安装ubuntu server"></a>二、安装ubuntu server</h2><h3 id="下载ubuntu-server"><a href="#下载ubuntu-server" class="headerlink" title="下载ubuntu server"></a>下载ubuntu server</h3><ul>
+<li>下载地址: <a class="link"   href="https://ubuntu.com/download/server" >https://ubuntu.com/download/server<i class="fa-solid fa-up-right-from-square"></i></a></li>
+</ul>
+<h3 id="安装ubuntu-server"><a href="#安装ubuntu-server" class="headerlink" title="安装ubuntu server"></a>安装ubuntu server</h3><h4 id="Step-1-打开VirBox，点击新建"><a href="#Step-1-打开VirBox，点击新建" class="headerlink" title="Step 1. 打开VirBox，点击新建"></a>Step 1. 打开VirBox，点击新建</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./macos-vbox-ubuntu/1603377642251.jpg"
+                      alt="install-ubuntu1"
+                ></p>
+<h4 id="Step-2-配置基础信息和内存"><a href="#Step-2-配置基础信息和内存" class="headerlink" title="Step 2. 配置基础信息和内存"></a>Step 2. 配置基础信息和内存</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./macos-vbox-ubuntu/1603377649152.jpg"
+                      alt="install-ubuntu2"
+                ></p>
+<h4 id="Step-3-配置虚拟硬盘"><a href="#Step-3-配置虚拟硬盘" class="headerlink" title="Step 3. 配置虚拟硬盘"></a>Step 3. 配置虚拟硬盘</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./macos-vbox-ubuntu/1603377652616.jpg"
+                      alt="install-ubuntu3"
+                ></p>
+<h4 id="Step-4-点击存储，添加盘片-设置镜像文件"><a href="#Step-4-点击存储，添加盘片-设置镜像文件" class="headerlink" title="Step 4. 点击存储，添加盘片(设置镜像文件)"></a>Step 4. 点击存储，添加盘片(设置镜像文件)</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./macos-vbox-ubuntu/iso1.jpg"
+                      alt="install-ubuntu4-1"
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./macos-vbox-ubuntu/iso2.jpg"
+                      alt="install-ubuntu4-2"
+                ></p>
+<h4 id="Step-5-启动"><a href="#Step-5-启动" class="headerlink" title="Step 5. 启动"></a>Step 5. 启动</h4><ul>
+<li><p>. 注意，在某些版本下会出现启动时如下的崩溃信息，是因为没有给virtual-box 授权音频输出权限的问题，可以通过[ 设置-&gt;声音-&gt;取消声音 ]解决<br>  <a class="link"   href="https://unix.stackexchange.com/questions/609077/how-to-fix-virtualbox-vm-quit-unexpectedly-when-running-my-ubuntu-20-04-lts-vm" >参考解决方案<i class="fa-solid fa-up-right-from-square"></i></a><br>  <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./macos-vbox-ubuntu/bug1.jpg"
+                      alt="install-ubuntu5-1"
+                ></p>
+</li>
+<li><p>点击启动即可开始安装ubutnu server</p>
+</li>
+</ul>
+<h2 id="三、其他"><a href="#三、其他" class="headerlink" title="三、其他"></a>三、其他</h2><h3 id="从主机访问虚拟机"><a href="#从主机访问虚拟机" class="headerlink" title="从主机访问虚拟机"></a>从主机访问虚拟机</h3><p>virtual box 默认的网卡 是网络网址转换(NAT) 模式</p>
+<ol>
+<li><p>通过配置端口转发<br> <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./macos-vbox-ubuntu/nat1.jpg"
+                      alt="install-nat-1"
+                ><br> <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./macos-vbox-ubuntu/nat2.jpg"
+                      alt="install-nat-2"
+                ></p>
+</li>
+<li><p>可以通过修改模式为桥接网卡, 让主机和虚拟机在同一网段, 就能够直接通过虚拟机的ip访问了<br> <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./macos-vbox-ubuntu/bridge.jpg"
+                      alt="install-bridge"
+                ></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>macos</tag>
+        <tag>virtual-box</tag>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>rocketmq</title>
+    <url>/2021/06/15/rocketmq/</url>
+    <content><![CDATA[<h2 id="一、安装和启动"><a href="#一、安装和启动" class="headerlink" title="一、安装和启动"></a>一、安装和启动</h2><h3 id="环境-在不同环境下表现会有些差异"><a href="#环境-在不同环境下表现会有些差异" class="headerlink" title="环境 (在不同环境下表现会有些差异)"></a>环境 (在不同环境下表现会有些差异)</h3><ul>
+<li>Ubuntu 20.04</li>
+<li>rocketmq 版本 4.8.0  </li>
+<li>jdk11</li>
+<li>bash</li>
+</ul>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="1-下载源码包-amp-amp-编译"><a href="#1-下载源码包-amp-amp-编译" class="headerlink" title="1. 下载源码包 &amp;&amp; 编译"></a>1. 下载源码包 &amp;&amp; 编译</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install maven</span><br><span class="line"></span><br><span class="line">git clone https://github.com/apache/rocketmq.git</span><br><span class="line"></span><br><span class="line">cd rocketmq</span><br><span class="line"></span><br><span class="line">mvn -Prelease-all -DskipTests clean install -U</span><br><span class="line"></span><br><span class="line">// build完成后在 distribution/target/rocketmq-4.8.0/rocketmq-4.8.0</span><br><span class="line"></span><br><span class="line">// 移动软件包到 /usr/local</span><br><span class="line">mv distribution/target/rocketmq-4.8.0/rocketmq-4.8.0 /usr/local</span><br><span class="line">cd /usr/local/rocketmq-4.8.0/bin</span><br></pre></td></tr></table></figure></div>
+
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/06/15/rocketmq/cmd-list.png"
+                      class="" title="cmd-list"
+                >
+
+
+<h4 id="2-启动-mqnamesrv-mqbroker"><a href="#2-启动-mqnamesrv-mqbroker" class="headerlink" title="2. 启动 mqnamesrv mqbroker"></a>2. 启动 mqnamesrv mqbroker</h4><p>主要执行程序</p>
+<ul>
+<li>mqnamesrv</li>
+<li>mqbroker</li>
+</ul>
+<h4 id="启动-mqnamesrv"><a href="#启动-mqnamesrv" class="headerlink" title="启动 mqnamesrv"></a>启动 mqnamesrv</h4><p><code>./mqnamesrv</code></p>
+<h4 id="mqnamesrv-启动成功"><a href="#mqnamesrv-启动成功" class="headerlink" title="mqnamesrv 启动成功"></a>mqnamesrv 启动成功</h4><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/06/15/rocketmq/mqnamesrc-started.png"
+                      class="" title="mqnamesrc-started"
+                >
+
+
+<h3 id="启动-mqborker"><a href="#启动-mqborker" class="headerlink" title="启动 mqborker"></a>启动 mqborker</h3><p><code>./mqbroker -n localhost:9876</code></p>
+<ul>
+<li>-n, –namesrvAddr 默认 <code>localhost:9876</code></li>
+</ul>
+<h4 id="mqbroker-启动成功"><a href="#mqbroker-启动成功" class="headerlink" title="mqbroker 启动成功"></a>mqbroker 启动成功</h4><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/06/15/rocketmq/mqbroker-started.png"
+                      class="" title="mqbroker-started"
+                >
+<h3 id="测试服务是否正常"><a href="#测试服务是否正常" class="headerlink" title="测试服务是否正常"></a>测试服务是否正常</h3><p><code> ./tools.sh org.apache.rocketmq.example.quickstart.Producer</code></p>
+<h4 id="Producer-测试成功"><a href="#Producer-测试成功" class="headerlink" title="Producer 测试成功"></a>Producer 测试成功</h4><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/06/15/rocketmq/producer-success.png"
+                      class="" title="producer-success"
+                >
+
+<h4 id="Consumer-测试成功"><a href="#Consumer-测试成功" class="headerlink" title="Consumer 测试成功"></a>Consumer 测试成功</h4><p><code>./tools.sh org.apache.rocketmq.example.quickstart.Consumer</code></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/06/15/rocketmq/consumer-success.png"
+                      class="" title="consumer-success"
+                >
+
+
+<h3 id="3-安装图形界面"><a href="#3-安装图形界面" class="headerlink" title="3. 安装图形界面"></a>3. 安装图形界面</h3><p><a class="link"   href="https://github.com/apache/rocketmq-externals.git" >https://github.com/apache/rocketmq-externals.git<i class="fa-solid fa-up-right-from-square"></i></a></p>
+<p>rocketmq-console</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">mvn clean package -Dmaven.test.skip=true</span><br><span class="line">cd target</span><br><span class="line">mv rocketmq-console-ng-2.0.0.jar /usr/local/</span><br><span class="line">cd /usr/local</span><br><span class="line">java -jar rocketmq-console-ng-2.0.0.jar</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="成功界面"><a href="#成功界面" class="headerlink" title="成功界面"></a>成功界面</h4><ul>
+<li>默认 localhost:8080</li>
+</ul>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/06/15/rocketmq/console.png"
+                      class="" title="console.png"
+                >
+
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2021/06/15/rocketmq/dashboard.png"
+                      class="" title="dashboard.png"
+                >
+
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><h4 id="1-Use-classpath-instead"><a href="#1-Use-classpath-instead" class="headerlink" title="1. Use -classpath instead:"></a>1. Use -classpath instead:</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">root@qjue:/usr/local/rocketmq-4.8.0/bin# ./mqnamesrv</span><br><span class="line">/usr/local/rocketmq-4.8.0/bin/runserver.sh: 70: [[: not found</span><br><span class="line">-Djava.ext.dirs=/usr/lib/jvm/java-1.11.0-openjdk-amd64/jre/lib/ext:/usr/local/rocketmq-4.8.0/bin/../lib:/usr/lib/jvm/java-1.11.0-openjdk-amd64/lib/ext is not supported.  Use -classpath instead.</span><br><span class="line">Error: Could not create the Java Virtual Machine.</span><br><span class="line">Error: A fatal exception has occurred. Program will exit.</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>这是因为在java11+ 已经默认移除jre</strong></p>
+<ul>
+<li>删除 <code>JAVA_OPT=&quot;$&#123;JAVA_OPT&#125; -Djava.ext.dirs=$&#123;JAVA_HOME&#125;/jre/lib/ext:$&#123;BASE_DIR&#125;/lib&quot;</code></li>
+<li>删除 <code>export CLASSPATH=.:$&#123;BASE_DIR&#125;/conf:$&#123;CLASSPATH&#125;</code></li>
+<li>增加 <code>export CLASSPATH=$&#123;BASE_DIR&#125;/lib/rocketmq-namesrv-4.5.0.jar:$&#123;BASE_DIR&#125;/lib/*:$&#123;BASE_DIR&#125;/conf:$&#123;CLASSPATH&#125;</code></li>
+</ul>
+<h4 id="2-启动broker失败-Not-enough-space-Cannot-allocate-memory"><a href="#2-启动broker失败-Not-enough-space-Cannot-allocate-memory" class="headerlink" title="2. 启动broker失败 Not enough space || Cannot allocate memory"></a>2. 启动broker失败 Not enough space || Cannot allocate memory</h4><p><strong>默认申请的内存大于本机器的可用内存</strong></p>
+<p>找到对应的执行文件 runserver.sh || runbroker.sh<br><code>JAVA_OPT=&quot;$&#123;JAVA_OPT&#125; -server -Xms4g -Xmx4g -Xmn2g -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=320m&quot;</code>  </p>
+<ul>
+<li>修改一下相关配置 <code>JAVA_OPT=&quot;$&#123;JAVA_OPT&#125; -server -Xms521m -Xmx521m -Xmn128m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=320m&quot;</code></li>
+</ul>
+<h4 id="3-Xloggc-is-deprecated"><a href="#3-Xloggc-is-deprecated" class="headerlink" title="3. -Xloggc is deprecated."></a>3. -Xloggc is deprecated.</h4><p>&#x2F;&#x2F; broker -&gt; rmq_broker_gc_%p_%t.log<br>&#x2F;&#x2F; server -&gt; rmq_srv_gc_%p_%t.log</p>
+<ul>
+<li>删除 <code>JAVA_OPT=&quot;$&#123;JAVA_OPT&#125; -verbose:gc -Xloggc:$&#123;GC_LOG_DIR&#125;/rmq_broker_gc_%p_%t.log</code></li>
+<li>增加 <code>JAVA_OPT=&quot;$&#123;JAVA_OPT&#125; -Xlog:gc*:file=$&#123;GC_LOG_DIR&#125;/rmq_broker_gc_%p_%t.log:time,tags:filecount=5,filesize=30M&quot;</code></li>
+</ul>
+<h4 id="4-启动broker失败-Could-not-create-the-Java-Virtual-Machine"><a href="#4-启动broker失败-Could-not-create-the-Java-Virtual-Machine" class="headerlink" title="4. 启动broker失败 Could not create the Java Virtual Machine"></a>4. 启动broker失败 Could not create the Java Virtual Machine</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">root@qjue:/usr/local/rocketmq-4.8.0/bin# ./mqbroker -n localhost:9876</span><br><span class="line">[0.001s][warning][gc] -Xloggc is deprecated. Will use -Xlog:gc:/dev/shm/rmq_broker_gc_%p_%t.log instead.</span><br><span class="line">Unrecognized VM option &#x27;PrintGCDateStamps&#x27;</span><br><span class="line">Error: Could not create the Java Virtual Machine.</span><br><span class="line">Error: A fatal exception has occurred. Program will exit.</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>删除 runbroker <code>JAVA_OPT=&quot;$&#123;JAVA_OPT&#125; -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=30m&quot;</code></li>
+</ul>
+<h4 id="5-启动-tools-Producer-失败-connect-to-null-failed-tool-sh"><a href="#5-启动-tools-Producer-失败-connect-to-null-failed-tool-sh" class="headerlink" title="5. 启动 tools Producer 失败 connect to null failed tool.sh"></a>5. 启动 tools Producer 失败 connect to null failed tool.sh</h4><ul>
+<li>tool.sh export部分 增加<code>export NAMESRV_ADDR=localhost:9876</code></li>
+</ul>
+<h4 id="6-not-found"><a href="#6-not-found" class="headerlink" title="6. [[: not found"></a>6. <code>[[: not found</code></h4><p>[[: not found 是因为 <code>mqnamesrv.sh</code> 使用<code>sh</code> 启动了 <code>runserver.sh sh</code> 不支持 “if [[ “ </p>
+<ul>
+<li>将 <code>mqnamesrv.sh</code> <code>sh $&#123;ROCKETMQ_HOME&#125;/bin/runserver.sh</code> 修改成 <code>bash $&#123;ROCKETMQ_HOME&#125;/bin/runserver.sh</code></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>example</tag>
+        <tag>rocketmq</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Too many open files 解决方案</title>
+    <url>/2020/10/24/too-many-open-file/</url>
+    <content><![CDATA[<h2 id="使用版本"><a href="#使用版本" class="headerlink" title="使用版本"></a>使用版本</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line"># uname -a</span><br><span class="line">Linux 5.4.0-52-generic #57-Ubuntu SMP Thu Oct 15 10:57:00 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux</span><br><span class="line"># lsb_release -a</span><br><span class="line">Ubuntu 20.04.1 LTS</span><br><span class="line"></span><br><span class="line">Linux ecs-w0xX6 3.10.0-957.12.2.el7.x86_64 #1 SMP Tue May 14 21:24:32 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</span><br><span class="line"># cat /etc/redhat-release</span><br><span class="line">CentOS Linux release 7.6.1810 (Core)</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">accept tcp [::]:3322: accept4: too many open files</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="方案一、-ulimit-用于限制-shell-启动的进程所占用的资源"><a href="#方案一、-ulimit-用于限制-shell-启动的进程所占用的资源" class="headerlink" title="方案一、 ulimit (用于限制 shell 启动的进程所占用的资源)"></a>方案一、 ulimit (用于限制 shell 启动的进程所占用的资源)</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">ulimit -n 102400</span><br></pre></td></tr></table></figure></div>
+
+<p>注意:</p>
+<ul>
+<li>ulimit 限制的是当前 shell 进程以及其派生的子进程, 作用范围比较小，可以临时解决在当前shell执行程序的限制</li>
+<li>ulimit 命令是 很多shell程序的内置命令，如csh、sh等，所以支持的环境会更多</li>
+<li>在某些系统没有pam_limits模块的，可以用此命令结合所要执行的命令一起，实现修改程序的文件描述符限制。如 <code>ulimit -n 102400 &amp;&amp; ./main</code></li>
+</ul>
+<h3 id="方案二、-更改-x2F-etc-x2F-security-x2F-limits-conf-该文件为pam-中-pam-limits-模块的默认配置文件"><a href="#方案二、-更改-x2F-etc-x2F-security-x2F-limits-conf-该文件为pam-中-pam-limits-模块的默认配置文件" class="headerlink" title="方案二、 更改 &#x2F;etc&#x2F;security&#x2F;limits.conf (该文件为pam 中 pam_limits 模块的默认配置文件)"></a>方案二、 更改 &#x2F;etc&#x2F;security&#x2F;limits.conf (该文件为<a class="link"   href="https://linux.die.net/man/8/pam_limits" >pam 中 pam_limits<i class="fa-solid fa-up-right-from-square"></i></a> 模块的默认配置文件)</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim /etc/security/limits.conf  </span><br><span class="line"># 在最后加入  </span><br><span class="line">* soft nofile 102400 </span><br><span class="line">* hard nofile 102400  </span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line">* - nofile 102400</span><br></pre></td></tr></table></figure></div>
+
+<p>最前的 * 表示所有用户，可根据需要设置某一用户，例如<br>root soft nofile 102400<br>root hard nofile 102400</p>
+<p>改完后重新登录就能生效</p>
+<p>注意:</p>
+<ul>
+<li><p>在某些系统上(ubuntu?) 通配符 * 会不起效果, 设置指定用户起效 <a class="link"   href="https://serverfault.com/questions/235356/open-file-descriptor-limits-conf-setting-isnt-read-by-ulimit-even-when-pam-limi" >open file descriptor limits.conf setting isn’t read by ulimit even when pam_limits.so is required<i class="fa-solid fa-up-right-from-square"></i></a></p>
+</li>
+<li><p>centos6+ 系统，如果有 <code>/etc/security/limits.d/&lt;&gt;-nproc.conf</code> 文件，需检查是否已经有相关配置, 该文件的优先级比 <code>/etc/security/limits.conf</code> 高</p>
+</li>
+</ul>
+<h3 id="方案三、-针对使用supervisor管理的程序"><a href="#方案三、-针对使用supervisor管理的程序" class="headerlink" title="方案三、 针对使用supervisor管理的程序"></a>方案三、 针对使用supervisor管理的程序</h3><p>在supervisord的配置文件 &#x2F;etc&#x2F;supervisor&#x2F;supervisord.conf 中 [supervisord] 处添加 minfds &#x3D; 102400</p>
+<p><a class="link"   href="http://supervisord.org/configuration.html" >supervisord configuration<i class="fa-solid fa-up-right-from-square"></i></a></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">[supervisord]</span><br><span class="line">minfds = 102400</span><br></pre></td></tr></table></figure></div>
+
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2020/10/24/too-many-open-file/supervisor.jpg"
+                      class="" title="supervisord config"
+                >
+
+<h3 id="方案四、-x2F-etc-x2F-sysctl-conf-该文件为内核配置文件"><a href="#方案四、-x2F-etc-x2F-sysctl-conf-该文件为内核配置文件" class="headerlink" title="方案四、&#x2F;etc&#x2F;sysctl.conf (该文件为内核配置文件)"></a>方案四、&#x2F;etc&#x2F;sysctl.conf (该文件为内核配置文件)</h3><p>当单进程需求数量超过 <code>cat /proc/sys/fs/nr_open</code> 时<br>当单机需求数量超过 <code>cat /proc/sys/fs/file-max</code> 时</p>
+<p>按需修改 <code>/etc/sysctl.conf</code> 文件</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">fs.file-max=2000500</span><br><span class="line">fs.nr_open=2000500</span><br></pre></td></tr></table></figure></div>
+
+<p>file-max: 该值为是内核可分配的最大文件数<br>nr_open: 该值为单个进程可分配的最大文件数</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li>当大家遇到limits修改不生效的时候，请查一下进程是否只是子进程，如果是，再检查是不是受父进程<code>cat /proc/&lt;pid&gt;/limits</code>配置影响</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a class="link"   href="https://developer.51cto.com/art/201701/527470.htm" >你真知道“Too many open files”?<i class="fa-solid fa-up-right-from-square"></i></a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>issue</tag>
       </tags>
   </entry>
 </search>
