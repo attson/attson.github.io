@@ -39,19 +39,18 @@
 
 <p>这个主题基本是开箱即用，默认的配置就挺好的，可以修改一些偏个人信息的部分</p>
 <h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p>_config.redefine.yml</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 基础信息</span></span><br><span class="line">base_info:</span><br><span class="line">  title: Attson Thinking <span class="comment"># Site title</span></span><br><span class="line">  author: Attson <span class="comment"># Author name</span></span><br><span class="line">  url: https://attson.github.io <span class="comment"># Site url</span></span><br><span class="line">  <span class="comment"># Logo image (You can use local image, image external link or don’t fill)</span></span><br><span class="line">  logo_img: <span class="comment"># logo image on the left of the navigation bar</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 作者头像和网站图标部分</span></span><br><span class="line">style:</span><br><span class="line">  <span class="comment"># 说明: images 路径 -&gt; 在source/images</span></span><br><span class="line">  avatar: /images/avatar.svg <span class="comment"># avatar of the author</span></span><br><span class="line">  <span class="comment"># Favicon (You can use local image or image external link)</span></span><br><span class="line">  favicon: /images/logo.svg <span class="comment"># favicon of the site</span></span><br><span class="line">  </span><br><span class="line">  first_screen:</span><br><span class="line">    <span class="comment"># 说明: 背景图片我这边选择的是必应的每日壁纸，每天都会自动换</span></span><br><span class="line">    background_image:</span><br><span class="line">      light: https://cn.bing.com/th?<span class="built_in">id</span>=OHR.NorwayNYD_ZH-CN7856439066_1920x1080.jpg&amp;rf=LaDigue_1920x1080.jpg&amp;pid=hp <span class="comment"># background image of the first screen, use relative path or external link (if your website is in subdirectory, use external link)</span></span><br><span class="line">      dark: https://cn.bing.com/th?<span class="built_in">id</span>=OHR.NorwayNYD_ZH-CN7856439066_1920x1080.jpg&amp;rf=LaDigue_1920x1080.jpg&amp;pid=hp <span class="comment"># background image of the first screen, use relative path or external link (if your website is in subdirectory, use external link)</span></span><br><span class="line">    <span class="comment"># 网站首页一段文案，可以改成自己喜欢的</span></span><br><span class="line">    description: 可怕的不是死亡，而是你从未真正活过 <span class="comment"># the title in the middle of the first screen. HTML supported (e.g. svg html code of your logo)</span></span><br><span class="line"><span class="comment"># 菜单部分</span></span><br><span class="line">menu:</span><br><span class="line">  <span class="comment"># 增加 tags 页</span></span><br><span class="line">  Tags:</span><br><span class="line">    path: /tags</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 基础信息</span></span><br><span class="line">base_info:</span><br><span class="line">  title: Attson Thinking <span class="comment"># Site title</span></span><br><span class="line">  author: Attson <span class="comment"># Author name</span></span><br><span class="line">  url: https://attson.github.io <span class="comment"># Site url</span></span><br><span class="line">  <span class="comment"># Logo image (You can use local image, image external link or don’t fill)</span></span><br><span class="line">  logo_img: <span class="comment"># logo image on the left of the navigation bar</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 作者头像和网站图标部分</span></span><br><span class="line">style:</span><br><span class="line">  <span class="comment"># 说明: images 路径 -&gt; 在source/images </span></span><br><span class="line">  <span class="comment"># &lt;= v0.4.5 主题内置文件 images/(avatar.svg loading.svg logo.svg logo.webp), 请避开这些文件命名</span></span><br><span class="line">  avatar: /images/my_avatar.svg <span class="comment"># avatar of the author</span></span><br><span class="line">  <span class="comment"># Favicon (You can use local image or image external link)</span></span><br><span class="line">  favicon: /images/my_logo.svg <span class="comment"># favicon of the site</span></span><br><span class="line">  </span><br><span class="line">  first_screen:</span><br><span class="line">    <span class="comment"># 说明: 背景图片我这边选择的是必应的每日壁纸，每天都会自动换</span></span><br><span class="line">    background_image:</span><br><span class="line">      light: https://cn.bing.com/th?<span class="built_in">id</span>=OHR.NorwayNYD_ZH-CN7856439066_1920x1080.jpg&amp;rf=LaDigue_1920x1080.jpg&amp;pid=hp <span class="comment"># background image of the first screen, use relative path or external link (if your website is in subdirectory, use external link)</span></span><br><span class="line">      dark: https://cn.bing.com/th?<span class="built_in">id</span>=OHR.NorwayNYD_ZH-CN7856439066_1920x1080.jpg&amp;rf=LaDigue_1920x1080.jpg&amp;pid=hp <span class="comment"># background image of the first screen, use relative path or external link (if your website is in subdirectory, use external link)</span></span><br><span class="line">    <span class="comment"># 网站首页一段文案，可以改成自己喜欢的</span></span><br><span class="line">    description: 可怕的不是死亡，而是你从未真正活过 <span class="comment"># the title in the middle of the first screen. HTML supported (e.g. svg html code of your logo)</span></span><br><span class="line"><span class="comment"># 菜单部分</span></span><br><span class="line">menu:</span><br><span class="line">  <span class="comment"># 增加 tags 页</span></span><br><span class="line">  Tags:</span><br><span class="line">    path: /tags</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="gitalk-评论支持"><a href="#gitalk-评论支持" class="headerlink" title="gitalk 评论支持"></a>gitalk 评论支持</h3><p><a class="link"   href="https://redefine-docs.evanluo.top/docs/configuration-guide/comment#gitalk" >https://redefine-docs.evanluo.top/docs/configuration-guide/comment#gitalk<i class="fa-solid fa-up-right-from-square"></i></a></p>
-<p>[redefine &lt; v0.4.5 gitalk 代码有<a class="link"   href="https://github.com/EvanNotFound/hexo-theme-redefine/issues/36" >bug<i class="fa-solid fa-up-right-from-square"></i></a>]</p>
+<p>[redefine &lt;&#x3D; v0.4.5 gitalk 代码有<a class="link"   href="https://github.com/EvanNotFound/hexo-theme-redefine/issues/36" >bug<i class="fa-solid fa-up-right-from-square"></i></a>]</p>
 <div class="highlight-container" data-rel="Yaml"><figure class="iseeu highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">comment:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">use:</span> <span class="string">gitalk</span> <span class="comment"># values: waline | gitalk | twikoo</span></span><br><span class="line">  <span class="comment"># Gitalk</span></span><br><span class="line">  <span class="comment"># See: https://github.com/gitalk/gitalk</span></span><br><span class="line">  <span class="attr">gitalk:</span></span><br><span class="line">    <span class="attr">github_id:</span> <span class="string">attson</span> <span class="comment"># GitHub repo owner</span></span><br><span class="line">    <span class="attr">repository:</span> <span class="string">attson.github.io</span> <span class="comment"># Repository name to store issues</span></span><br><span class="line">    <span class="attr">client_id:</span> <span class="string">&lt;GitHub</span> <span class="string">Application</span> <span class="string">Client</span> <span class="string">ID&gt;</span> <span class="comment"># GitHub Application Client ID</span></span><br><span class="line">    <span class="attr">client_secret:</span> <span class="string">&lt;GitHub</span> <span class="string">Application</span> <span class="string">Client</span> <span class="string">Secret&gt;</span> <span class="comment"># GitHub Application Client Secret</span></span><br></pre></td></tr></table></figure></div>
 <h4 id="新建github-oath-应用"><a href="#新建github-oath-应用" class="headerlink" title="新建github oath 应用"></a>新建github oath 应用</h4><p><a class="link"   href="https://github.com/settings/applications/new" >https://github.com/settings/applications/new<i class="fa-solid fa-up-right-from-square"></i></a></p>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/01/build-blog/application.png"
-                      class="" title="comment.png"
-                >
-
+                     data-src="/build-blog/application.png"
+                      alt="comment.png"
+                ></p>
 <h2 id="部署-github-io"><a href="#部署-github-io" class="headerlink" title="部署 github.io"></a>部署 github.io</h2><ul>
 <li>本站点为了区分源文件和静态站点文件，采用两个仓库来维护博客</li>
 <li>私有仓库 attson-blog 用于放源文件</li>
@@ -68,34 +67,31 @@
 <ul>
 <li>Title 任意</li>
 </ul>
-<h4 id="在公开仓库-attson-github-io-添加-deploy-key，用于支持部署（公钥）"><a href="#在公开仓库-attson-github-io-添加-deploy-key，用于支持部署（公钥）" class="headerlink" title="在公开仓库 attson.github.io 添加 deploy key，用于支持部署（公钥）"></a>在公开仓库 attson.github.io 添加 deploy key，用于支持部署（公钥）</h4><img  
+<h4 id="在公开仓库-attson-github-io-添加-deploy-key，用于支持部署（公钥）"><a href="#在公开仓库-attson-github-io-添加-deploy-key，用于支持部署（公钥）" class="headerlink" title="在公开仓库 attson.github.io 添加 deploy key，用于支持部署（公钥）"></a>在公开仓库 attson.github.io 添加 deploy key，用于支持部署（公钥）</h4><p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/01/build-blog/deploy.png"
-                      class="" title="deploy.png"
-                >
-
+                     data-src="/build-blog/deploy.png"
+                      alt="deploy.png"
+                ></p>
 <h4 id="在私有仓库-attson-blog-添加-secrets-key，用于访问-attson-github-io（私钥）"><a href="#在私有仓库-attson-blog-添加-secrets-key，用于访问-attson-github-io（私钥）" class="headerlink" title="在私有仓库 attson-blog 添加 secrets key，用于访问 attson.github.io（私钥）"></a>在私有仓库 attson-blog 添加 secrets key，用于访问 attson.github.io（私钥）</h4><ul>
 <li>取一个名字，该名字需与 .github&#x2F;workflows&#x2F;deploy.yml 中 deploy_key 一致 DEPLOY_GITHUB_IO_SECRECT</li>
 </ul>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/01/build-blog/secret.png"
-                      class="" title="secret.png"
-                >
-
+                     data-src="/build-blog/secret.png"
+                      alt="secret.png"
+                ></p>
 <h4 id="git-commit-amp-amp-git-push"><a href="#git-commit-amp-amp-git-push" class="headerlink" title="git commit &amp;&amp; git push"></a>git commit &amp;&amp; git push</h4><ul>
 <li>配置完以上后，就可以直接提交代码到 源文件仓库了，github 的 workflow 会在提交之后自动触发</li>
 <li>在 Actions 处可以看到 workflow 情况</li>
 </ul>
-<img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/01/build-blog/action.png"
-                      class="" title="action.png"
-                >
-
+                     data-src="/build-blog/action.png"
+                      alt="action.png"
+                ></p>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="markdown-嵌套图片的问题"><a href="#markdown-嵌套图片的问题" class="headerlink" title="markdown 嵌套图片的问题"></a>markdown 嵌套图片的问题</h3><ul>
 <li>官方推荐的嵌入图片的方式 <a class="link"   href="https://hexo.io/zh-tw/docs/tag-plugins#Embed-image" >https://hexo.io/zh-tw/docs/tag-plugins#Embed-image<i class="fa-solid fa-up-right-from-square"></i></a> 不太符合markdown 通用写法</li>
 </ul>
