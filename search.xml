@@ -223,6 +223,120 @@
       </tags>
   </entry>
   <entry>
+    <title>Composer 私有仓库搭建</title>
+    <url>/2023/01/02/composer-private/</url>
+    <content><![CDATA[<h1 id="Composer-私有仓库搭建"><a href="#Composer-私有仓库搭建" class="headerlink" title="Composer 私有仓库搭建"></a>Composer 私有仓库搭建</h1><p>composer 私有仓库搭建方案有以下三种</p>
+<ol>
+<li><p><a class="link"   href="https://github.com/composer/satis"  title="Satis">Satis<i class="fa-solid fa-up-right-from-square"></i></a> 官方推荐的工具</p>
+<p>基本满足要求，缺点就是增加自己的package每次需要手动修改配置，版本更新需要手动，比较繁琐</p>
+</li>
+<li><p><a class="link"   href="https://github.com/ludofleury/satisfy"  title="Satisfy">Satisfy<i class="fa-solid fa-up-right-from-square"></i></a> 在Satis基础上增加了一些便捷的功能，webhook，图形界面增加仓库等</p>
+</li>
+<li><p>coding by yourself.;</p>
+</li>
+</ol>
+<p>本文使用 <a class="link"   href="https://github.com/ludofleury/satisfy"  title="Satisfy">Satisfy<i class="fa-solid fa-up-right-from-square"></i></a> + docker进行搭建</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/01/02/composer-private/image_a4urwWFHJZ.png"
+                      class=""
+                >
+
+
+
+<h2 id="一、下载"><a href="#一、下载" class="headerlink" title="一、下载"></a>一、下载</h2><p>选择一个目录 &#x2F;var&#x2F;www&#x2F;satisfy (<em>该目录要与后面容器内的目录保持一致</em>);</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line"># current commit hash master@7e2a472</span><br><span class="line">git clone https://github.com/ludofleury/satisfy /var/www/satisfy</span><br><span class="line"></span><br><span class="line">cd /var/www/satisfy</span><br><span class="line"></span><br><span class="line">chown -R www-data:www-data .</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="二、配置docker"><a href="#二、配置docker" class="headerlink" title="二、配置docker"></a>二、配置docker</h2><h3 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h3><p>修改docker&#x2F;php&#x2F;Dockerfile</p>
+<p>（因为本文nginx 是宿主机提供的，不是独立一个nginx 容器，配置上与官方有些差异）</p>
+<div class="highlight-container" data-rel="Docker"><figure class="iseeu highlight docker"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">8.0</span>-fpm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 国内源加速</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> sed -i s/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/g /etc/apt/sources.list</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt update &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    apt install -qy wget curl git zip unzip &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    apt clean &amp;&amp; <span class="built_in">rm</span> -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 保证外部的www-data 与 容器内的 www-data uid、gid 相同</span></span><br><span class="line"><span class="keyword">ARG</span> UNAME=www-data</span><br><span class="line"><span class="keyword">ARG</span> UGROUP=www-data</span><br><span class="line"><span class="keyword">ARG</span> UID=<span class="number">1000</span></span><br><span class="line"><span class="keyword">ARG</span> GID=<span class="number">1000</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> usermod  --uid <span class="variable">$UID</span> <span class="variable">$UNAME</span></span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> groupmod --gid <span class="variable">$GID</span> <span class="variable">$UGROUP</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> wget -O /usr/local/bin/composer https://getcomposer.org/download/latest-stable/composer.phar &amp;&amp; <span class="built_in">chmod</span> +x /usr/local/bin/composer</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># gitlab ssh</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> id_rsa /var/www/.ssh/id_rsa</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">chmod</span> 0600 /var/www/.ssh/id_rsa</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> php.ini /usr/local/etc/php/conf.d/satisfy.ini</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">mkdir</span> -p /var/www/.ssh &amp;&amp; <span class="built_in">chmod</span> 0700 /var/www/.ssh &amp;&amp; ssh-keyscan -H github.com &gt;&gt; /var/www/.ssh/known_hosts &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    <span class="built_in">mkdir</span> -p /var/www/.composer &amp;&amp; <span class="built_in">chown</span> www-data:www-data /var/www/.composer</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># 保证 www-data 用户权限</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">chown</span> -R www-data:www-data /var/www</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># gitlab ssh known_hosts, 不优先添加，webhook 处理在ssh方式下会处理异常</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> ssh-keyscan -p 222 -H &lt;my.gitlab.com&gt; &gt;&gt; /var/www/.ssh/known_hosts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">USER</span> www-data</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="DockerCompose"><a href="#DockerCompose" class="headerlink" title="DockerCompose"></a>DockerCompose</h3><p>修改 docker-composer.yml</p>
+<div class="highlight-container" data-rel="Docker"><figure class="iseeu highlight docker"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&#x27;3&#x27;</span></span><br><span class="line">services:</span><br><span class="line">  php:</span><br><span class="line">    build:</span><br><span class="line">      context: ./docker/php</span><br><span class="line">    container_name: satisfy_php</span><br><span class="line">    <span class="keyword">user</span>: www-data</span><br><span class="line">    working_dir: /var/www/satisfy</span><br><span class="line">    volumes:</span><br><span class="line">      - .:/var/www/satisfy</span><br><span class="line">      - /var/www/.composer</span><br><span class="line">    environment:</span><br><span class="line">      APP_ENV: $&#123;APP_ENV:-dev&#125;</span><br><span class="line">      APP_DEBUG: $&#123;APP_DEBUG:-<span class="number">1</span>&#125;</span><br><span class="line">      APP_PATH: /var/www/satisfy</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="number">9000</span>:<span class="number">9000</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Build"><a href="#Build" class="headerlink" title="Build"></a>Build</h3><ol>
+<li>在 docker&#x2F;php&#x2F; 目录下增加 gitlab 的 ssh id_rsa</li>
+<li>docker-composer build</li>
+</ol>
+<div class="highlight-container" data-rel="Docker"><figure class="iseeu highlight docker"><table><tr><td class="code"><pre><span class="line"> $ docker-composer build</span><br><span class="line"> ...</span><br><span class="line"> ---&gt; <span class="number">8346930</span>c5d07</span><br><span class="line">Removing intermediate container e1af8c887943</span><br><span class="line">Step <span class="number">17</span>/<span class="number">17</span> : <span class="keyword">USER</span> www-data</span><br><span class="line"> ---&gt; Running in d77d9a8ca62b</span><br><span class="line"> ---&gt; <span class="number">8</span>bba196f3d47</span><br><span class="line">Removing intermediate container d77d9a8ca62b</span><br><span class="line">Successfully built <span class="number">8</span>bba196f3d47</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="三、配置satisfy"><a href="#三、配置satisfy" class="headerlink" title="三、配置satisfy"></a>三、配置satisfy</h2><h3 id="vendor依赖下载"><a href="#vendor依赖下载" class="headerlink" title="vendor依赖下载"></a>vendor依赖下载</h3><p>直接使用该镜像中的composer 进行依赖下载</p>
+<div class="highlight-container" data-rel="Docker"><figure class="iseeu highlight docker"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="language-bash"> --<span class="built_in">rm</span> -it -v <span class="variable">$PWD</span>:/var/www/app satisfy_php composer install -d /var/www/app</span></span><br></pre></td></tr></table></figure></div>
+
+<p>提示输入配置选项可以直接回车跳过，后续手动修改</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/01/02/composer-private/image_d406ohIHKM.png"
+                      class=""
+                >
+
+<h3 id="satis-初始化"><a href="#satis-初始化" class="headerlink" title="satis 初始化"></a>satis 初始化</h3><h4 id="增加配置文件-satis-json"><a href="#增加配置文件-satis-json" class="headerlink" title="增加配置文件 satis.json"></a>增加配置文件 satis.json</h4><div class="highlight-container" data-rel="Docker"><figure class="iseeu highlight docker"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="string">&quot;attson/repository&quot;</span>,</span><br><span class="line">    <span class="string">&quot;homepage&quot;</span>: <span class="string">&quot;http://composer.attson.com/&quot;</span>,</span><br><span class="line">    <span class="string">&quot;repositories&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;type&quot;</span>: <span class="string">&quot;vcs&quot;</span>,</span><br><span class="line">            <span class="string">&quot;url&quot;</span>: <span class="string">&quot;ssh://git@&lt;gitlab.com/group/project&gt;.git&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">&quot;require-all&quot;</span>: true,</span><br><span class="line">    <span class="string">&quot;config&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;secure-http&quot;</span>: false</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;archive&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;directory&quot;</span>: <span class="string">&quot;dist&quot;</span>,</span><br><span class="line">        <span class="string">&quot;format&quot;</span>: <span class="string">&quot;zip&quot;</span>,</span><br><span class="line">        <span class="string">&quot;skip-dev&quot;</span>: false,</span><br><span class="line">        <span class="string">&quot;prefix-url&quot;</span>: <span class="string">&quot;http://composer.attson.com/&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="build-satis"><a href="#build-satis" class="headerlink" title="build satis"></a>build satis</h4><div class="highlight-container" data-rel="Docker"><figure class="iseeu highlight docker"><table><tr><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="language-bash"> --<span class="built_in">rm</span> -it -v <span class="variable">$PWD</span>:/var/www/app satisfy_php php /var/www/app/bin/satis build  /var/www/app/satis.json /var/www/app/public -vvv</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">Writing packages.json</span><br><span class="line">Pruning include directories</span><br><span class="line">Writing web view</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="satisfy配置"><a href="#satisfy配置" class="headerlink" title="satisfy配置"></a>satisfy配置</h3><h4 id="修改-config-x2F-parameters-yml"><a href="#修改-config-x2F-parameters-yml" class="headerlink" title="修改 config&#x2F;parameters.yml"></a>修改 config&#x2F;parameters.yml</h4><div class="highlight-container" data-rel="Docker"><figure class="iseeu highlight docker"><table><tr><td class="code"><pre><span class="line">parameters:</span><br><span class="line">    secret: &lt;any strings&gt;</span><br><span class="line">    satis_filename: <span class="string">&#x27;%kernel.project_dir%/satis.json&#x27;</span></span><br><span class="line">    satis_log_path: <span class="string">&#x27;%kernel.project_dir%/var/satis&#x27;</span></span><br><span class="line">    gitlab.secret: &lt;webhook.token&gt;</span><br><span class="line">    admin.auth: true</span><br><span class="line">    admin.users:</span><br><span class="line">        admin:</span><br><span class="line">            password: &lt;plaintext&gt;</span><br><span class="line">            roles:</span><br><span class="line">                - ROLE_ADMIN</span><br><span class="line">    composer.home: <span class="string">&#x27;%kernel.project_dir%/var/composer&#x27;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>https:&#x2F;&#x2F;github.com&#x2F;ludofleury&#x2F;satisfy&#x2F;blob&#x2F;master&#x2F;config&#x2F;security.yml<br>默认密码使用的是明文方式</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/01/02/composer-private/image_Y7nrAZFoCu.png"
+                      class=""
+                >
+
+
+
+<h4 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h4><div class="highlight-container" data-rel="Docker"><figure class="iseeu highlight docker"><table><tr><td class="code"><pre><span class="line">docker-composer up -d</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="nginx-配置"><a href="#nginx-配置" class="headerlink" title="nginx 配置"></a>nginx 配置</h3><div class="highlight-container" data-rel="Docker"><figure class="iseeu highlight docker"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen        <span class="number">80</span>;</span><br><span class="line">    server_name    composer.attson.com;</span><br><span class="line"></span><br><span class="line">    access_log  /var/log/nginx/composer/access.log;</span><br><span class="line">    error_log /var/log/nginx/composer/error_log;</span><br><span class="line"></span><br><span class="line">    root   /var/www/satisfy/public;</span><br><span class="line">    index index.html index.php;</span><br><span class="line">    location / &#123;</span><br><span class="line">        try_files $uri $uri/ /index.php?$query_string;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ ^(.+\.php)(.*) &#123;</span><br><span class="line">        try_files $uri /index.php =<span class="number">404</span>;</span><br><span class="line"></span><br><span class="line">        fastcgi_split_path_info ^(.+\.php)(.*)$;</span><br><span class="line">        fastcgi_pass <span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9000</span>;</span><br><span class="line"></span><br><span class="line">        fastcgi_param PATH_INFO $fastcgi_path_info;</span><br><span class="line">        <span class="comment"># fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;</span></span><br><span class="line">        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">        include fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="四、验证"><a href="#四、验证" class="headerlink" title="四、验证"></a>四、验证</h2><h3 id="访问地址"><a href="#访问地址" class="headerlink" title="访问地址"></a>访问地址</h3><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/01/02/composer-private/image_AuHbRj7-fo.png"
+                      class=""
+                >
+
+<h3 id="访问-admin-x2F-configuration"><a href="#访问-admin-x2F-configuration" class="headerlink" title="访问 admin&#x2F;configuration"></a>访问 admin&#x2F;configuration</h3><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/01/02/composer-private/image_vo4axt7ZmP.png"
+                      class=""
+                >
+
+<p>用户名密码 在 parameters.yml 配置文件</p>
+<h3 id="gitlab-webhook"><a href="#gitlab-webhook" class="headerlink" title="gitlab webhook;"></a>gitlab webhook;</h3><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/01/02/composer-private/image_K0Pz3doYO3.png"
+                      class=""
+                >
+
+<p>webhook 配置完后可以test</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2023/01/02/composer-private/image_uncVKUkl8y.png"
+                      class=""
+                >
+
+<p>不出意外的话，就全部搭好了</p>
+<h2 id="五、重新拉取"><a href="#五、重新拉取" class="headerlink" title="五、重新拉取"></a>五、重新拉取</h2><p>可以通过删除所有文件，清理无效的版本。（如果仓库太多的话，还是不要这么操作，全部拉取比较耗时）</p>
+<div class="highlight-container" data-rel="Docker"><figure class="iseeu highlight docker"><table><tr><td class="code"><pre><span class="line">rm -rf public/dist</span><br><span class="line"></span><br><span class="line">docker <span class="keyword">run</span><span class="language-bash"> --<span class="built_in">rm</span> -it -v <span class="variable">$PWD</span>:/var/www/app satisfy_php php /var/www/app/bin/satis build  /var/www/app/satis.json /var/www/app/public -vvv</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意 public 的文件权限</span></span><br><span class="line">chown -R www-data:www-data public</span><br></pre></td></tr></table></figure></div>
+
+
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>example</tag>
+        <tag>php</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux 系列更换软件源</title>
     <url>/2020/09/28/linux-source-mirror-change/</url>
     <content><![CDATA[<h3 id="1-ubuntu-阿里云源"><a href="#1-ubuntu-阿里云源" class="headerlink" title="1. ubuntu-阿里云源"></a>1. ubuntu-阿里云源</h3><h4 id="要注意-x2F-etc-x2F-apt-x2F-sources-list-默认的是什么"><a href="#要注意-x2F-etc-x2F-apt-x2F-sources-list-默认的是什么" class="headerlink" title="要注意&#x2F;etc&#x2F;apt&#x2F;sources.list 默认的是什么"></a>要注意&#x2F;etc&#x2F;apt&#x2F;sources.list 默认的是什么</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line"># grep -Ev &quot;^$|[#]&quot; 过滤掉空行和#开头的</span><br><span class="line">cat /etc/apt/sources.list | grep -Ev &quot;^$|#&quot;</span><br></pre></td></tr></table></figure></div>
