@@ -38,6 +38,9 @@
     
 <link rel="stylesheet" href="/css/css2.css">
 
+
+    
+
     <script id="hexo-configurations">
     let REDEFINE = window.REDEFINE || {};
     REDEFINE.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
@@ -84,61 +87,65 @@
             <div class="pc">
                 <ul class="menu-list">
                     
-                        <li class="menu-item">
-                            <!-- Menu -->
-                            <a class="" 
-                                href="/" >
-                                
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/" >
                                     
-                                        <i class="fa-regular fa-house"></i>
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
                                     
-                                    HOME
+                                </a>
+                                <!-- Submenu -->
                                 
-                            </a>
-                            <!-- Submenu -->
-                            
-                        </li>
+                            </li>
                     
-                        <li class="menu-item">
-                            <!-- Menu -->
-                            <a class="" 
-                                href="/archives" >
-                                
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives" >
                                     
-                                        <i class="fa-regular fa-archive"></i>
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        ARCHIVES
                                     
-                                    ARCHIVES
+                                </a>
+                                <!-- Submenu -->
                                 
-                            </a>
-                            <!-- Submenu -->
-                            
-                        </li>
+                            </li>
                     
-                        <li class="menu-item">
-                            <!-- Menu -->
-                            <a class="" 
-                                href="/tags" >
-                                
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/tags" >
                                     
-                                    TAGS
+                                        
+                                        TAGS
+                                    
+                                </a>
+                                <!-- Submenu -->
                                 
-                            </a>
-                            <!-- Submenu -->
-                            
-                        </li>
+                            </li>
                     
-                        <li class="menu-item">
-                            <!-- Menu -->
-                            <a class="" 
-                                href="/categories" >
-                                
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/categories" >
                                     
-                                    CATEGORIES
+                                        
+                                        CATEGORIES
+                                    
+                                </a>
+                                <!-- Submenu -->
                                 
-                            </a>
-                            <!-- Submenu -->
-                            
-                        </li>
+                            </li>
                     
                     
                         <li class="menu-item search search-popup-trigger">
@@ -163,58 +170,63 @@
     <div class="header-drawer">
         <ul class="drawer-menu-list">
             
-                <li class="drawer-menu-item flex-center">
-                    <a class="" 
-                       href="/" >
-                         
-                            
-                                <i class="fa-regular fa-house"></i>
-                            
-                            HOME
-                        
-                    </a>
-                </li>
-                <!-- Submenu -->
                 
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/" >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
             
-                <li class="drawer-menu-item flex-center">
-                    <a class="" 
-                       href="/archives" >
-                         
-                            
-                                <i class="fa-regular fa-archive"></i>
-                            
-                            ARCHIVES
-                        
-                    </a>
-                </li>
-                <!-- Submenu -->
                 
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class="" 
-                       href="/tags" >
-                         
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/archives" >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                ARCHIVES
                             
-                            TAGS
-                        
-                    </a>
-                </li>
-                <!-- Submenu -->
-                
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
             
-                <li class="drawer-menu-item flex-center">
-                    <a class="" 
-                       href="/categories" >
-                         
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/tags" >
+                             
+                                
+                                TAGS
                             
-                            CATEGORIES
-                        
-                    </a>
-                </li>
-                <!-- Submenu -->
-                
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
             
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/categories" >
+                             
+                                
+                                CATEGORIES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
         </ul>
     </div>
 
@@ -303,15 +315,15 @@
             <div class="article-content markdown-body">
                 <h1 id="Composer-私有仓库搭建"><a href="#Composer-私有仓库搭建" class="headerlink" title="Composer 私有仓库搭建"></a>Composer 私有仓库搭建</h1><p>composer 私有仓库搭建方案有以下三种</p>
 <ol>
-<li><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/composer/satis"  title="Satis">Satis<i class="fa-solid fa-up-right-from-square"></i></a> 官方推荐的工具</p>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/composer/satis"  title="Satis">Satis <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 官方推荐的工具</p>
 <p>基本满足要求，缺点就是增加自己的package每次需要手动修改配置，版本更新需要手动，比较繁琐</p>
 </li>
-<li><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/ludofleury/satisfy"  title="Satisfy">Satisfy<i class="fa-solid fa-up-right-from-square"></i></a> 在Satis基础上增加了一些便捷的功能，webhook，图形界面增加仓库等</p>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/ludofleury/satisfy"  title="Satisfy">Satisfy <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 在Satis基础上增加了一些便捷的功能，webhook，图形界面增加仓库等</p>
 </li>
 <li><p>coding by yourself.;</p>
 </li>
 </ol>
-<p>本文使用 <a class="link"   target="_blank" rel="noopener" href="https://github.com/ludofleury/satisfy"  title="Satisfy">Satisfy<i class="fa-solid fa-up-right-from-square"></i></a> + docker进行搭建</p>
+<p>本文使用 <a class="link"   target="_blank" rel="noopener" href="https://github.com/ludofleury/satisfy"  title="Satisfy">Satisfy <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> + docker进行搭建</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
@@ -595,6 +607,8 @@
                 Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
             </div>
         
+        
+
         
         
     </div>  
