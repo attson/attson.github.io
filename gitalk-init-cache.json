@@ -1,47 +1,47 @@
 [
   {
-    "id": "/2019/07/13/21/asus-ac68u-shadowsocks/",
-    "url": "/2019/07/13/21/asus-ac68u-shadowsocks/",
+    "id": "/2019/07/13/asus-ac68u-shadowsocks/",
+    "url": "/2019/07/13/asus-ac68u-shadowsocks/",
     "title": "使用华硕AC68u做局域网透明代理"
   },
   {
-    "id": "/2023/01/01/20/build-blog/",
-    "url": "/2023/01/01/20/build-blog/",
+    "id": "/2023/01/01/build-blog/",
+    "url": "/2023/01/01/build-blog/",
     "title": "Hexo 博客搭建"
   },
   {
-    "id": "/2020/10/23/22/centos-shadowsocks/",
-    "url": "/2020/10/23/22/centos-shadowsocks/",
+    "id": "/2020/10/23/centos-shadowsocks/",
+    "url": "/2020/10/23/centos-shadowsocks/",
     "title": "centos 安装 shadowsocks"
   },
   {
-    "id": "/2023/01/02/21/composer-private/",
-    "url": "/2023/01/02/21/composer-private/",
+    "id": "/2023/01/02/composer-private/",
+    "url": "/2023/01/02/composer-private/",
     "title": "Composer 私有仓库搭建"
   },
   {
-    "id": "/2020/09/28/01/linux-source-mirror-change/",
-    "url": "/2020/09/28/01/linux-source-mirror-change/",
+    "id": "/2020/09/28/linux-source-mirror-change/",
+    "url": "/2020/09/28/linux-source-mirror-change/",
     "title": "linux 系列更换软件源"
   },
   {
-    "id": "/2017/11/29/14/mac-php-xdebug/",
-    "url": "/2017/11/29/14/mac-php-xdebug/",
+    "id": "/2017/11/29/mac-php-xdebug/",
+    "url": "/2017/11/29/mac-php-xdebug/",
     "title": "mac php + xdebug安装"
   },
   {
-    "id": "/2020/10/22/21/macos-vbox-ubuntu/",
-    "url": "/2020/10/22/21/macos-vbox-ubuntu/",
+    "id": "/2020/10/22/macos-vbox-ubuntu/",
+    "url": "/2020/10/22/macos-vbox-ubuntu/",
     "title": "在macos下使用virtual-box安装ubuntu server"
   },
   {
-    "id": "/2021/06/15/23/rocketmq/",
-    "url": "/2021/06/15/23/rocketmq/",
+    "id": "/2021/06/15/rocketmq/",
+    "url": "/2021/06/15/rocketmq/",
     "title": "开源版 rocketmq 安装教程及问题解决"
   },
   {
-    "id": "/2020/10/24/15/too-many-open-file/",
-    "url": "/2020/10/24/15/too-many-open-file/",
+    "id": "/2020/10/24/too-many-open-file/",
+    "url": "/2020/10/24/too-many-open-file/",
     "title": "Too many open files 解决方案"
   }
 ]
