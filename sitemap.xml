@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.com/tags/index.html</loc>
-    
-    <lastmod>2023-01-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/2020/10/24/too-many-open-file/</loc>
     
     <lastmod>2023-01-07</lastmod>
@@ -29,7 +20,25 @@
   </url>
   
   <url>
+    <loc>http://example.com/tags/index.html</loc>
+    
+    <lastmod>2023-01-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://example.com/2021/06/15/rocketmq/</loc>
+    
+    <lastmod>2023-01-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/2020/09/28/linux-source-mirror-change/</loc>
     
     <lastmod>2023-01-07</lastmod>
     
@@ -56,7 +65,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2020/09/28/linux-source-mirror-change/</loc>
+    <loc>http://example.com/2023/01/02/composer-private/</loc>
     
     <lastmod>2023-01-07</lastmod>
     
@@ -66,15 +75,6 @@
   
   <url>
     <loc>http://example.com/2020/10/23/centos-shadowsocks/</loc>
-    
-    <lastmod>2023-01-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/2023/01/02/composer-private/</loc>
     
     <lastmod>2023-01-07</lastmod>
     
@@ -166,14 +166,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/issue/</loc>
+    <loc>http://example.com/tags/rocketmq/</loc>
     <lastmod>2023-01-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/rocketmq/</loc>
+    <loc>http://example.com/tags/issue/</loc>
     <lastmod>2023-01-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
