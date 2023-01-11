@@ -12,6 +12,9 @@
     "id": "/2023/01/02/composer-private/"
   },
   {
+    "id": "/2023/01/10/gitalk-init/"
+  },
+  {
     "id": "/2020/09/28/linux-source-mirror-change/"
   },
   {
@@ -25,8 +28,5 @@
   },
   {
     "id": "/2020/10/24/too-many-open-file/"
-  },
-  {
-    "id": "/2023/01/10/gitalk-init/"
   }
 ]
