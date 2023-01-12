@@ -993,8 +993,12 @@ nr_open: 该值为单个进程可分配的最大文件数</p>
 <li><a class="link"   href="https://unix.stackexchange.com/questions/396978/specifier-resolution-i-and-i-difference" >https://unix.stackexchange.com/questions/396978/specifier-resolution-i-and-i-difference <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
 </ul>
 ]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
       <tags>
         <tag>linux</tag>
+        <tag>example</tag>
       </tags>
   </entry>
 </search>
