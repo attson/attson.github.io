@@ -320,99 +320,125 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="使用版本"><a href="#使用版本" class="headerlink" title="使用版本"></a>使用版本</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MacOs Catalian 10.15.6</span><br><span class="line">VirtalBox 6.1.16</span><br><span class="line">Ubuntu Server ubuntu-20.04.1-live-server-amd64.iso</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="一、安装VirtualBox"><a href="#一、安装VirtualBox" class="headerlink" title="一、安装VirtualBox"></a>一、安装VirtualBox</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><ul>
+                <h2 id="使用版本">使用版本</h2>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MacOs Catalian 10.15.6</span><br><span class="line">VirtalBox 6.1.16</span><br><span class="line">Ubuntu Server ubuntu-20.04.1-live-server-amd64.iso</span><br></pre></td></tr></table></figure></div>
+<h2 id="一、安装VirtualBox">一、安装VirtualBox</h2>
+<h3 id="下载">下载</h3>
+<ul>
 <li>下载地址: <a class="link"   target="_blank" rel="noopener" href="https://www.virtualbox.org/wiki/Downloads" >https://www.virtualbox.org/wiki/Downloads <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 国内下载比较慢，推荐借助神秘力量</li>
 </ul>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./macos-vbox-ubuntu/1603375584584.jpg"
+                     data-src="./macos-vbox-ubuntu/1603375584584.jpg"
                       alt="download-vbox"
                 ></p>
 <ul>
-<li>不要忘记检查一下sha256值 <a class="link"   target="_blank" rel="noopener" href="https://www.virtualbox.org/download/hashes/6.1.16/SHA256SUMS" >https://www.virtualbox.org/download/hashes/6.1.16/SHA256SUMS <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shasum -a 256 VirtualBox-6.1.16-140961-OSX.dmg</span><br><span class="line">d7df0f05d9a9e7cba50ea01da264ac20948b1c9c0e0cccd2d628085c9f434d45  VirtualBox-6.1.16-140961-OSX.dmg</span><br></pre></td></tr></table></figure></div></li>
+<li>不要忘记检查一下sha256值 <a class="link"   target="_blank" rel="noopener" href="https://www.virtualbox.org/download/hashes/6.1.16/SHA256SUMS" >https://www.virtualbox.org/download/hashes/6.1.16/SHA256SUMS <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shasum -a 256 VirtualBox-6.1.16-140961-OSX.dmg</span><br><span class="line">d7df0f05d9a9e7cba50ea01da264ac20948b1c9c0e0cccd2d628085c9f434d45  VirtualBox-6.1.16-140961-OSX.dmg</span><br></pre></td></tr></table></figure></div>
+</li>
 </ul>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
-<li><p>像正常安装软件一样即可</p>
-<p>  <img  
+<h3 id="安装">安装</h3>
+<ul>
+<li>
+<p>像正常安装软件一样即可</p>
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./macos-vbox-ubuntu/1603376858313.jpg"
+                     data-src="./macos-vbox-ubuntu/1603376858313.jpg"
                       alt="install-vbox"
                 ></p>
 </li>
-<li><p>相关需要的权限都给</p>
-<p>  <img  
+<li>
+<p>相关需要的权限都给</p>
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./macos-vbox-ubuntu/1603377152373.jpg"
+                     data-src="./macos-vbox-ubuntu/1603377152373.jpg"
                       alt="install-vbox"
                 ></p>
 </li>
 </ul>
-<h2 id="二、安装ubuntu-server"><a href="#二、安装ubuntu-server" class="headerlink" title="二、安装ubuntu server"></a>二、安装ubuntu server</h2><h3 id="下载ubuntu-server"><a href="#下载ubuntu-server" class="headerlink" title="下载ubuntu server"></a>下载ubuntu server</h3><ul>
+<h2 id="二、安装ubuntu-server">二、安装ubuntu server</h2>
+<h3 id="下载ubuntu-server">下载ubuntu server</h3>
+<ul>
 <li>下载地址: <a class="link"   target="_blank" rel="noopener" href="https://ubuntu.com/download/server" >https://ubuntu.com/download/server <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
 </ul>
-<h3 id="安装ubuntu-server"><a href="#安装ubuntu-server" class="headerlink" title="安装ubuntu server"></a>安装ubuntu server</h3><h4 id="Step-1-打开VirBox，点击新建"><a href="#Step-1-打开VirBox，点击新建" class="headerlink" title="Step 1. 打开VirBox，点击新建"></a>Step 1. 打开VirBox，点击新建</h4><p><img  
+<h3 id="安装ubuntu-server">安装ubuntu server</h3>
+<h4 id="Step-1-打开VirBox，点击新建">Step 1. 打开VirBox，点击新建</h4>
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./macos-vbox-ubuntu/1603377642251.jpg"
+                     data-src="./macos-vbox-ubuntu/1603377642251.jpg"
                       alt="install-ubuntu1"
                 ></p>
-<h4 id="Step-2-配置基础信息和内存"><a href="#Step-2-配置基础信息和内存" class="headerlink" title="Step 2. 配置基础信息和内存"></a>Step 2. 配置基础信息和内存</h4><p><img  
+<h4 id="Step-2-配置基础信息和内存">Step 2. 配置基础信息和内存</h4>
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./macos-vbox-ubuntu/1603377649152.jpg"
+                     data-src="./macos-vbox-ubuntu/1603377649152.jpg"
                       alt="install-ubuntu2"
                 ></p>
-<h4 id="Step-3-配置虚拟硬盘"><a href="#Step-3-配置虚拟硬盘" class="headerlink" title="Step 3. 配置虚拟硬盘"></a>Step 3. 配置虚拟硬盘</h4><p><img  
+<h4 id="Step-3-配置虚拟硬盘">Step 3. 配置虚拟硬盘</h4>
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./macos-vbox-ubuntu/1603377652616.jpg"
+                     data-src="./macos-vbox-ubuntu/1603377652616.jpg"
                       alt="install-ubuntu3"
                 ></p>
-<h4 id="Step-4-点击存储，添加盘片-设置镜像文件"><a href="#Step-4-点击存储，添加盘片-设置镜像文件" class="headerlink" title="Step 4. 点击存储，添加盘片(设置镜像文件)"></a>Step 4. 点击存储，添加盘片(设置镜像文件)</h4><p><img  
+<h4 id="Step-4-点击存储，添加盘片-设置镜像文件">Step 4. 点击存储，添加盘片(设置镜像文件)</h4>
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./macos-vbox-ubuntu/iso1.jpg"
+                     data-src="./macos-vbox-ubuntu/iso1.jpg"
                       alt="install-ubuntu4-1"
-                ><br><img  
+                ><br>
+<img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./macos-vbox-ubuntu/iso2.jpg"
+                     data-src="./macos-vbox-ubuntu/iso2.jpg"
                       alt="install-ubuntu4-2"
                 ></p>
-<h4 id="Step-5-启动"><a href="#Step-5-启动" class="headerlink" title="Step 5. 启动"></a>Step 5. 启动</h4><ul>
-<li><p>. 注意，在某些版本下会出现启动时如下的崩溃信息，是因为没有给virtual-box 授权音频输出权限的问题，可以通过[ 设置-&gt;声音-&gt;取消声音 ]解决<br>  <a class="link"   target="_blank" rel="noopener" href="https://unix.stackexchange.com/questions/609077/how-to-fix-virtualbox-vm-quit-unexpectedly-when-running-my-ubuntu-20-04-lts-vm" >参考解决方案 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>  <img  
+<h4 id="Step-5-启动">Step 5. 启动</h4>
+<ul>
+<li>
+<p>. 注意，在某些版本下会出现启动时如下的崩溃信息，是因为没有给virtual-box 授权音频输出权限的问题，可以通过[ 设置-&gt;声音-&gt;取消声音 ]解决<br>
+<a class="link"   target="_blank" rel="noopener" href="https://unix.stackexchange.com/questions/609077/how-to-fix-virtualbox-vm-quit-unexpectedly-when-running-my-ubuntu-20-04-lts-vm" >参考解决方案 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>
+<img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./macos-vbox-ubuntu/bug1.jpg"
+                     data-src="./macos-vbox-ubuntu/bug1.jpg"
                       alt="install-ubuntu5-1"
                 ></p>
 </li>
-<li><p>点击启动即可开始安装ubutnu server</p>
+<li>
+<p>点击启动即可开始安装ubutnu server</p>
 </li>
 </ul>
-<h2 id="三、其他"><a href="#三、其他" class="headerlink" title="三、其他"></a>三、其他</h2><h3 id="从主机访问虚拟机"><a href="#从主机访问虚拟机" class="headerlink" title="从主机访问虚拟机"></a>从主机访问虚拟机</h3><p>virtual box 默认的网卡 是网络网址转换(NAT) 模式</p>
+<h2 id="三、其他">三、其他</h2>
+<h3 id="从主机访问虚拟机">从主机访问虚拟机</h3>
+<p>virtual box 默认的网卡 是网络网址转换(NAT) 模式</p>
 <ol>
-<li><p>通过配置端口转发<br> <img  
+<li>
+<p>通过配置端口转发<br>
+<img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./macos-vbox-ubuntu/nat1.jpg"
+                     data-src="./macos-vbox-ubuntu/nat1.jpg"
                       alt="install-nat-1"
-                ><br> <img  
+                ><br>
+<img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./macos-vbox-ubuntu/nat2.jpg"
+                     data-src="./macos-vbox-ubuntu/nat2.jpg"
                       alt="install-nat-2"
                 ></p>
 </li>
-<li><p>可以通过修改模式为桥接网卡, 让主机和虚拟机在同一网段, 就能够直接通过虚拟机的ip访问了<br> <img  
+<li>
+<p>可以通过修改模式为桥接网卡, 让主机和虚拟机在同一网段, 就能够直接通过虚拟机的ip访问了<br>
+<img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/./macos-vbox-ubuntu/bridge.jpg"
+                     data-src="./macos-vbox-ubuntu/bridge.jpg"
                       alt="install-bridge"
                 ></p>
 </li>

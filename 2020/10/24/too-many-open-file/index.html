@@ -316,49 +316,57 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="使用版本"><a href="#使用版本" class="headerlink" title="使用版本"></a>使用版本</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># uname -a</span><br><span class="line">Linux 5.4.0-52-generic #57-Ubuntu SMP Thu Oct 15 10:57:00 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux</span><br><span class="line"># lsb_release -a</span><br><span class="line">Ubuntu 20.04.1 LTS</span><br><span class="line"></span><br><span class="line">Linux ecs-w0xX6 3.10.0-957.12.2.el7.x86_64 #1 SMP Tue May 14 21:24:32 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</span><br><span class="line"># cat /etc/redhat-release</span><br><span class="line">CentOS Linux release 7.6.1810 (Core)</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">accept tcp [::]:3322: accept4: too many open files</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="方案一、-ulimit-用于限制-shell-启动的进程所占用的资源"><a href="#方案一、-ulimit-用于限制-shell-启动的进程所占用的资源" class="headerlink" title="方案一、 ulimit (用于限制 shell 启动的进程所占用的资源)"></a>方案一、 ulimit (用于限制 shell 启动的进程所占用的资源)</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ulimit -n 102400</span><br></pre></td></tr></table></figure></div>
-
+                <h2 id="使用版本">使用版本</h2>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># uname -a</span><br><span class="line">Linux 5.4.0-52-generic #57-Ubuntu SMP Thu Oct 15 10:57:00 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux</span><br><span class="line"># lsb_release -a</span><br><span class="line">Ubuntu 20.04.1 LTS</span><br><span class="line"></span><br><span class="line">Linux ecs-w0xX6 3.10.0-957.12.2.el7.x86_64 #1 SMP Tue May 14 21:24:32 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</span><br><span class="line"># cat /etc/redhat-release</span><br><span class="line">CentOS Linux release 7.6.1810 (Core)</span><br></pre></td></tr></table></figure></div>
+<h2 id="现象">现象</h2>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">accept tcp [::]:3322: accept4: too many open files</span><br></pre></td></tr></table></figure></div>
+<h2 id="解决方案">解决方案</h2>
+<h3 id="方案一、-ulimit-用于限制-shell-启动的进程所占用的资源">方案一、 ulimit (用于限制 shell 启动的进程所占用的资源)</h3>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ulimit -n 102400</span><br></pre></td></tr></table></figure></div>
 <p>注意:</p>
 <ul>
 <li>ulimit 限制的是当前 shell 进程以及其派生的子进程, 作用范围比较小，可以临时解决在当前shell执行程序的限制</li>
 <li>ulimit 命令是 很多shell程序的内置命令，如csh、sh等，所以支持的环境会更多</li>
 <li>在某些系统没有pam_limits模块的，可以用此命令结合所要执行的命令一起，实现修改程序的文件描述符限制。如 <code>ulimit -n 102400 &amp;&amp; ./main</code></li>
 </ul>
-<h3 id="方案二、-更改-x2F-etc-x2F-security-x2F-limits-conf-该文件为pam-中-pam-limits-模块的默认配置文件"><a href="#方案二、-更改-x2F-etc-x2F-security-x2F-limits-conf-该文件为pam-中-pam-limits-模块的默认配置文件" class="headerlink" title="方案二、 更改 &#x2F;etc&#x2F;security&#x2F;limits.conf (该文件为pam 中 pam_limits 模块的默认配置文件)"></a>方案二、 更改 &#x2F;etc&#x2F;security&#x2F;limits.conf (该文件为<a class="link"   target="_blank" rel="noopener" href="https://linux.die.net/man/8/pam_limits" >pam 中 pam_limits <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 模块的默认配置文件)</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/security/limits.conf  </span><br><span class="line"># 在最后加入  </span><br><span class="line">* soft nofile 102400 </span><br><span class="line">* hard nofile 102400  </span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line">* - nofile 102400</span><br></pre></td></tr></table></figure></div>
-
-<p>最前的 * 表示所有用户，可根据需要设置某一用户，例如<br>root soft nofile 102400<br>root hard nofile 102400</p>
+<h3 id="方案二、-更改-etc-security-limits-conf-该文件为pam-中-pam-limits-模块的默认配置文件">方案二、 更改 /etc/security/limits.conf (该文件为<a class="link"   target="_blank" rel="noopener" href="https://linux.die.net/man/8/pam_limits" >pam 中 pam_limits <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 模块的默认配置文件)</h3>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/security/limits.conf  </span><br><span class="line"># 在最后加入  </span><br><span class="line">* soft nofile 102400 </span><br><span class="line">* hard nofile 102400  </span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line">* - nofile 102400</span><br></pre></td></tr></table></figure></div>
+<p>最前的 * 表示所有用户，可根据需要设置某一用户，例如<br>
+root soft nofile 102400<br>
+root hard nofile 102400</p>
 <p>改完后重新登录就能生效</p>
 <p>注意:</p>
 <ul>
-<li><p>在某些系统上(ubuntu?) 通配符 * 会不起效果, 设置指定用户起效 <a class="link"   target="_blank" rel="noopener" href="https://serverfault.com/questions/235356/open-file-descriptor-limits-conf-setting-isnt-read-by-ulimit-even-when-pam-limi" >open file descriptor limits.conf setting isn’t read by ulimit even when pam_limits.so is required <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<li>
+<p>在某些系统上(ubuntu?) 通配符 * 会不起效果, 设置指定用户起效 <a class="link"   target="_blank" rel="noopener" href="https://serverfault.com/questions/235356/open-file-descriptor-limits-conf-setting-isnt-read-by-ulimit-even-when-pam-limi" >open file descriptor limits.conf setting isn’t read by ulimit even when pam_limits.so is required <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 </li>
-<li><p>centos6+ 系统，如果有 <code>/etc/security/limits.d/&lt;&gt;-nproc.conf</code> 文件，需检查是否已经有相关配置, 该文件的优先级比 <code>/etc/security/limits.conf</code> 高</p>
+<li>
+<p>centos6+ 系统，如果有 <code>/etc/security/limits.d/&lt;&gt;-nproc.conf</code> 文件，需检查是否已经有相关配置, 该文件的优先级比 <code>/etc/security/limits.conf</code> 高</p>
 </li>
 </ul>
-<h3 id="方案三、-针对使用supervisor管理的程序"><a href="#方案三、-针对使用supervisor管理的程序" class="headerlink" title="方案三、 针对使用supervisor管理的程序"></a>方案三、 针对使用supervisor管理的程序</h3><p>在supervisord的配置文件 &#x2F;etc&#x2F;supervisor&#x2F;supervisord.conf 中 [supervisord] 处添加 minfds &#x3D; 102400</p>
+<h3 id="方案三、-针对使用supervisor管理的程序">方案三、 针对使用supervisor管理的程序</h3>
+<p>在supervisord的配置文件 /etc/supervisor/supervisord.conf 中 [supervisord] 处添加 minfds = 102400</p>
 <p><a class="link"   target="_blank" rel="noopener" href="http://supervisord.org/configuration.html" >supervisord configuration <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[supervisord]</span><br><span class="line">minfds = 102400</span><br></pre></td></tr></table></figure></div>
-
 <img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/2020/10/24/too-many-open-file/supervisor.jpg"
                       class="" title="supervisord config"
                 >
-
-<h3 id="方案四、-x2F-etc-x2F-sysctl-conf-该文件为内核配置文件"><a href="#方案四、-x2F-etc-x2F-sysctl-conf-该文件为内核配置文件" class="headerlink" title="方案四、&#x2F;etc&#x2F;sysctl.conf (该文件为内核配置文件)"></a>方案四、&#x2F;etc&#x2F;sysctl.conf (该文件为内核配置文件)</h3><p>当单进程需求数量超过 <code>cat /proc/sys/fs/nr_open</code> 时<br>当单机需求数量超过 <code>cat /proc/sys/fs/file-max</code> 时</p>
+<h3 id="方案四、-etc-sysctl-conf-该文件为内核配置文件">方案四、/etc/sysctl.conf (该文件为内核配置文件)</h3>
+<p>当单进程需求数量超过 <code>cat /proc/sys/fs/nr_open</code> 时<br>
+当单机需求数量超过 <code>cat /proc/sys/fs/file-max</code> 时</p>
 <p>按需修改 <code>/etc/sysctl.conf</code> 文件</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fs.file-max=2000500</span><br><span class="line">fs.nr_open=2000500</span><br></pre></td></tr></table></figure></div>
-
-<p>file-max: 该值为是内核可分配的最大文件数<br>nr_open: 该值为单个进程可分配的最大文件数</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<p>file-max: 该值为是内核可分配的最大文件数<br>
+nr_open: 该值为单个进程可分配的最大文件数</p>
+<h2 id="其他">其他</h2>
+<ul>
 <li>当大家遇到limits修改不生效的时候，请查一下进程是否只是子进程，如果是，再检查是不是受父进程<code>cat /proc/&lt;pid&gt;/limits</code>配置影响</li>
 </ul>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a class="link"   target="_blank" rel="noopener" href="https://developer.51cto.com/art/201701/527470.htm" >你真知道“Too many open files”? <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="参考">参考</h2>
+<p><a class="link"   target="_blank" rel="noopener" href="https://developer.51cto.com/art/201701/527470.htm" >你真知道“Too many open files”? <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 
             </div>
 
@@ -497,7 +505,7 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div style="font-size: 1.3rem;margin-top: 0; margin-bottom: 0.8rem; transition-duration: 0.1s;"><i class="fa-solid fa-list"></i> <strong>Contents</strong></div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%89%88%E6%9C%AC"><span class="nav-text">使用版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E8%B1%A1"><span class="nav-text">现象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%B8%80%E3%80%81-ulimit-%E7%94%A8%E4%BA%8E%E9%99%90%E5%88%B6-shell-%E5%90%AF%E5%8A%A8%E7%9A%84%E8%BF%9B%E7%A8%8B%E6%89%80%E5%8D%A0%E7%94%A8%E7%9A%84%E8%B5%84%E6%BA%90"><span class="nav-text">方案一、 ulimit (用于限制 shell 启动的进程所占用的资源)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%BA%8C%E3%80%81-%E6%9B%B4%E6%94%B9-x2F-etc-x2F-security-x2F-limits-conf-%E8%AF%A5%E6%96%87%E4%BB%B6%E4%B8%BApam-%E4%B8%AD-pam-limits-%E6%A8%A1%E5%9D%97%E7%9A%84%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">方案二、 更改 &#x2F;etc&#x2F;security&#x2F;limits.conf (该文件为pam 中 pam_limits  模块的默认配置文件)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%B8%89%E3%80%81-%E9%92%88%E5%AF%B9%E4%BD%BF%E7%94%A8supervisor%E7%AE%A1%E7%90%86%E7%9A%84%E7%A8%8B%E5%BA%8F"><span class="nav-text">方案三、 针对使用supervisor管理的程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E5%9B%9B%E3%80%81-x2F-etc-x2F-sysctl-conf-%E8%AF%A5%E6%96%87%E4%BB%B6%E4%B8%BA%E5%86%85%E6%A0%B8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">方案四、&#x2F;etc&#x2F;sysctl.conf (该文件为内核配置文件)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-text">其他</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%89%88%E6%9C%AC"><span class="nav-text">使用版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E8%B1%A1"><span class="nav-text">现象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%B8%80%E3%80%81-ulimit-%E7%94%A8%E4%BA%8E%E9%99%90%E5%88%B6-shell-%E5%90%AF%E5%8A%A8%E7%9A%84%E8%BF%9B%E7%A8%8B%E6%89%80%E5%8D%A0%E7%94%A8%E7%9A%84%E8%B5%84%E6%BA%90"><span class="nav-text">方案一、 ulimit (用于限制 shell 启动的进程所占用的资源)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%BA%8C%E3%80%81-%E6%9B%B4%E6%94%B9-etc-security-limits-conf-%E8%AF%A5%E6%96%87%E4%BB%B6%E4%B8%BApam-%E4%B8%AD-pam-limits-%E6%A8%A1%E5%9D%97%E7%9A%84%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">方案二、 更改 &#x2F;etc&#x2F;security&#x2F;limits.conf (该文件为pam 中 pam_limits  模块的默认配置文件)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%B8%89%E3%80%81-%E9%92%88%E5%AF%B9%E4%BD%BF%E7%94%A8supervisor%E7%AE%A1%E7%90%86%E7%9A%84%E7%A8%8B%E5%BA%8F"><span class="nav-text">方案三、 针对使用supervisor管理的程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E5%9B%9B%E3%80%81-etc-sysctl-conf-%E8%AF%A5%E6%96%87%E4%BB%B6%E4%B8%BA%E5%86%85%E6%A0%B8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">方案四、&#x2F;etc&#x2F;sysctl.conf (该文件为内核配置文件)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-text">其他</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></li></ol>
     </div>
 </div>
             </div>

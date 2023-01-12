@@ -316,68 +316,73 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="一、安装和启动"><a href="#一、安装和启动" class="headerlink" title="一、安装和启动"></a>一、安装和启动</h2><h3 id="环境-在不同环境下表现会有些差异"><a href="#环境-在不同环境下表现会有些差异" class="headerlink" title="环境 (在不同环境下表现会有些差异)"></a>环境 (在不同环境下表现会有些差异)</h3><ul>
+                <h2 id="一、安装和启动">一、安装和启动</h2>
+<h3 id="环境-在不同环境下表现会有些差异">环境 (在不同环境下表现会有些差异)</h3>
+<ul>
 <li>Ubuntu 20.04</li>
-<li>rocketmq 版本 4.8.0  </li>
+<li>rocketmq 版本 4.8.0</li>
 <li>jdk11</li>
 <li>bash</li>
 </ul>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="1-下载源码包-amp-amp-编译"><a href="#1-下载源码包-amp-amp-编译" class="headerlink" title="1. 下载源码包 &amp;&amp; 编译"></a>1. 下载源码包 &amp;&amp; 编译</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">apt install maven</span><br><span class="line"></span><br><span class="line">git clone https://github.com/apache/rocketmq.git</span><br><span class="line"></span><br><span class="line">cd rocketmq</span><br><span class="line"></span><br><span class="line">mvn -Prelease-all -DskipTests clean install -U</span><br><span class="line"></span><br><span class="line">// build完成后在 distribution/target/rocketmq-4.8.0/rocketmq-4.8.0</span><br><span class="line"></span><br><span class="line">// 移动软件包到 /usr/local</span><br><span class="line">mv distribution/target/rocketmq-4.8.0/rocketmq-4.8.0 /usr/local</span><br><span class="line">cd /usr/local/rocketmq-4.8.0/bin</span><br></pre></td></tr></table></figure></div>
-
+<h3 id="步骤">步骤</h3>
+<h4 id="1-下载源码包-编译">1. 下载源码包 &amp;&amp; 编译</h4>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">apt install maven</span><br><span class="line"></span><br><span class="line">git clone https://github.com/apache/rocketmq.git</span><br><span class="line"></span><br><span class="line">cd rocketmq</span><br><span class="line"></span><br><span class="line">mvn -Prelease-all -DskipTests clean install -U</span><br><span class="line"></span><br><span class="line">// build完成后在 distribution/target/rocketmq-4.8.0/rocketmq-4.8.0</span><br><span class="line"></span><br><span class="line">// 移动软件包到 /usr/local</span><br><span class="line">mv distribution/target/rocketmq-4.8.0/rocketmq-4.8.0 /usr/local</span><br><span class="line">cd /usr/local/rocketmq-4.8.0/bin</span><br></pre></td></tr></table></figure></div>
 <img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/2021/06/15/rocketmq/cmd-list.png"
                       class="" title="cmd-list"
                 >
-
-
-<h4 id="2-启动-mqnamesrv-mqbroker"><a href="#2-启动-mqnamesrv-mqbroker" class="headerlink" title="2. 启动 mqnamesrv mqbroker"></a>2. 启动 mqnamesrv mqbroker</h4><p>主要执行程序</p>
+<h4 id="2-启动-mqnamesrv-mqbroker">2. 启动 mqnamesrv mqbroker</h4>
+<p>主要执行程序</p>
 <ul>
 <li>mqnamesrv</li>
 <li>mqbroker</li>
 </ul>
-<h4 id="启动-mqnamesrv"><a href="#启动-mqnamesrv" class="headerlink" title="启动 mqnamesrv"></a>启动 mqnamesrv</h4><p><code>./mqnamesrv</code></p>
-<h4 id="mqnamesrv-启动成功"><a href="#mqnamesrv-启动成功" class="headerlink" title="mqnamesrv 启动成功"></a>mqnamesrv 启动成功</h4><img  
+<h4 id="启动-mqnamesrv">启动 mqnamesrv</h4>
+<p><code>./mqnamesrv</code></p>
+<h4 id="mqnamesrv-启动成功">mqnamesrv 启动成功</h4>
+<img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/2021/06/15/rocketmq/mqnamesrc-started.png"
                       class="" title="mqnamesrc-started"
                 >
-
-
-<h3 id="启动-mqborker"><a href="#启动-mqborker" class="headerlink" title="启动 mqborker"></a>启动 mqborker</h3><p><code>./mqbroker -n localhost:9876</code></p>
+<h3 id="启动-mqborker">启动 mqborker</h3>
+<p><code>./mqbroker -n localhost:9876</code></p>
 <ul>
-<li>-n, –namesrvAddr 默认 <code>localhost:9876</code></li>
+<li>-n, --namesrvAddr 默认 <code>localhost:9876</code></li>
 </ul>
-<h4 id="mqbroker-启动成功"><a href="#mqbroker-启动成功" class="headerlink" title="mqbroker 启动成功"></a>mqbroker 启动成功</h4><img  
+<h4 id="mqbroker-启动成功">mqbroker 启动成功</h4>
+<img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/2021/06/15/rocketmq/mqbroker-started.png"
                       class="" title="mqbroker-started"
                 >
-<h3 id="测试服务是否正常"><a href="#测试服务是否正常" class="headerlink" title="测试服务是否正常"></a>测试服务是否正常</h3><p><code> ./tools.sh org.apache.rocketmq.example.quickstart.Producer</code></p>
-<h4 id="Producer-测试成功"><a href="#Producer-测试成功" class="headerlink" title="Producer 测试成功"></a>Producer 测试成功</h4><img  
+<h3 id="测试服务是否正常">测试服务是否正常</h3>
+<p><code> ./tools.sh org.apache.rocketmq.example.quickstart.Producer</code></p>
+<h4 id="Producer-测试成功">Producer 测试成功</h4>
+<img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/2021/06/15/rocketmq/producer-success.png"
                       class="" title="producer-success"
                 >
-
-<h4 id="Consumer-测试成功"><a href="#Consumer-测试成功" class="headerlink" title="Consumer 测试成功"></a>Consumer 测试成功</h4><p><code>./tools.sh org.apache.rocketmq.example.quickstart.Consumer</code></p>
+<h4 id="Consumer-测试成功">Consumer 测试成功</h4>
+<p><code>./tools.sh org.apache.rocketmq.example.quickstart.Consumer</code></p>
 <img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/2021/06/15/rocketmq/consumer-success.png"
                       class="" title="consumer-success"
                 >
-
-
-<h3 id="3-安装图形界面"><a href="#3-安装图形界面" class="headerlink" title="3. 安装图形界面"></a>3. 安装图形界面</h3><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/apache/rocketmq-externals.git" >https://github.com/apache/rocketmq-externals.git <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="3-安装图形界面">3. 安装图形界面</h3>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/apache/rocketmq-externals.git" >https://github.com/apache/rocketmq-externals.git <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>rocketmq-console</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mvn clean package -Dmaven.test.skip=true</span><br><span class="line">cd target</span><br><span class="line">mv rocketmq-console-ng-2.0.0.jar /usr/local/</span><br><span class="line">cd /usr/local</span><br><span class="line">java -jar rocketmq-console-ng-2.0.0.jar</span><br></pre></td></tr></table></figure></div>
-
-<h4 id="成功界面"><a href="#成功界面" class="headerlink" title="成功界面"></a>成功界面</h4><ul>
+<h4 id="成功界面">成功界面</h4>
+<ul>
 <li>默认 localhost:8080</li>
 </ul>
 <img  
@@ -386,41 +391,46 @@
                      data-src="/2021/06/15/rocketmq/console.png"
                       class="" title="console.png"
                 >
-
 <img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/2021/06/15/rocketmq/dashboard.png"
                       class="" title="dashboard.png"
                 >
-
-<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><h4 id="1-Use-classpath-instead"><a href="#1-Use-classpath-instead" class="headerlink" title="1. Use -classpath instead:"></a>1. Use -classpath instead:</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@qjue:/usr/local/rocketmq-4.8.0/bin# ./mqnamesrv</span><br><span class="line">/usr/local/rocketmq-4.8.0/bin/runserver.sh: 70: [[: not found</span><br><span class="line">-Djava.ext.dirs=/usr/lib/jvm/java-1.11.0-openjdk-amd64/jre/lib/ext:/usr/local/rocketmq-4.8.0/bin/../lib:/usr/lib/jvm/java-1.11.0-openjdk-amd64/lib/ext is not supported.  Use -classpath instead.</span><br><span class="line">Error: Could not create the Java Virtual Machine.</span><br><span class="line">Error: A fatal exception has occurred. Program will exit.</span><br></pre></td></tr></table></figure></div>
-
+<h3 id="常见问题">常见问题</h3>
+<h4 id="1-Use-classpath-instead">1. Use -classpath instead:</h4>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@qjue:/usr/local/rocketmq-4.8.0/bin# ./mqnamesrv</span><br><span class="line">/usr/local/rocketmq-4.8.0/bin/runserver.sh: 70: [[: not found</span><br><span class="line">-Djava.ext.dirs=/usr/lib/jvm/java-1.11.0-openjdk-amd64/jre/lib/ext:/usr/local/rocketmq-4.8.0/bin/../lib:/usr/lib/jvm/java-1.11.0-openjdk-amd64/lib/ext is not supported.  Use -classpath instead.</span><br><span class="line">Error: Could not create the Java Virtual Machine.</span><br><span class="line">Error: A fatal exception has occurred. Program will exit.</span><br></pre></td></tr></table></figure></div>
 <p><strong>这是因为在java11+ 已经默认移除jre</strong></p>
 <ul>
 <li>删除 <code>JAVA_OPT=&quot;$&#123;JAVA_OPT&#125; -Djava.ext.dirs=$&#123;JAVA_HOME&#125;/jre/lib/ext:$&#123;BASE_DIR&#125;/lib&quot;</code></li>
 <li>删除 <code>export CLASSPATH=.:$&#123;BASE_DIR&#125;/conf:$&#123;CLASSPATH&#125;</code></li>
 <li>增加 <code>export CLASSPATH=$&#123;BASE_DIR&#125;/lib/rocketmq-namesrv-4.5.0.jar:$&#123;BASE_DIR&#125;/lib/*:$&#123;BASE_DIR&#125;/conf:$&#123;CLASSPATH&#125;</code></li>
 </ul>
-<h4 id="2-启动broker失败-Not-enough-space-Cannot-allocate-memory"><a href="#2-启动broker失败-Not-enough-space-Cannot-allocate-memory" class="headerlink" title="2. 启动broker失败 Not enough space || Cannot allocate memory"></a>2. 启动broker失败 Not enough space || Cannot allocate memory</h4><p><strong>默认申请的内存大于本机器的可用内存</strong></p>
-<p>找到对应的执行文件 runserver.sh || runbroker.sh<br><code>JAVA_OPT=&quot;$&#123;JAVA_OPT&#125; -server -Xms4g -Xmx4g -Xmn2g -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=320m&quot;</code>  </p>
+<h4 id="2-启动broker失败-Not-enough-space-Cannot-allocate-memory">2. 启动broker失败 Not enough space || Cannot allocate memory</h4>
+<p><strong>默认申请的内存大于本机器的可用内存</strong></p>
+<p>找到对应的执行文件 <a class="link"   target="_blank" rel="noopener" href="http://runserver.sh" >runserver.sh <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> || <a class="link"   target="_blank" rel="noopener" href="http://runbroker.sh" >runbroker.sh <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>
+<code>JAVA_OPT=&quot;$&#123;JAVA_OPT&#125; -server -Xms4g -Xmx4g -Xmn2g -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=320m&quot;</code></p>
 <ul>
 <li>修改一下相关配置 <code>JAVA_OPT=&quot;$&#123;JAVA_OPT&#125; -server -Xms521m -Xmx521m -Xmn128m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=320m&quot;</code></li>
 </ul>
-<h4 id="3-Xloggc-is-deprecated"><a href="#3-Xloggc-is-deprecated" class="headerlink" title="3. -Xloggc is deprecated."></a>3. -Xloggc is deprecated.</h4><p>&#x2F;&#x2F; broker -&gt; rmq_broker_gc_%p_%t.log<br>&#x2F;&#x2F; server -&gt; rmq_srv_gc_%p_%t.log</p>
+<h4 id="3-Xloggc-is-deprecated">3. -Xloggc is deprecated.</h4>
+<p>// broker -&gt; rmq_broker_gc_%p_%t.log<br>
+// server -&gt; rmq_srv_gc_%p_%t.log</p>
 <ul>
 <li>删除 <code>JAVA_OPT=&quot;$&#123;JAVA_OPT&#125; -verbose:gc -Xloggc:$&#123;GC_LOG_DIR&#125;/rmq_broker_gc_%p_%t.log</code></li>
 <li>增加 <code>JAVA_OPT=&quot;$&#123;JAVA_OPT&#125; -Xlog:gc*:file=$&#123;GC_LOG_DIR&#125;/rmq_broker_gc_%p_%t.log:time,tags:filecount=5,filesize=30M&quot;</code></li>
 </ul>
-<h4 id="4-启动broker失败-Could-not-create-the-Java-Virtual-Machine"><a href="#4-启动broker失败-Could-not-create-the-Java-Virtual-Machine" class="headerlink" title="4. 启动broker失败 Could not create the Java Virtual Machine"></a>4. 启动broker失败 Could not create the Java Virtual Machine</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@qjue:/usr/local/rocketmq-4.8.0/bin# ./mqbroker -n localhost:9876</span><br><span class="line">[0.001s][warning][gc] -Xloggc is deprecated. Will use -Xlog:gc:/dev/shm/rmq_broker_gc_%p_%t.log instead.</span><br><span class="line">Unrecognized VM option &#x27;PrintGCDateStamps&#x27;</span><br><span class="line">Error: Could not create the Java Virtual Machine.</span><br><span class="line">Error: A fatal exception has occurred. Program will exit.</span><br></pre></td></tr></table></figure></div>
-
+<h4 id="4-启动broker失败-Could-not-create-the-Java-Virtual-Machine">4. 启动broker失败 Could not create the Java Virtual Machine</h4>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@qjue:/usr/local/rocketmq-4.8.0/bin# ./mqbroker -n localhost:9876</span><br><span class="line">[0.001s][warning][gc] -Xloggc is deprecated. Will use -Xlog:gc:/dev/shm/rmq_broker_gc_%p_%t.log instead.</span><br><span class="line">Unrecognized VM option &#x27;PrintGCDateStamps&#x27;</span><br><span class="line">Error: Could not create the Java Virtual Machine.</span><br><span class="line">Error: A fatal exception has occurred. Program will exit.</span><br></pre></td></tr></table></figure></div>
 <ul>
 <li>删除 runbroker <code>JAVA_OPT=&quot;$&#123;JAVA_OPT&#125; -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=30m&quot;</code></li>
 </ul>
-<h4 id="5-启动-tools-Producer-失败-connect-to-null-failed-tool-sh"><a href="#5-启动-tools-Producer-失败-connect-to-null-failed-tool-sh" class="headerlink" title="5. 启动 tools Producer 失败 connect to null failed tool.sh"></a>5. 启动 tools Producer 失败 connect to null failed tool.sh</h4><ul>
-<li>tool.sh export部分 增加<code>export NAMESRV_ADDR=localhost:9876</code></li>
+<h4 id="5-启动-tools-Producer-失败-connect-to-null-failed-tool-sh">5. 启动 tools Producer 失败 connect to null failed <a class="link"   target="_blank" rel="noopener" href="http://tool.sh" >tool.sh <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h4>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="http://tool.sh" >tool.sh <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> export部分 增加<code>export NAMESRV_ADDR=localhost:9876</code></li>
 </ul>
-<h4 id="6-not-found"><a href="#6-not-found" class="headerlink" title="6. [[: not found"></a>6. <code>[[: not found</code></h4><p>[[: not found 是因为 <code>mqnamesrv.sh</code> 使用<code>sh</code> 启动了 <code>runserver.sh sh</code> 不支持 “if [[ “ </p>
+<h4 id="6-not-found">6. <code>[[: not found</code></h4>
+<p>[[: not found 是因为 <code>mqnamesrv.sh</code> 使用<code>sh</code> 启动了 <code>runserver.sh sh</code> 不支持 &quot;if [[ &quot;</p>
 <ul>
 <li>将 <code>mqnamesrv.sh</code> <code>sh $&#123;ROCKETMQ_HOME&#125;/bin/runserver.sh</code> 修改成 <code>bash $&#123;ROCKETMQ_HOME&#125;/bin/runserver.sh</code></li>
 </ul>
@@ -562,7 +572,7 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div style="font-size: 1.3rem;margin-top: 0; margin-bottom: 0.8rem; transition-duration: 0.1s;"><i class="fa-solid fa-list"></i> <strong>Contents</strong></div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E5%90%AF%E5%8A%A8"><span class="nav-text">一、安装和启动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83-%E5%9C%A8%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E4%B8%8B%E8%A1%A8%E7%8E%B0%E4%BC%9A%E6%9C%89%E4%BA%9B%E5%B7%AE%E5%BC%82"><span class="nav-text">环境 (在不同环境下表现会有些差异)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81%E5%8C%85-amp-amp-%E7%BC%96%E8%AF%91"><span class="nav-text">1. 下载源码包 &amp;&amp; 编译</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%90%AF%E5%8A%A8-mqnamesrv-mqbroker"><span class="nav-text">2. 启动 mqnamesrv mqbroker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8-mqnamesrv"><span class="nav-text">启动 mqnamesrv</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mqnamesrv-%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F"><span class="nav-text">mqnamesrv 启动成功</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8-mqborker"><span class="nav-text">启动 mqborker</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mqbroker-%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F"><span class="nav-text">mqbroker 启动成功</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E6%9C%8D%E5%8A%A1%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8"><span class="nav-text">测试服务是否正常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Producer-%E6%B5%8B%E8%AF%95%E6%88%90%E5%8A%9F"><span class="nav-text">Producer 测试成功</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Consumer-%E6%B5%8B%E8%AF%95%E6%88%90%E5%8A%9F"><span class="nav-text">Consumer 测试成功</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%89%E8%A3%85%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2"><span class="nav-text">3. 安装图形界面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%88%90%E5%8A%9F%E7%95%8C%E9%9D%A2"><span class="nav-text">成功界面</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Use-classpath-instead"><span class="nav-text">1. Use -classpath instead:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%90%AF%E5%8A%A8broker%E5%A4%B1%E8%B4%A5-Not-enough-space-Cannot-allocate-memory"><span class="nav-text">2. 启动broker失败 Not enough space || Cannot allocate memory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Xloggc-is-deprecated"><span class="nav-text">3. -Xloggc is deprecated.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%90%AF%E5%8A%A8broker%E5%A4%B1%E8%B4%A5-Could-not-create-the-Java-Virtual-Machine"><span class="nav-text">4. 启动broker失败 Could not create the Java Virtual Machine</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%90%AF%E5%8A%A8-tools-Producer-%E5%A4%B1%E8%B4%A5-connect-to-null-failed-tool-sh"><span class="nav-text">5. 启动 tools Producer 失败 connect to null failed tool.sh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-not-found"><span class="nav-text">6. [[: not found</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E5%90%AF%E5%8A%A8"><span class="nav-text">一、安装和启动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83-%E5%9C%A8%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E4%B8%8B%E8%A1%A8%E7%8E%B0%E4%BC%9A%E6%9C%89%E4%BA%9B%E5%B7%AE%E5%BC%82"><span class="nav-text">环境 (在不同环境下表现会有些差异)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81%E5%8C%85-%E7%BC%96%E8%AF%91"><span class="nav-text">1. 下载源码包 &amp;&amp; 编译</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%90%AF%E5%8A%A8-mqnamesrv-mqbroker"><span class="nav-text">2. 启动 mqnamesrv mqbroker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8-mqnamesrv"><span class="nav-text">启动 mqnamesrv</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mqnamesrv-%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F"><span class="nav-text">mqnamesrv 启动成功</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8-mqborker"><span class="nav-text">启动 mqborker</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mqbroker-%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F"><span class="nav-text">mqbroker 启动成功</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E6%9C%8D%E5%8A%A1%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8"><span class="nav-text">测试服务是否正常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Producer-%E6%B5%8B%E8%AF%95%E6%88%90%E5%8A%9F"><span class="nav-text">Producer 测试成功</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Consumer-%E6%B5%8B%E8%AF%95%E6%88%90%E5%8A%9F"><span class="nav-text">Consumer 测试成功</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%89%E8%A3%85%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2"><span class="nav-text">3. 安装图形界面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%88%90%E5%8A%9F%E7%95%8C%E9%9D%A2"><span class="nav-text">成功界面</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Use-classpath-instead"><span class="nav-text">1. Use -classpath instead:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%90%AF%E5%8A%A8broker%E5%A4%B1%E8%B4%A5-Not-enough-space-Cannot-allocate-memory"><span class="nav-text">2. 启动broker失败 Not enough space || Cannot allocate memory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Xloggc-is-deprecated"><span class="nav-text">3. -Xloggc is deprecated.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%90%AF%E5%8A%A8broker%E5%A4%B1%E8%B4%A5-Could-not-create-the-Java-Virtual-Machine"><span class="nav-text">4. 启动broker失败 Could not create the Java Virtual Machine</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%90%AF%E5%8A%A8-tools-Producer-%E5%A4%B1%E8%B4%A5-connect-to-null-failed-tool-sh"><span class="nav-text">5. 启动 tools Producer 失败 connect to null failed tool.sh </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-not-found"><span class="nav-text">6. [[: not found</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
             </div>

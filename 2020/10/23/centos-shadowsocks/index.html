@@ -320,44 +320,44 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="使用版本"><a href="#使用版本" class="headerlink" title="使用版本"></a>使用版本</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CentOS Linux release 7.6.1810 (Core)</span><br><span class="line">Linux ecs-w0xX6 3.10.0-957.12.2.el7.x86_64 #1 SMP Tue May 14 21:24:32 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</span><br><span class="line">Shadowsocks Libev 3.3.5</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="一、手动编译安装"><a href="#一、手动编译安装" class="headerlink" title="一、手动编译安装"></a>一、手动编译安装</h2><p>参考：<br>    - <a class="link"   target="_blank" rel="noopener" href="https://github.com/shadowsocks/shadowsocks-libev#fedora%E2%80%94rhel" >https://github.com/shadowsocks/shadowsocks-libev#fedora—rhel <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>    - <a class="link"   target="_blank" rel="noopener" href="https://b.awei.pub/2019/03/shadowsocks-libev/" >https://b.awei.pub/2019/03/shadowsocks-libev/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release -y</span><br><span class="line"></span><br><span class="line">yum install git gcc gettext autoconf libtool automake make pcre-devel asciidoc xmlto c-ares-devel libev-devel libsodium-devel mbedtls-devel -y</span><br><span class="line"></span><br><span class="line">git clone https://github.com/shadowsocks/shadowsocks-libev.git</span><br><span class="line"></span><br><span class="line">cd shadowsocks-libev</span><br><span class="line">git submodule update --init --recursive</span><br><span class="line"></span><br><span class="line">sh autogen.sh</span><br><span class="line"></span><br><span class="line">./configure --disable-documentation</span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="2-配置systemctl-管理"><a href="#2-配置systemctl-管理" class="headerlink" title="2. 配置systemctl 管理"></a>2. 配置systemctl 管理</h3><h5 id="添加服务配置"><a href="#添加服务配置" class="headerlink" title="+ 添加服务配置"></a>+ 添加服务配置</h5><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp shadowsocks-libev/rpm/SOURCES/systemd/shadowsocks-libev.service /usr/lib/systemd/system/</span><br><span class="line">cp shadowsocks-libev/rpm/SOURCES/systemd/shadowsocks-libev.default /etc/sysconfig/shadowsocks-libev</span><br></pre></td></tr></table></figure></div>
-
-<p>注意检查 shadowsocks-libev&#x2F;rpm&#x2F;SOURCES&#x2F;systemd&#x2F;shadowsocks-libev.service 文件</p>
+                <h2 id="使用版本">使用版本</h2>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CentOS Linux release 7.6.1810 (Core)</span><br><span class="line">Linux ecs-w0xX6 3.10.0-957.12.2.el7.x86_64 #1 SMP Tue May 14 21:24:32 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</span><br><span class="line">Shadowsocks Libev 3.3.5</span><br></pre></td></tr></table></figure></div>
+<h2 id="一、手动编译安装">一、手动编译安装</h2>
+<p>参考：<br>
+- <a class="link"   target="_blank" rel="noopener" href="https://github.com/shadowsocks/shadowsocks-libev#fedora%E2%80%94rhel" >https://github.com/shadowsocks/shadowsocks-libev#fedora—rhel <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>
+- <a class="link"   target="_blank" rel="noopener" href="https://b.awei.pub/2019/03/shadowsocks-libev/" >https://b.awei.pub/2019/03/shadowsocks-libev/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="1-安装">1. 安装</h3>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release -y</span><br><span class="line"></span><br><span class="line">yum install git gcc gettext autoconf libtool automake make pcre-devel asciidoc xmlto c-ares-devel libev-devel libsodium-devel mbedtls-devel -y</span><br><span class="line"></span><br><span class="line">git clone https://github.com/shadowsocks/shadowsocks-libev.git</span><br><span class="line"></span><br><span class="line">cd shadowsocks-libev</span><br><span class="line">git submodule update --init --recursive</span><br><span class="line"></span><br><span class="line">sh autogen.sh</span><br><span class="line"></span><br><span class="line">./configure --disable-documentation</span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure></div>
+<h3 id="2-配置systemctl-管理">2. 配置systemctl 管理</h3>
+<h5 id="添加服务配置">+ 添加服务配置</h5>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp shadowsocks-libev/rpm/SOURCES/systemd/shadowsocks-libev.service /usr/lib/systemd/system/</span><br><span class="line">cp shadowsocks-libev/rpm/SOURCES/systemd/shadowsocks-libev.default /etc/sysconfig/shadowsocks-libev</span><br></pre></td></tr></table></figure></div>
+<p>注意检查 shadowsocks-libev/rpm/SOURCES/systemd/shadowsocks-libev.service 文件</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ExecStart=/usr/bin/ss-server -c &quot;$CONFFILE&quot; $DAEMON_ARGS</span><br></pre></td></tr></table></figure></div>
-
-<p>&#x2F;usr&#x2F;bin&#x2F;ss-server 改成 ss-server 的安装目录 默认是在 &#x2F;usr&#x2F;local&#x2F;bin&#x2F;ss-server</p>
+<p>/usr/bin/ss-server 改成 ss-server 的安装目录 默认是在 /usr/local/bin/ss-server</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ExecStart=/usr/local/bin/ss-server -c &quot;$CONFFILE&quot; $DAEMON_ARGS</span><br></pre></td></tr></table></figure></div>
-
-<h5 id="操作命令"><a href="#操作命令" class="headerlink" title="+ 操作命令"></a>+ 操作命令</h5><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable shadowsocks-libev</span><br><span class="line">systemctl start shadowsocks-libev</span><br><span class="line">systemctl stop shadowsocks-libev</span><br><span class="line">systemctl status shadowsocks-libev</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="相关问题和方案"><a href="#相关问题和方案" class="headerlink" title="相关问题和方案"></a>相关问题和方案</h2><h3 id="1-This-system-doesn’t-provide-enough-entropy-to-quickly-generate-high-quality-random-numbers"><a href="#1-This-system-doesn’t-provide-enough-entropy-to-quickly-generate-high-quality-random-numbers" class="headerlink" title="1. This system doesn’t provide enough entropy to quickly generate high-quality random numbers."></a>1. This system doesn’t provide enough entropy to quickly generate high-quality random numbers.</h3><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/shadowsocks/shadowsocks-libev/issues/1384" >参考 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h5 id="操作命令">+ 操作命令</h5>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable shadowsocks-libev</span><br><span class="line">systemctl start shadowsocks-libev</span><br><span class="line">systemctl stop shadowsocks-libev</span><br><span class="line">systemctl status shadowsocks-libev</span><br></pre></td></tr></table></figure></div>
+<h2 id="相关问题和方案">相关问题和方案</h2>
+<h3 id="1-This-system-doesn’t-provide-enough-entropy-to-quickly-generate-high-quality-random-numbers">1. This system doesn’t provide enough entropy to quickly generate high-quality random numbers.</h3>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/shadowsocks/shadowsocks-libev/issues/1384" >参考 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">2020-10-23 22:27:03 INFO: binding to outbound IPv4 addr: 127.0.0.1</span><br><span class="line">2020-10-23 22:27:03 INFO: using tcp fast open</span><br><span class="line">2020-10-23 22:27:03 INFO: UDP relay enabled</span><br><span class="line">2020-10-23 22:27:03 INFO: initializing ciphers... chacha20</span><br><span class="line">2020-10-23 22:27:03 INFO: This system doesn&#x27;t provide enough entropy to quickly generate high-quality random numbers.</span><br><span class="line">Installing the rng-utils/rng-tools, jitterentropy or haveged packages may help.</span><br><span class="line">On virtualized Linux environments, also consider using virtio-rng.</span><br><span class="line">The service will not start until enough entropy has been collected.</span><br></pre></td></tr></table></figure></div>
-
-<p>解决方案: </p>
+<p>解决方案:</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y rng-tools</span><br><span class="line">rngd -r /dev/urandom</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="2-tcp-fast-open-未开启"><a href="#2-tcp-fast-open-未开启" class="headerlink" title="2. tcp fast open 未开启"></a>2. tcp fast open 未开启</h3><p>如果未开启<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/Windgs_YF/article/details/94743088" >tcp fast open <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>会出现如下报错</p>
+<h3 id="2-tcp-fast-open-未开启">2. tcp fast open 未开启</h3>
+<p>如果未开启<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/Windgs_YF/article/details/94743088" >tcp fast open <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>会出现如下报错</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2020-10-23 22:27:04 ERROR: fast open is not supported on this platform</span><br></pre></td></tr></table></figure></div>
-
 <img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/2020/10/23/centos-shadowsocks/fast_open.jpg"
                       class="" title="tcp fast open"
                 >
-
-<p>解决方案: </p>
+<p>解决方案:</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 1 &gt; /proc/sys/net/ipv4/tcp_fastopen</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="3-ss-sever-升级到3-2-0-时-fast-open-connect-Invalid-argument"><a href="#3-ss-sever-升级到3-2-0-时-fast-open-connect-Invalid-argument" class="headerlink" title="3. ss-sever 升级到3.2.0+ 时 fast_open_connect: Invalid argument"></a>3. ss-sever 升级到3.2.0+ 时 fast_open_connect: Invalid argument</h3><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/shadowsocks/shadowsocks-libev/issues/2196" >参考 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="3-ss-sever-升级到3-2-0-时-fast-open-connect-Invalid-argument">3. ss-sever 升级到3.2.0+ 时 fast_open_connect: Invalid argument</h3>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/shadowsocks/shadowsocks-libev/issues/2196" >参考 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2020-10-23 23:29:15 ERROR: fast_open_connect: Invalid argument</span><br><span class="line">2020-10-23 23:29:15 ERROR: getpeername: Transport endpoint is not connected</span><br></pre></td></tr></table></figure></div>
-
-<p>解决方案: </p>
+<p>解决方案:</p>
 <p>删除配置中的 local_address local_port</p>
 <img  
                      lazyload
@@ -365,9 +365,9 @@
                      data-src="/2020/10/23/centos-shadowsocks/getpeername.jpg"
                       class="" title="getpeername"
                 >
-
-
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h4 id="centos7-记得配置防火墙"><a href="#centos7-记得配置防火墙" class="headerlink" title="centos7 记得配置防火墙"></a>centos7 记得配置防火墙</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --add-port=&#123;PORT/tcp,PORT/udp&#125;</span><br><span class="line">firewall-cmd --reload</span><br><span class="line">firewall-cmd --list-all</span><br></pre></td></tr></table></figure></div>
+<h2 id="其他">其他</h2>
+<h4 id="centos7-记得配置防火墙">centos7 记得配置防火墙</h4>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --add-port=&#123;PORT/tcp,PORT/udp&#125;</span><br><span class="line">firewall-cmd --reload</span><br><span class="line">firewall-cmd --list-all</span><br></pre></td></tr></table></figure></div>
 
             </div>
 
