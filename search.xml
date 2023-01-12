@@ -886,7 +886,7 @@ nr_open: 该值为单个进程可分配的最大文件数</p>
     <url>/2023/01/12/ubuntu-transparent-proxy/</url>
     <content><![CDATA[<h1>Ubuntu 搭建透明代理，科学上网</h1>
 <h2 id="说明">说明</h2>
-<p>本教程基于 ubuntu server 22.04 (desktop 也是一样有效)</p>
+<p>本教程基于 ubuntu server 22.04, 需要配置的东西较多 (desktop 也是一样有效)</p>
 <p>使用</p>
 <ul>
 <li>dnsmasq</li>
