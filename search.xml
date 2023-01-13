@@ -112,7 +112,7 @@ later.</p>
 <ul>
 <li>本站点为了区分源文件和静态站点文件，采用两个仓库来维护博客</li>
 <li>私有仓库 attson-blog 用于放源文件</li>
-<li>公开仓库 <a class="link"   href="http://attson.github.io" >attson.github.io <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 用于放build后的静态文件, GitHub pages</li>
+<li>公开仓库 <a href="http://attson.github.io">attson.github.io</a> 用于放build后的静态文件, GitHub pages</li>
 </ul>
 <h3 id="自动化部署使用-github-workflows">自动化部署使用 github workflows</h3>
 <ul>
@@ -126,14 +126,14 @@ later.</p>
 <ul>
 <li>Title 任意</li>
 </ul>
-<h4 id="在公开仓库-attson-github-io-添加-deploy-key，用于支持部署（公钥）">在公开仓库 <a class="link"   href="http://attson.github.io" >attson.github.io <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 添加 deploy key，用于支持部署（公钥）</h4>
+<h4 id="在公开仓库-attson-github-io-添加-deploy-key，用于支持部署（公钥）">在公开仓库 <a href="http://attson.github.io">attson.github.io</a> 添加 deploy key，用于支持部署（公钥）</h4>
 <img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/2023/01/01/build-blog/deploy.png"
                       class="" title="deploy.png"
                 >
-<h4 id="在私有仓库-attson-blog-添加-secrets-key，用于访问-attson-github-io（私钥）">在私有仓库 attson-blog 添加 secrets key，用于访问 <a class="link"   href="http://attson.github.io" >attson.github.io <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>（私钥）</h4>
+<h4 id="在私有仓库-attson-blog-添加-secrets-key，用于访问-attson-github-io（私钥）">在私有仓库 attson-blog 添加 secrets key，用于访问 <a href="http://attson.github.io">attson.github.io</a>（私钥）</h4>
 <ul>
 <li>取一个名字，该名字需与 .github/workflows/deploy.yml 中 deploy_key 一致 DEPLOY_GITHUB_IO_SECRECT</li>
 </ul>
@@ -171,6 +171,10 @@ later.</p>
 </li>
 </ul>
 <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br><span class="line"></span><br><span class="line">npm install hexo-renderer-markdown-it --save</span><br></pre></td></tr></table></figure></div>
+<h3 id="参考">参考</h3>
+<ul>
+<li>seo 优化 <a class="link"   href="https://juejin.cn/post/6844904178452529160" >https://juejin.cn/post/6844904178452529160 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+</ul>
 ]]></content>
       <categories>
         <category>博客</category>

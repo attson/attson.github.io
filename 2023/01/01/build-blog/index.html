@@ -6,7 +6,7 @@
     <meta name="keywords" content="程序员,技术,php,java,golang,javascript,linux,微服务,前端,后端,架构,技术管理">
     <meta name="description" content="Hexo Theme Redefine">
     <meta name="author" content="Attson">
-    <link rel="canonical" href="http://example.com/2023/01/01/build-blog/" />
+    <link rel="canonical" href="https://attson.github.io/2023/01/01/build-blog/" />
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
     <link rel="icon" type="image/png" href="/images/my_logo.svg" sizes="192x192">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/my_logo.svg">
@@ -28,7 +28,7 @@
     <link rel="preconnect" href="https://evan.beee.top" crossorigin>
     <script id="hexo-configurations">
     let REDEFINE = window.REDEFINE || {};
-    REDEFINE.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    REDEFINE.hexo_config = {"hostname":"attson.github.io","root":"/","language":"en","path":"search.xml"};
     REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/my_avatar.svg","favicon":"/images/my_logo.svg","article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/background.jpeg","dark":"/images/background.jpeg"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"description":"可怕的不是死亡，而是你从未真正活过"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_block":{"copy":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"0.4.6","friend_links":{"columns":2}};
     REDEFINE.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
   </script>
@@ -304,7 +304,7 @@
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>6 Mins</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>7 Mins</span>
         </span>
     
     
@@ -380,7 +380,7 @@ later.</p>
 <ul>
 <li>本站点为了区分源文件和静态站点文件，采用两个仓库来维护博客</li>
 <li>私有仓库 attson-blog 用于放源文件</li>
-<li>公开仓库 <a class="link"   target="_blank" rel="noopener" href="http://attson.github.io" >attson.github.io <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 用于放build后的静态文件, GitHub pages</li>
+<li>公开仓库 <a href="http://attson.github.io">attson.github.io</a> 用于放build后的静态文件, GitHub pages</li>
 </ul>
 <h3 id="自动化部署使用-github-workflows">自动化部署使用 github workflows</h3>
 <ul>
@@ -394,14 +394,14 @@ later.</p>
 <ul>
 <li>Title 任意</li>
 </ul>
-<h4 id="在公开仓库-attson-github-io-添加-deploy-key，用于支持部署（公钥）">在公开仓库 <a class="link"   target="_blank" rel="noopener" href="http://attson.github.io" >attson.github.io <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 添加 deploy key，用于支持部署（公钥）</h4>
+<h4 id="在公开仓库-attson-github-io-添加-deploy-key，用于支持部署（公钥）">在公开仓库 <a href="http://attson.github.io">attson.github.io</a> 添加 deploy key，用于支持部署（公钥）</h4>
 <img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/2023/01/01/build-blog/deploy.png"
                       class="" title="deploy.png"
                 >
-<h4 id="在私有仓库-attson-blog-添加-secrets-key，用于访问-attson-github-io（私钥）">在私有仓库 attson-blog 添加 secrets key，用于访问 <a class="link"   target="_blank" rel="noopener" href="http://attson.github.io" >attson.github.io <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>（私钥）</h4>
+<h4 id="在私有仓库-attson-blog-添加-secrets-key，用于访问-attson-github-io（私钥）">在私有仓库 attson-blog 添加 secrets key，用于访问 <a href="http://attson.github.io">attson.github.io</a>（私钥）</h4>
 <ul>
 <li>取一个名字，该名字需与 .github/workflows/deploy.yml 中 deploy_key 一致 DEPLOY_GITHUB_IO_SECRECT</li>
 </ul>
@@ -439,6 +439,10 @@ later.</p>
 </li>
 </ul>
 <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br><span class="line"></span><br><span class="line">npm install hexo-renderer-markdown-it --save</span><br></pre></td></tr></table></figure></div>
+<h3 id="参考">参考</h3>
+<ul>
+<li>seo 优化 <a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/6844904178452529160" >https://juejin.cn/post/6844904178452529160 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+</ul>
 
             </div>
 
@@ -573,7 +577,7 @@ later.</p>
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div style="font-size: 1.3rem;margin-top: 0; margin-bottom: 0.8rem; transition-duration: 0.1s;"><i class="fa-solid fa-list"></i> <strong>Contents</strong></div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">Hexo 博客搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-Hexo"><span class="nav-text">What is Hexo?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E7%8E%AF%E5%A2%83"><span class="nav-text">Hexo 环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-Setup"><span class="nav-text">Hexo Setup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#config-yml"><span class="nav-text">_config.yml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#package-json"><span class="nav-text">package.json</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E4%B8%BB%E9%A2%98%E5%AE%89%E8%A3%85"><span class="nav-text">Hexo 主题安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%EF%BC%8C%E5%9C%A8-Hexo-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E5%B0%86-theme-%E8%AE%BE%E7%BD%AE%E4%B8%BA-Redefine%E3%80%82"><span class="nav-text">安装完成后，在 Hexo 配置文件中将 theme 设置为 Redefine。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="nav-text">修改配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gitalk-%E8%AF%84%E8%AE%BA%E6%94%AF%E6%8C%81"><span class="nav-text">gitalk 评论支持</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B0%E5%BB%BAgithub-oath-%E5%BA%94%E7%94%A8"><span class="nav-text">新建github oath 应用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2-github-io"><span class="nav-text">部署 github.io </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E4%BD%BF%E7%94%A8-github-workflows"><span class="nav-text">自动化部署使用 github workflows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%B8%AD-deploy-key-%E9%9C%80%E8%A6%81%E5%9C%A8%E4%B8%A4%E4%B8%AA%E4%BB%93%E5%BA%93%E5%88%86%E5%88%AB%E8%AE%BE%E7%BD%AE-ssh-%E7%A7%81%E9%92%A5%E5%92%8C%E5%85%AC%E9%92%A5"><span class="nav-text">其中 deploy_key 需要在两个仓库分别设置 ssh 私钥和公钥</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8%E5%85%AC%E5%BC%80%E4%BB%93%E5%BA%93-attson-github-io-%E6%B7%BB%E5%8A%A0-deploy-key%EF%BC%8C%E7%94%A8%E4%BA%8E%E6%94%AF%E6%8C%81%E9%83%A8%E7%BD%B2%EF%BC%88%E5%85%AC%E9%92%A5%EF%BC%89"><span class="nav-text">在公开仓库 attson.github.io  添加 deploy key，用于支持部署（公钥）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93-attson-blog-%E6%B7%BB%E5%8A%A0-secrets-key%EF%BC%8C%E7%94%A8%E4%BA%8E%E8%AE%BF%E9%97%AE-attson-github-io%EF%BC%88%E7%A7%81%E9%92%A5%EF%BC%89"><span class="nav-text">在私有仓库 attson-blog 添加 secrets key，用于访问 attson.github.io （私钥）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-commit-git-push"><span class="nav-text">git commit &amp;&amp; git push</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#markdown-%E5%B5%8C%E5%A5%97%E5%9B%BE%E7%89%87%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">markdown 嵌套图片的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#markdown-%E9%BB%98%E8%AE%A4%E6%B8%B2%E6%9F%93%E5%99%A8"><span class="nav-text">markdown 默认渲染器</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">Hexo 博客搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-Hexo"><span class="nav-text">What is Hexo?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E7%8E%AF%E5%A2%83"><span class="nav-text">Hexo 环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-Setup"><span class="nav-text">Hexo Setup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#config-yml"><span class="nav-text">_config.yml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#package-json"><span class="nav-text">package.json</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E4%B8%BB%E9%A2%98%E5%AE%89%E8%A3%85"><span class="nav-text">Hexo 主题安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%EF%BC%8C%E5%9C%A8-Hexo-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E5%B0%86-theme-%E8%AE%BE%E7%BD%AE%E4%B8%BA-Redefine%E3%80%82"><span class="nav-text">安装完成后，在 Hexo 配置文件中将 theme 设置为 Redefine。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="nav-text">修改配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gitalk-%E8%AF%84%E8%AE%BA%E6%94%AF%E6%8C%81"><span class="nav-text">gitalk 评论支持</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B0%E5%BB%BAgithub-oath-%E5%BA%94%E7%94%A8"><span class="nav-text">新建github oath 应用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2-github-io"><span class="nav-text">部署 github.io </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E4%BD%BF%E7%94%A8-github-workflows"><span class="nav-text">自动化部署使用 github workflows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%B8%AD-deploy-key-%E9%9C%80%E8%A6%81%E5%9C%A8%E4%B8%A4%E4%B8%AA%E4%BB%93%E5%BA%93%E5%88%86%E5%88%AB%E8%AE%BE%E7%BD%AE-ssh-%E7%A7%81%E9%92%A5%E5%92%8C%E5%85%AC%E9%92%A5"><span class="nav-text">其中 deploy_key 需要在两个仓库分别设置 ssh 私钥和公钥</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8%E5%85%AC%E5%BC%80%E4%BB%93%E5%BA%93-attson-github-io-%E6%B7%BB%E5%8A%A0-deploy-key%EF%BC%8C%E7%94%A8%E4%BA%8E%E6%94%AF%E6%8C%81%E9%83%A8%E7%BD%B2%EF%BC%88%E5%85%AC%E9%92%A5%EF%BC%89"><span class="nav-text">在公开仓库 attson.github.io 添加 deploy key，用于支持部署（公钥）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93-attson-blog-%E6%B7%BB%E5%8A%A0-secrets-key%EF%BC%8C%E7%94%A8%E4%BA%8E%E8%AE%BF%E9%97%AE-attson-github-io%EF%BC%88%E7%A7%81%E9%92%A5%EF%BC%89"><span class="nav-text">在私有仓库 attson-blog 添加 secrets key，用于访问 attson.github.io（私钥）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-commit-git-push"><span class="nav-text">git commit &amp;&amp; git push</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#markdown-%E5%B5%8C%E5%A5%97%E5%9B%BE%E7%89%87%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">markdown 嵌套图片的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#markdown-%E9%BB%98%E8%AE%A4%E6%B8%B2%E6%9F%93%E5%99%A8"><span class="nav-text">markdown 默认渲染器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
             </div>
