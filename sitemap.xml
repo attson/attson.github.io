@@ -20,15 +20,6 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/01/12/ubuntu-transparent-proxy/</loc>
-    
-    <lastmod>2023-01-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/2020/10/24/too-many-open-file/</loc>
     
     <lastmod>2023-01-13</lastmod>
@@ -38,7 +29,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2021/06/15/rocketmq/</loc>
+    <loc>http://example.com/2023/01/12/ubuntu-transparent-proxy/</loc>
     
     <lastmod>2023-01-13</lastmod>
     
@@ -47,7 +38,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/01/10/gitalk-init/</loc>
+    <loc>http://example.com/2021/06/15/rocketmq/</loc>
     
     <lastmod>2023-01-13</lastmod>
     
@@ -83,7 +74,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2020/10/23/centos-shadowsocks/</loc>
+    <loc>http://example.com/2023/01/10/gitalk-init/</loc>
     
     <lastmod>2023-01-13</lastmod>
     
@@ -93,6 +84,15 @@
   
   <url>
     <loc>http://example.com/2023/01/02/composer-private/</loc>
+    
+    <lastmod>2023-01-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/2020/10/23/centos-shadowsocks/</loc>
     
     <lastmod>2023-01-13</lastmod>
     
