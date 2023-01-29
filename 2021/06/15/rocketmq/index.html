@@ -73,9 +73,9 @@
     <div class="page-main-content">
 
         <div class="page-main-content-top">
-            <header class="header-wrapper">
+            <header class="menu-wrapper">
     
-    <div class="header-content">
+    <div class="menu-content">
         <div class="left">
             
             <a class="logo-title" href="/">
@@ -170,7 +170,7 @@
     </div>
 
     <!-- Mobile drawer -->
-    <div class="header-drawer">
+    <div class="menu-drawer">
         <ul class="drawer-menu-list">
             
                 
@@ -249,7 +249,7 @@
     <div class="post-page-container">
         <div class="article-content-container">
             <div class="article-title">
-                <span class="title-hover-animation"><h1 style="font-size:2rem; font-weight: bold; margin: 10px 0;">开源版 rocketmq 安装教程及问题解决</h1></span>
+                <span class="title-hover-animation"><h1 style="font-size:3rem; font-weight: bold; margin: 10px 0;">开源版 rocketmq 安装教程及问题解决</h1></span>
             </div>
 
             
@@ -579,8 +579,10 @@
             <div class="toc-content-container">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        <div style="font-size: 1.3rem;margin-top: 0; margin-bottom: 0.8rem; transition-duration: 0.1s;"><i class="fa-solid fa-list"></i> <strong>Contents</strong></div>
+        <div class="toc-title">On this page</div>
+        <div class="page-title">开源版 rocketmq 安装教程及问题解决</div>
         <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E5%90%AF%E5%8A%A8"><span class="nav-text">一、安装和启动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83-%E5%9C%A8%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E4%B8%8B%E8%A1%A8%E7%8E%B0%E4%BC%9A%E6%9C%89%E4%BA%9B%E5%B7%AE%E5%BC%82"><span class="nav-text">环境 (在不同环境下表现会有些差异)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81%E5%8C%85-%E7%BC%96%E8%AF%91"><span class="nav-text">1. 下载源码包 &amp;&amp; 编译</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%90%AF%E5%8A%A8-mqnamesrv-mqbroker"><span class="nav-text">2. 启动 mqnamesrv mqbroker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8-mqnamesrv"><span class="nav-text">启动 mqnamesrv</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mqnamesrv-%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F"><span class="nav-text">mqnamesrv 启动成功</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8-mqborker"><span class="nav-text">启动 mqborker</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mqbroker-%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F"><span class="nav-text">mqbroker 启动成功</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E6%9C%8D%E5%8A%A1%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8"><span class="nav-text">测试服务是否正常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Producer-%E6%B5%8B%E8%AF%95%E6%88%90%E5%8A%9F"><span class="nav-text">Producer 测试成功</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Consumer-%E6%B5%8B%E8%AF%95%E6%88%90%E5%8A%9F"><span class="nav-text">Consumer 测试成功</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%89%E8%A3%85%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2"><span class="nav-text">3. 安装图形界面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%88%90%E5%8A%9F%E7%95%8C%E9%9D%A2"><span class="nav-text">成功界面</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Use-classpath-instead"><span class="nav-text">1. Use -classpath instead:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%90%AF%E5%8A%A8broker%E5%A4%B1%E8%B4%A5-Not-enough-space-Cannot-allocate-memory"><span class="nav-text">2. 启动broker失败 Not enough space || Cannot allocate memory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Xloggc-is-deprecated"><span class="nav-text">3. -Xloggc is deprecated.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%90%AF%E5%8A%A8broker%E5%A4%B1%E8%B4%A5-Could-not-create-the-Java-Virtual-Machine"><span class="nav-text">4. 启动broker失败 Could not create the Java Virtual Machine</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%90%AF%E5%8A%A8-tools-Producer-%E5%A4%B1%E8%B4%A5-connect-to-null-failed-tool-sh"><span class="nav-text">5. 启动 tools Producer 失败 connect to null failed tool.sh </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-not-found"><span class="nav-text">6. [[: not found</span></a></li></ol></li></ol></li></ol>
+
     </div>
 </div>
             </div>
@@ -664,7 +666,7 @@
     <ul class="tools-list">
         <!-- TOC aside toggle -->
         
-            <li class="tools-item page-aside-toggle">
+            <li class="right-bottom-tools page-aside-toggle">
                 <i class="fa-regular fa-outdent"></i>
             </li>
         
@@ -683,40 +685,40 @@
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fa-solid fa-magnifying-glass-plus"></i>
+    <ul class="unfolded-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
         </li>
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fa-solid fa-magnifying-glass-minus"></i>
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
         </li>
 
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fa-solid fa-left-right"></i>
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
         </li>
 
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fa-solid fa-moon"></i>
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
         </li>
 
         <!-- rss -->
         
 
         
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fa-solid fa-arrow-up"></i>
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="fa-regular fa-arrow-up"></i>
             </li>
         
 
-        <li class="tools-item tool-scroll-to-bottom flex-center">
-            <i class="fa-solid fa-arrow-down"></i>
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
         </li>
     </ul>
 
-    <ul class="exposed-tools-list">
-        <li class="tools-item tool-toggle-show flex-center">
-            <i class="fa-solid fa-cog fa-spin"></i>
+    <ul class="folded-tools-list">
+        <li class="right-bottom-tools tool-toggle-show flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
         </li>
         
     </ul>
@@ -760,6 +762,7 @@
 
     
 
+
 </main>
 
 
@@ -769,37 +772,37 @@
 
 <script src="/js/main.js"></script>
 
-<script src="/js/header-shrink.js"></script>
+<script src="/js/layouts/menu-shrink.js"></script>
 
-<script src="/js/back2top.js"></script>
+<script src="/js/tools/go-top-bottom.js"></script>
 
-<script src="/js/dark-light-toggle.js"></script>
-
-
-
-    
-<script src="/js/local-search.js"></script>
-
+<script src="/js/tools/dark-light-toggle.js"></script>
 
 
 
     
-<script src="/js/code-copy.js"></script>
+<script src="/js/tools/local-search.js"></script>
 
 
 
 
     
-<script src="/js/lazyload.js"></script>
+<script src="/js/tools/code-block.js"></script>
 
 
 
 
     
-<script src="/js/runtime.js"></script>
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
 
     
-<script src="/js/odometer.min.js"></script>
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
 
     
 <link rel="stylesheet" href="/css/odometer-theme-minimal.css">
@@ -809,12 +812,13 @@
 <div class="post-scripts pjax">
     
         
-<script src="/js/toc-toggle.js"></script>
+<script src="/js/tools/toc-toggle.js"></script>
 
 <script src="/js/libs/anime.min.js"></script>
 
-<script src="/js/toc.js"></script>
+<script src="/js/layouts/toc.js"></script>
 
+    
     
 </div>
 
