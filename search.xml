@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>使用华硕AC68u做局域网透明代理</title>
-    <url>/2019/07/13/asus-ac68u-shadowsocks/</url>
+    <url>/p/asus-ac68u-shadowsocks/</url>
     <content><![CDATA[<h4 id="注意事项">注意事项</h4>
 <ol>
 <li>本文描述内容基于华硕固件384版本，</li>
@@ -51,7 +51,7 @@
   </entry>
   <entry>
     <title>Hexo 博客搭建</title>
-    <url>/2023/01/01/build-blog/</url>
+    <url>/p/build-blog/</url>
     <content><![CDATA[<h1>Hexo 博客搭建</h1>
 <h2 id="What-is-Hexo">What is Hexo?</h2>
 <p>Hexo is a fast, simple and powerful blog framework. You write posts in Markdown (or other markup languages) and Hexo<br>
@@ -105,7 +105,7 @@ later.</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/01/build-blog/application.png"
+                     data-src="/p/build-blog/application.png"
                       class="" title="comment.png"
                 >
 <h2 id="部署-github-io">部署 <a class="link"   href="http://github.io" >github.io <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h2>
@@ -130,7 +130,7 @@ later.</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/01/build-blog/deploy.png"
+                     data-src="/p/build-blog/deploy.png"
                       class="" title="deploy.png"
                 >
 <h4 id="在私有仓库-attson-blog-添加-secrets-key，用于访问-attson-github-io（私钥）">在私有仓库 attson-blog 添加 secrets key，用于访问 <a href="http://attson.github.io">attson.github.io</a>（私钥）</h4>
@@ -140,7 +140,7 @@ later.</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/01/build-blog/secret.png"
+                     data-src="/p/build-blog/secret.png"
                       class="" title="secret.png"
                 >
 <h4 id="git-commit-git-push">git commit &amp;&amp; git push</h4>
@@ -151,7 +151,7 @@ later.</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/01/build-blog/action.png"
+                     data-src="/p/build-blog/action.png"
                       class="" title="action.png"
                 >
 <h2 id="其他">其他</h2>
@@ -185,7 +185,7 @@ later.</p>
   </entry>
   <entry>
     <title>centos 安装 shadowsocks</title>
-    <url>/2020/10/23/centos-shadowsocks/</url>
+    <url>/p/centos-shadowsocks/</url>
     <content><![CDATA[<h2 id="使用版本">使用版本</h2>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">CentOS Linux release 7.6.1810 (Core)</span><br><span class="line">Linux ecs-w0xX6 3.10.0-957.12.2.el7.x86_64 #1 SMP Tue May 14 21:24:32 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</span><br><span class="line">Shadowsocks Libev 3.3.5</span><br></pre></td></tr></table></figure></div>
 <h2 id="一、手动编译安装">一、手动编译安装</h2>
@@ -215,7 +215,7 @@ later.</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2020/10/23/centos-shadowsocks/fast_open.jpg"
+                     data-src="/p/centos-shadowsocks/fast_open.jpg"
                       class="" title="tcp fast open"
                 >
 <p>解决方案:</p>
@@ -228,7 +228,7 @@ later.</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2020/10/23/centos-shadowsocks/getpeername.jpg"
+                     data-src="/p/centos-shadowsocks/getpeername.jpg"
                       class="" title="getpeername"
                 >
 <h2 id="其他">其他</h2>
@@ -246,7 +246,7 @@ later.</p>
   </entry>
   <entry>
     <title>Composer 私有仓库搭建</title>
-    <url>/2023/01/02/composer-private/</url>
+    <url>/p/composer-private/</url>
     <content><![CDATA[<h1>Composer 私有仓库搭建</h1>
 <p>composer 私有仓库搭建方案有以下三种</p>
 <ol>
@@ -265,7 +265,7 @@ later.</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/02/composer-private/image_a4urwWFHJZ.png"
+                     data-src="/p/composer-private/image_a4urwWFHJZ.png"
                       class=""
                 >
 <h2 id="一、下载">一、下载</h2>
@@ -293,7 +293,7 @@ later.</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/02/composer-private/image_d406ohIHKM.png"
+                     data-src="/p/composer-private/image_d406ohIHKM.png"
                       class=""
                 >
 <h3 id="satis-初始化">satis 初始化</h3>
@@ -309,7 +309,7 @@ later.</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/02/composer-private/image_Y7nrAZFoCu.png"
+                     data-src="/p/composer-private/image_Y7nrAZFoCu.png"
                       class=""
                 >
 <h4 id="启动服务">启动服务</h4>
@@ -321,14 +321,14 @@ later.</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/02/composer-private/image_AuHbRj7-fo.png"
+                     data-src="/p/composer-private/image_AuHbRj7-fo.png"
                       class=""
                 >
 <h3 id="访问-admin-configuration">访问 admin/configuration</h3>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/02/composer-private/image_vo4axt7ZmP.png"
+                     data-src="/p/composer-private/image_vo4axt7ZmP.png"
                       class=""
                 >
 <p>用户名密码 在 parameters.yml 配置文件</p>
@@ -336,14 +336,14 @@ later.</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/02/composer-private/image_K0Pz3doYO3.png"
+                     data-src="/p/composer-private/image_K0Pz3doYO3.png"
                       class=""
                 >
 <p>webhook 配置完后可以test</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/02/composer-private/image_uncVKUkl8y.png"
+                     data-src="/p/composer-private/image_uncVKUkl8y.png"
                       class=""
                 >
 <p>不出意外的话，就全部搭好了</p>
@@ -361,7 +361,7 @@ later.</p>
   </entry>
   <entry>
     <title>Hexo Gitalk 评论自动初始化</title>
-    <url>/2023/01/10/gitalk-init/</url>
+    <url>/p/gitalk-init/</url>
     <content><![CDATA[<h1>Hexo Gitalk 评论自动初始化</h1>
 <h2 id="背景">背景</h2>
 <p>如果使用 Gitalk 评论插件，需要作者为每篇文章手动操作一下初始化，生成对应文章的issue，才能进行评论。</p>
@@ -370,14 +370,14 @@ later.</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/10/gitalk-init/workflows.png"
+                     data-src="/p/gitalk-init/workflows.png"
                       class="" title="img.png"
                 >
 <h2 id="执行效果">执行效果</h2>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/10/gitalk-init/result.png"
+                     data-src="/p/gitalk-init/result.png"
                       class="" title="img.png"
                 >
 <h2 id="具体代码">具体代码</h2>
@@ -480,7 +480,7 @@ later.</p>
   </entry>
   <entry>
     <title>linux 系列更换软件源</title>
-    <url>/2020/09/28/linux-source-mirror-change/</url>
+    <url>/p/linux-source-mirror-change/</url>
     <content><![CDATA[<h3 id="1-ubuntu-阿里云源">1. ubuntu-阿里云源</h3>
 <h4 id="要注意-etc-apt-sources-list-默认的是什么">要注意/etc/apt/sources.list 默认的是什么</h4>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line"># grep -Ev &quot;^$|[#]&quot; 过滤掉空行和#开头的</span><br><span class="line">cat /etc/apt/sources.list | grep -Ev &quot;^$|#&quot;</span><br></pre></td></tr></table></figure></div>
@@ -503,7 +503,7 @@ later.</p>
   </entry>
   <entry>
     <title>mac php + xdebug安装</title>
-    <url>/2017/11/29/mac-php-xdebug/</url>
+    <url>/p/mac-php-xdebug/</url>
     <content><![CDATA[<h1>mac php + xdebug安装</h1>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">背景：之前用的自带php 配置的xdebug，突然发现不能用了，error.log 也不记录在之前的日志文件里了</span><br><span class="line">查看php -v 成了7.1 的了，一脸xx</span><br><span class="line"></span><br><span class="line">最后进/usr/bin 看，php确实变成了7.1</span><br><span class="line">/ect 下面之前配置的php.ini 也不见了</span><br><span class="line">最后在查问题时，看到一篇https://www.cnblogs.com/ailhc/p/7398479.html，提到mac在系统更新</span><br><span class="line">时候，会将自带的配置给还原</span><br><span class="line">然后便想到，放弃自带php，再见</span><br></pre></td></tr></table></figure></div>
 <h4 id="首先">首先</h4>
@@ -561,7 +561,7 @@ php -i &gt; info.txt</p>
   </entry>
   <entry>
     <title>在macos下使用virtual-box安装ubuntu server</title>
-    <url>/2020/10/22/macos-vbox-ubuntu/</url>
+    <url>/p/macos-vbox-ubuntu/</url>
     <content><![CDATA[<h2 id="使用版本">使用版本</h2>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">MacOs Catalian 10.15.6</span><br><span class="line">VirtalBox 6.1.16</span><br><span class="line">Ubuntu Server ubuntu-20.04.1-live-server-amd64.iso</span><br></pre></td></tr></table></figure></div>
 <h2 id="一、安装VirtualBox">一、安装VirtualBox</h2>
@@ -697,7 +697,7 @@ php -i &gt; info.txt</p>
   </entry>
   <entry>
     <title>开源版 rocketmq 安装教程及问题解决</title>
-    <url>/2021/06/15/rocketmq/</url>
+    <url>/p/rocketmq/</url>
     <content><![CDATA[<h2 id="一、安装和启动">一、安装和启动</h2>
 <h3 id="环境-在不同环境下表现会有些差异">环境 (在不同环境下表现会有些差异)</h3>
 <ul>
@@ -712,7 +712,7 @@ php -i &gt; info.txt</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2021/06/15/rocketmq/cmd-list.png"
+                     data-src="/p/rocketmq/cmd-list.png"
                       class="" title="cmd-list"
                 >
 <h4 id="2-启动-mqnamesrv-mqbroker">2. 启动 mqnamesrv mqbroker</h4>
@@ -727,7 +727,7 @@ php -i &gt; info.txt</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2021/06/15/rocketmq/mqnamesrc-started.png"
+                     data-src="/p/rocketmq/mqnamesrc-started.png"
                       class="" title="mqnamesrc-started"
                 >
 <h3 id="启动-mqborker">启动 mqborker</h3>
@@ -739,7 +739,7 @@ php -i &gt; info.txt</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2021/06/15/rocketmq/mqbroker-started.png"
+                     data-src="/p/rocketmq/mqbroker-started.png"
                       class="" title="mqbroker-started"
                 >
 <h3 id="测试服务是否正常">测试服务是否正常</h3>
@@ -748,7 +748,7 @@ php -i &gt; info.txt</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2021/06/15/rocketmq/producer-success.png"
+                     data-src="/p/rocketmq/producer-success.png"
                       class="" title="producer-success"
                 >
 <h4 id="Consumer-测试成功">Consumer 测试成功</h4>
@@ -756,7 +756,7 @@ php -i &gt; info.txt</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2021/06/15/rocketmq/consumer-success.png"
+                     data-src="/p/rocketmq/consumer-success.png"
                       class="" title="consumer-success"
                 >
 <h3 id="3-安装图形界面">3. 安装图形界面</h3>
@@ -770,13 +770,13 @@ php -i &gt; info.txt</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2021/06/15/rocketmq/console.png"
+                     data-src="/p/rocketmq/console.png"
                       class="" title="console.png"
                 >
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2021/06/15/rocketmq/dashboard.png"
+                     data-src="/p/rocketmq/dashboard.png"
                       class="" title="dashboard.png"
                 >
 <h3 id="常见问题">常见问题</h3>
@@ -827,7 +827,7 @@ php -i &gt; info.txt</p>
   </entry>
   <entry>
     <title>Too many open files 解决方案</title>
-    <url>/2020/10/24/too-many-open-file/</url>
+    <url>/p/too-many-open-file/</url>
     <content><![CDATA[<h2 id="使用版本">使用版本</h2>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line"># uname -a</span><br><span class="line">Linux 5.4.0-52-generic #57-Ubuntu SMP Thu Oct 15 10:57:00 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux</span><br><span class="line"># lsb_release -a</span><br><span class="line">Ubuntu 20.04.1 LTS</span><br><span class="line"></span><br><span class="line">Linux ecs-w0xX6 3.10.0-957.12.2.el7.x86_64 #1 SMP Tue May 14 21:24:32 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</span><br><span class="line"># cat /etc/redhat-release</span><br><span class="line">CentOS Linux release 7.6.1810 (Core)</span><br></pre></td></tr></table></figure></div>
 <h2 id="现象">现象</h2>
@@ -863,7 +863,7 @@ root hard nofile 102400</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2020/10/24/too-many-open-file/supervisor.jpg"
+                     data-src="/p/too-many-open-file/supervisor.jpg"
                       class="" title="supervisord config"
                 >
 <h3 id="方案四、-etc-sysctl-conf-该文件为内核配置文件">方案四、/etc/sysctl.conf (该文件为内核配置文件)</h3>
@@ -890,7 +890,7 @@ nr_open: 该值为单个进程可分配的最大文件数</p>
   </entry>
   <entry>
     <title>Ubuntu 搭建透明代理，科学上网</title>
-    <url>/2023/01/12/ubuntu-transparent-proxy/</url>
+    <url>/p/ubuntu-transparent-proxy/</url>
     <content><![CDATA[<h1>Ubuntu 搭建透明代理，科学上网</h1>
 <h2 id="说明">说明</h2>
 <p>本教程基于 ubuntu server 22.04, 需要配置的东西较多 (desktop 也是一样有效)</p>
@@ -916,7 +916,7 @@ nr_open: 该值为单个进程可分配的最大文件数</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/12/ubuntu-transparent-proxy/pdnsd_fail.png"
+                     data-src="/p/ubuntu-transparent-proxy/pdnsd_fail.png"
                       class="" title="pdnsd_fail.png"
                 >
 <p>原因是 net/if.h 和 linux/if.h 重复定义，统一使用 linux/if.h 就可以了</p>
@@ -925,7 +925,7 @@ nr_open: 该值为单个进程可分配的最大文件数</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/12/ubuntu-transparent-proxy/pdnsd_update.png"
+                     data-src="/p/ubuntu-transparent-proxy/pdnsd_update.png"
                       class="" title="pdnsd_update.png"
                 >
 <h2 id="配置">配置</h2>
@@ -939,7 +939,7 @@ nr_open: 该值为单个进程可分配的最大文件数</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/12/ubuntu-transparent-proxy/shadowsocks_redir.png"
+                     data-src="/p/ubuntu-transparent-proxy/shadowsocks_redir.png"
                       class="" title="shadowsocks_redir.png"
                 >
 <p>添加 service 重试次数 (重启时, 由于网络组件启动顺序问题，可能会导致ss-redir 启动失败)</p>
@@ -975,7 +975,7 @@ nr_open: 该值为单个进程可分配的最大文件数</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/12/ubuntu-transparent-proxy/google.png"
+                     data-src="/p/ubuntu-transparent-proxy/google.png"
                       class="" title="google.png"
                 >
 <h2 id="附录">附录</h2>
@@ -990,7 +990,7 @@ nr_open: 该值为单个进程可分配的最大文件数</p>
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2023/01/12/ubuntu-transparent-proxy/service.png"
+                     data-src="/p/ubuntu-transparent-proxy/service.png"
                       class="" title="service.png"
                 >
 <h3 id="参考">参考</h3>
