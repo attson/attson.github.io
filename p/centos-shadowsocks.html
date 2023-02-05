@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="程序员,技术,php,java,golang,javascript,linux,微服务,前端,后端,架构,技术管理">
+    <meta name="keywords" content="shadowsocks,centos,linux">
     <meta name="description" content="Hexo Theme Redefine">
     <meta name="author" content="Attson">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://attson.github.io/p/asus-ac68u-shadowsocks/"/>
+    <link rel="canonical" href="https://attson.github.io/p/centos-shadowsocks.html"/>
     <!--- Icon Part-->
     <link rel="icon" type="image/png" href="/images/my_logo.svg" sizes="192x192">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/my_logo.svg">
@@ -18,7 +18,7 @@
     
     <title>
         
-            使用华硕AC68u做局域网透明代理 |
+            centos 安装 shadowsocks |
         
         Attson Thinking
     </title>
@@ -256,7 +256,7 @@
             
             
                 <div class="article-title">
-                    <h1 class="article-title-regular">使用华硕AC68u做局域网透明代理</h1>
+                    <h1 class="article-title-regular">centos 安装 shadowsocks</h1>
                 </div>
             
                 
@@ -278,8 +278,8 @@
                             <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="pc">2019-07-13 21:02:29</span>
-        <span class="mobile">2019-07-13 21:02</span>
+        <span class="pc">2020-10-23 22:41:15</span>
+        <span class="mobile">2020-10-23 22:41</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -307,7 +307,7 @@
                     </li>
                 
                     <li>
-                        | <a href="/tags/example/">example</a>&nbsp;
+                        | <a href="/tags/centos/">centos</a>&nbsp;
                     </li>
                 
             </ul>
@@ -317,12 +317,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-file-word"></i>&nbsp;<span>749 Words</span>
+            <i class="fa-regular fa-file-word"></i>&nbsp;<span>489 Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>3 Mins</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>2 Mins</span>
         </span>
     
     
@@ -338,42 +338,54 @@
             
 
             <div class="article-content markdown-body">
-                <h4 id="注意事项">注意事项</h4>
-<ol>
-<li>本文描述内容基于华硕固件384版本，</li>
-<li>路由界面的固件升级不支持第三方固件</li>
-<li>华硕官方梅林 不带软件中心页面</li>
-<li>如果需要持久化程序，路由器需开启jffs分区 因其他分区在路由重启的时候会进行清理，不能持久化，而jffs分区是不会的(可在管理界面开启)</li>
-</ol>
-<h4 id="尝试且失败">尝试且失败</h4>
-<h6 id="1-dnsmasq-ss-redir-ss-tunnel-ipset4-iptable">1.  dnsmasq + ss-redir + ss-tunnel + ipset4 + iptable</h6>
-<ul>
-<li><a class="link"   target="_blank" rel="noopener" href="http://www.asussmart.com/smart/36.html" >开启ssh <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 系统设置里开启ssh</li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://www.snbforums.com/threads/how-to-install-entware-to-jffs-without-usb-flashdrive.39700/" >如何安装软件包管理器opkg 不使用外置U盘 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 原理主要是改安装文件/usr/sbin/entware-setup.sh 的一个文件系统格式验证</li>
-</ul>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Copy the file /usr/sbin/entware-setup.sh to jffs and then modify the PART_TYPES variables on line 23 and 27 to include the jffs partition</span><br><span class="line"></span><br><span class="line">Code:</span><br><span class="line">case $(uname -m) in</span><br><span class="line">  armv7l)</span><br><span class="line">    PART_TYPES=&#x27;ext2|ext3|ext4|jffs2&#x27;</span><br><span class="line">    INST_URL=&#x27;http://pkg.entware.net/binaries/armv7/installer/entware_install.sh&#x27;</span><br><span class="line">    ;;</span><br><span class="line">  mips)</span><br><span class="line">    PART_TYPES=&#x27;ext2|ext3|jffs2&#x27;</span><br><span class="line">    INST_URL=&#x27;http://pkg.entware.net/binaries/mipsel/installer/installer.sh&#x27;</span><br><span class="line">    ;;</span><br><span class="line">  *)</span><br><span class="line">    echo &quot;This is unsupported platform, sorry.&quot;</span><br><span class="line">    ;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure></div>
-<ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://w2x.me/2018/09/20/ASUS-66u-%E6%90%AD%E5%BB%BA%E9%80%8F%E6%98%8E%E4%BB%A3%E7%90%86/" >参考文章 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 按文章操作后路由器进入一直重启状态，原因未知 <strong>failed</strong></li>
-</ul>
-<h6 id="2-救援模式刷advancedtomato-参考文章">2. 救援模式刷advancedtomato <a class="link"   target="_blank" rel="noopener" href="https://tedstechshack.com/2015/10/26/how-to-flash-advancedtomato-firmware-on-an-asus-rt-ac68u-router/" >参考文章 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h6>
-<ul>
-<li>刷完系统直接进入救援模式(原因未知) <strong>failed</strong></li>
-</ul>
-<h4 id="最终方案-koolshare-merlin">最终方案 koolshare-merlin</h4>
-<ol>
-<li>通过<a class="link"   target="_blank" rel="noopener" href="http://52asus.com/thread-34-1-2.html" >救援模式 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>刷koolshare-merlin</li>
-</ol>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Step1.安装程式，可以去ASUS官网下载公用程序,然后安装,如RT-AC68U可以在此链接下载 http://www.asus.com.cn/Networking/RTAC68U/#support</span><br><span class="line">Step2.让Router进入救援模式:此操作很关键,先关机,再按住路由器Reset 按钮不放的同时接通路由器电源，直到看到电源灯慢闪时放开Reset按钮.</span><br><span class="line">Step3.电脑接到路由器的Lan 端口，且需要固定IP地址(192.168.1.xxx)</span><br><span class="line"></span><br><span class="line">Step4.开启Firmware Restoration程式(如下图)，点击“Browse”button 选择固件存放路径后点击“Upload”button.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Step5.等待1~3分钟完成,按照提示重启路由器，最好再通过再用Reset按钮使路由器恢复出.</span><br><span class="line"></span><br><span class="line">//Step2 是进入救援模式 其他步骤为通过华硕官方程序(不支持macOs)刷固件</span><br><span class="line">//当进入救援模式后，访问路由地址192.168.x.x, 会进入miniWeb 界面，在界面中也可以刷固件，只是miniweb没有程序好用？偶尔打不开，而程序是一直ok的</span><br></pre></td></tr></table></figure></div>
-<ol start="2">
-<li><a class="link"   target="_blank" rel="noopener" href="https://firmware.koolshare.cn/Koolshare_Merlin_Legacy_380/ASUS/RT-AC68U/X7.9/" >固件地址 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-<li>刷完后路由界面就增加软件中心了，这时候需完成 -&gt;开启jffs-&gt;更新软件中心</li>
-<li>当前固件版本不内置ss在软件列表中，可通过<a class="link"   target="_blank" rel="noopener" href="https://www.codeidc.com/archives/99" >离线安装 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>模式安装 //<a class="link"   target="_blank" rel="noopener" href="https://raw.githubusercontent.com/hq450/fancyss_history_package/master/fancyss_arm/shadowsocks_4.0.5.tar.gz" >软件包 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-</ol>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /tmp</span><br><span class="line">wget --no-check-certificate https://github.com/hq450/fancyss/blob/master/fancyss_arm/shadowsocks.tar.gz</span><br><span class="line">tar -zxvf /tmp/shadowsocks.tar.gz</span><br><span class="line">chmod +x /tmp/shadowsocks/install.sh</span><br><span class="line">sh /tmp/shadowsocks/install.sh</span><br><span class="line"></span><br><span class="line"># 或者下载 shadowsocks.tar.gz 后在软件中心页离线安装中上传</span><br></pre></td></tr></table></figure></div>
-<ol start="5">
-<li>之后就是配置ss，配置完开启就ok了</li>
-</ol>
-<h6 id="备注-koolshare-merlin-为闭源固件，问题不是很大，但是毕竟未开源，有时间再折腾其他固件">备注:koolshare-merlin 为闭源固件，问题不是很大，但是毕竟未开源，有时间再折腾其他固件</h6>
+                <h2 id="使用版本">使用版本</h2>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CentOS Linux release 7.6.1810 (Core)</span><br><span class="line">Linux ecs-w0xX6 3.10.0-957.12.2.el7.x86_64 #1 SMP Tue May 14 21:24:32 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</span><br><span class="line">Shadowsocks Libev 3.3.5</span><br></pre></td></tr></table></figure></div>
+<h2 id="一、手动编译安装">一、手动编译安装</h2>
+<p>参考：<br>
+- <a class="link"   target="_blank" rel="noopener" href="https://github.com/shadowsocks/shadowsocks-libev#fedora%E2%80%94rhel" >https://github.com/shadowsocks/shadowsocks-libev#fedora—rhel <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>
+- <a class="link"   target="_blank" rel="noopener" href="https://b.awei.pub/2019/03/shadowsocks-libev/" >https://b.awei.pub/2019/03/shadowsocks-libev/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="1-安装">1. 安装</h3>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release -y</span><br><span class="line"></span><br><span class="line">yum install git gcc gettext autoconf libtool automake make pcre-devel asciidoc xmlto c-ares-devel libev-devel libsodium-devel mbedtls-devel -y</span><br><span class="line"></span><br><span class="line">git clone https://github.com/shadowsocks/shadowsocks-libev.git</span><br><span class="line"></span><br><span class="line">cd shadowsocks-libev</span><br><span class="line">git submodule update --init --recursive</span><br><span class="line"></span><br><span class="line">sh autogen.sh</span><br><span class="line"></span><br><span class="line">./configure --disable-documentation</span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure></div>
+<h3 id="2-配置systemctl-管理">2. 配置systemctl 管理</h3>
+<h5 id="添加服务配置">+ 添加服务配置</h5>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp shadowsocks-libev/rpm/SOURCES/systemd/shadowsocks-libev.service /usr/lib/systemd/system/</span><br><span class="line">cp shadowsocks-libev/rpm/SOURCES/systemd/shadowsocks-libev.default /etc/sysconfig/shadowsocks-libev</span><br></pre></td></tr></table></figure></div>
+<p>注意检查 shadowsocks-libev/rpm/SOURCES/systemd/shadowsocks-libev.service 文件</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ExecStart=/usr/bin/ss-server -c &quot;$CONFFILE&quot; $DAEMON_ARGS</span><br></pre></td></tr></table></figure></div>
+<p>/usr/bin/ss-server 改成 ss-server 的安装目录 默认是在 /usr/local/bin/ss-server</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ExecStart=/usr/local/bin/ss-server -c &quot;$CONFFILE&quot; $DAEMON_ARGS</span><br></pre></td></tr></table></figure></div>
+<h5 id="操作命令">+ 操作命令</h5>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable shadowsocks-libev</span><br><span class="line">systemctl start shadowsocks-libev</span><br><span class="line">systemctl stop shadowsocks-libev</span><br><span class="line">systemctl status shadowsocks-libev</span><br></pre></td></tr></table></figure></div>
+<h2 id="相关问题和方案">相关问题和方案</h2>
+<h3 id="1-This-system-doesn’t-provide-enough-entropy-to-quickly-generate-high-quality-random-numbers">1. This system doesn’t provide enough entropy to quickly generate high-quality random numbers.</h3>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/shadowsocks/shadowsocks-libev/issues/1384" >参考 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">2020-10-23 22:27:03 INFO: binding to outbound IPv4 addr: 127.0.0.1</span><br><span class="line">2020-10-23 22:27:03 INFO: using tcp fast open</span><br><span class="line">2020-10-23 22:27:03 INFO: UDP relay enabled</span><br><span class="line">2020-10-23 22:27:03 INFO: initializing ciphers... chacha20</span><br><span class="line">2020-10-23 22:27:03 INFO: This system doesn&#x27;t provide enough entropy to quickly generate high-quality random numbers.</span><br><span class="line">Installing the rng-utils/rng-tools, jitterentropy or haveged packages may help.</span><br><span class="line">On virtualized Linux environments, also consider using virtio-rng.</span><br><span class="line">The service will not start until enough entropy has been collected.</span><br></pre></td></tr></table></figure></div>
+<p>解决方案:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y rng-tools</span><br><span class="line">rngd -r /dev/urandom</span><br></pre></td></tr></table></figure></div>
+<h3 id="2-tcp-fast-open-未开启">2. tcp fast open 未开启</h3>
+<p>如果未开启<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/Windgs_YF/article/details/94743088" >tcp fast open <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>会出现如下报错</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2020-10-23 22:27:04 ERROR: fast open is not supported on this platform</span><br></pre></td></tr></table></figure></div>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/centos-shadowsocks/fast_open.jpg"
+                      class="" title="tcp fast open"
+                >
+<p>解决方案:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 1 &gt; /proc/sys/net/ipv4/tcp_fastopen</span><br></pre></td></tr></table></figure></div>
+<h3 id="3-ss-sever-升级到3-2-0-时-fast-open-connect-Invalid-argument">3. ss-sever 升级到3.2.0+ 时 fast_open_connect: Invalid argument</h3>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/shadowsocks/shadowsocks-libev/issues/2196" >参考 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2020-10-23 23:29:15 ERROR: fast_open_connect: Invalid argument</span><br><span class="line">2020-10-23 23:29:15 ERROR: getpeername: Transport endpoint is not connected</span><br></pre></td></tr></table></figure></div>
+<p>解决方案:</p>
+<p>删除配置中的 local_address local_port</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/centos-shadowsocks/getpeername.jpg"
+                      class="" title="getpeername"
+                >
+<h2 id="其他">其他</h2>
+<h4 id="centos7-记得配置防火墙">centos7 记得配置防火墙</h4>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --add-port=&#123;PORT/tcp,PORT/udp&#125;</span><br><span class="line">firewall-cmd --reload</span><br><span class="line">firewall-cmd --list-all</span><br></pre></td></tr></table></figure></div>
 
             </div>
 
@@ -381,11 +393,11 @@
                 <div class="post-copyright-info">
                     <div class="article-copyright-info-container">
     <ul>
-        <li>Post title：使用华硕AC68u做局域网透明代理</li>
+        <li>Post title：centos 安装 shadowsocks</li>
         <li>Post author：Attson</li>
-        <li>Create time：2019-07-13 21:02:29</li>
+        <li>Create time：2020-10-23 22:41:15</li>
         <li>
-            Post link：https://attson.github.io/p/asus-ac68u-shadowsocks/
+            Post link：https://attson.github.io/p/centos-shadowsocks.html
         </li>
         <li>
             Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
@@ -408,7 +420,7 @@
                         </li>
                     
                         <li class="tag-item">
-                            <a href="/tags/example/">#example</a>&nbsp;
+                            <a href="/tags/centos/">#centos</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -420,13 +432,13 @@
                         <div class="article-prev">
                             <a class="prev"
                             rel="prev"
-                            href="/p/linux-source-mirror-change/"
+                            href="/p/too-many-open-file.html"
                             >
                                 <span class="left arrow-icon flex-center">
                                     <i class="fa-solid fa-chevron-left"></i>
                                 </span>
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">linux 系列更换软件源</span>
+                                    <span class="post-nav-title-item">Too many open files 解决方案</span>
                                     <span class="post-nav-item">Prev posts</span>
                                 </span>
                             </a>
@@ -436,10 +448,10 @@
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/p/mac-php-xdebug/"
+                            href="/p/macos-vbox-ubuntu.html"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">mac php + xdebug安装</span>
+                                    <span class="post-nav-title-item">在macos下使用virtual-box安装ubuntu server</span>
                                     <span class="post-nav-item">Next posts</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
@@ -516,8 +528,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">使用华硕AC68u做局域网透明代理</div>
-        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%9D%E8%AF%95%E4%B8%94%E5%A4%B1%E8%B4%A5"><span class="nav-text">尝试且失败</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-dnsmasq-ss-redir-ss-tunnel-ipset4-iptable"><span class="nav-text">1.  dnsmasq + ss-redir + ss-tunnel + ipset4 + iptable</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-%E6%95%91%E6%8F%B4%E6%A8%A1%E5%BC%8F%E5%88%B7advancedtomato-%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-text">2. 救援模式刷advancedtomato 参考文章 </span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E6%96%B9%E6%A1%88-koolshare-merlin"><span class="nav-text">最终方案 koolshare-merlin</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%A4%87%E6%B3%A8-koolshare-merlin-%E4%B8%BA%E9%97%AD%E6%BA%90%E5%9B%BA%E4%BB%B6%EF%BC%8C%E9%97%AE%E9%A2%98%E4%B8%8D%E6%98%AF%E5%BE%88%E5%A4%A7%EF%BC%8C%E4%BD%86%E6%98%AF%E6%AF%95%E7%AB%9F%E6%9C%AA%E5%BC%80%E6%BA%90%EF%BC%8C%E6%9C%89%E6%97%B6%E9%97%B4%E5%86%8D%E6%8A%98%E8%85%BE%E5%85%B6%E4%BB%96%E5%9B%BA%E4%BB%B6"><span class="nav-text">备注:koolshare-merlin 为闭源固件，问题不是很大，但是毕竟未开源，有时间再折腾其他固件</span></a></li></ol></li></ol></li></ol>
+        <div class="page-title">centos 安装 shadowsocks</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%89%88%E6%9C%AC"><span class="nav-text">使用版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%89%8B%E5%8A%A8%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85"><span class="nav-text">一、手动编译安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85"><span class="nav-text">1. 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%85%8D%E7%BD%AEsystemctl-%E7%AE%A1%E7%90%86"><span class="nav-text">2. 配置systemctl 管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE"><span class="nav-text">+ 添加服务配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="nav-text">+ 操作命令</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E5%92%8C%E6%96%B9%E6%A1%88"><span class="nav-text">相关问题和方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-This-system-doesn%E2%80%99t-provide-enough-entropy-to-quickly-generate-high-quality-random-numbers"><span class="nav-text">1. This system doesn’t provide enough entropy to quickly generate high-quality random numbers.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-tcp-fast-open-%E6%9C%AA%E5%BC%80%E5%90%AF"><span class="nav-text">2. tcp fast open 未开启</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-ss-sever-%E5%8D%87%E7%BA%A7%E5%88%B03-2-0-%E6%97%B6-fast-open-connect-Invalid-argument"><span class="nav-text">3. ss-sever 升级到3.2.0+ 时 fast_open_connect: Invalid argument</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#centos7-%E8%AE%B0%E5%BE%97%E9%85%8D%E7%BD%AE%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-text">centos7 记得配置防火墙</span></a></li></ol></li></ol></li></ol>
 
     </div>
 </div>

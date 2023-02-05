@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="macos,virtual-box,ubuntu">
+    <meta name="keywords" content="linux">
     <meta name="description" content="Hexo Theme Redefine">
     <meta name="author" content="Attson">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://attson.github.io/p/macos-vbox-ubuntu/"/>
+    <link rel="canonical" href="https://attson.github.io/p/linux-source-mirror-change.html"/>
     <!--- Icon Part-->
     <link rel="icon" type="image/png" href="/images/my_logo.svg" sizes="192x192">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/my_logo.svg">
@@ -18,7 +18,7 @@
     
     <title>
         
-            在macos下使用virtual-box安装ubuntu server |
+            linux 系列更换软件源 |
         
         Attson Thinking
     </title>
@@ -256,7 +256,7 @@
             
             
                 <div class="article-title">
-                    <h1 class="article-title-regular">在macos下使用virtual-box安装ubuntu server</h1>
+                    <h1 class="article-title-regular">linux 系列更换软件源</h1>
                 </div>
             
                 
@@ -278,8 +278,8 @@
                             <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="pc">2020-10-22 21:58:09</span>
-        <span class="mobile">2020-10-22 21:58</span>
+        <span class="pc">2020-09-28 01:37:58</span>
+        <span class="mobile">2020-09-28 01:37</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -299,15 +299,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/macos/">macos</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/virtual-box/">virtual-box</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/ubuntu/">ubuntu</a>&nbsp;
+                        <a href="/tags/linux/">linux</a>&nbsp;
                     </li>
                 
             </ul>
@@ -317,7 +309,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-file-word"></i>&nbsp;<span>331 Words</span>
+            <i class="fa-regular fa-file-word"></i>&nbsp;<span>127 Words</span>
         </span>
     
     
@@ -338,129 +330,18 @@
             
 
             <div class="article-content markdown-body">
-                <h2 id="使用版本">使用版本</h2>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MacOs Catalian 10.15.6</span><br><span class="line">VirtalBox 6.1.16</span><br><span class="line">Ubuntu Server ubuntu-20.04.1-live-server-amd64.iso</span><br></pre></td></tr></table></figure></div>
-<h2 id="一、安装VirtualBox">一、安装VirtualBox</h2>
-<h3 id="下载">下载</h3>
-<ul>
-<li>下载地址: <a class="link"   target="_blank" rel="noopener" href="https://www.virtualbox.org/wiki/Downloads" >https://www.virtualbox.org/wiki/Downloads <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 国内下载比较慢，推荐借助神秘力量</li>
-</ul>
+                <h3 id="1-ubuntu-阿里云源">1. ubuntu-阿里云源</h3>
+<h4 id="要注意-etc-apt-sources-list-默认的是什么">要注意/etc/apt/sources.list 默认的是什么</h4>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># grep -Ev &quot;^$|[#]&quot; 过滤掉空行和#开头的</span><br><span class="line">cat /etc/apt/sources.list | grep -Ev &quot;^$|#&quot;</span><br></pre></td></tr></table></figure></div>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="./macos-vbox-ubuntu/1603375584584.jpg"
-                      alt="download-vbox"
+                     data-src="./linux-source-mirror-change/source-list.png"
+                      alt="list"
                 ></p>
-<ul>
-<li>不要忘记检查一下sha256值 <a class="link"   target="_blank" rel="noopener" href="https://www.virtualbox.org/download/hashes/6.1.16/SHA256SUMS" >https://www.virtualbox.org/download/hashes/6.1.16/SHA256SUMS <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shasum -a 256 VirtualBox-6.1.16-140961-OSX.dmg</span><br><span class="line">d7df0f05d9a9e7cba50ea01da264ac20948b1c9c0e0cccd2d628085c9f434d45  VirtualBox-6.1.16-140961-OSX.dmg</span><br></pre></td></tr></table></figure></div>
-</li>
-</ul>
-<h3 id="安装">安装</h3>
-<ul>
-<li>
-<p>像正常安装软件一样即可</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./macos-vbox-ubuntu/1603376858313.jpg"
-                      alt="install-vbox"
-                ></p>
-</li>
-<li>
-<p>相关需要的权限都给</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./macos-vbox-ubuntu/1603377152373.jpg"
-                      alt="install-vbox"
-                ></p>
-</li>
-</ul>
-<h2 id="二、安装ubuntu-server">二、安装ubuntu server</h2>
-<h3 id="下载ubuntu-server">下载ubuntu server</h3>
-<ul>
-<li>下载地址: <a class="link"   target="_blank" rel="noopener" href="https://ubuntu.com/download/server" >https://ubuntu.com/download/server <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-</ul>
-<h3 id="安装ubuntu-server">安装ubuntu server</h3>
-<h4 id="Step-1-打开VirBox，点击新建">Step 1. 打开VirBox，点击新建</h4>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./macos-vbox-ubuntu/1603377642251.jpg"
-                      alt="install-ubuntu1"
-                ></p>
-<h4 id="Step-2-配置基础信息和内存">Step 2. 配置基础信息和内存</h4>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./macos-vbox-ubuntu/1603377649152.jpg"
-                      alt="install-ubuntu2"
-                ></p>
-<h4 id="Step-3-配置虚拟硬盘">Step 3. 配置虚拟硬盘</h4>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./macos-vbox-ubuntu/1603377652616.jpg"
-                      alt="install-ubuntu3"
-                ></p>
-<h4 id="Step-4-点击存储，添加盘片-设置镜像文件">Step 4. 点击存储，添加盘片(设置镜像文件)</h4>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./macos-vbox-ubuntu/iso1.jpg"
-                      alt="install-ubuntu4-1"
-                ><br>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./macos-vbox-ubuntu/iso2.jpg"
-                      alt="install-ubuntu4-2"
-                ></p>
-<h4 id="Step-5-启动">Step 5. 启动</h4>
-<ul>
-<li>
-<p>. 注意，在某些版本下会出现启动时如下的崩溃信息，是因为没有给virtual-box 授权音频输出权限的问题，可以通过[ 设置-&gt;声音-&gt;取消声音 ]解决<br>
-<a class="link"   target="_blank" rel="noopener" href="https://unix.stackexchange.com/questions/609077/how-to-fix-virtualbox-vm-quit-unexpectedly-when-running-my-ubuntu-20-04-lts-vm" >参考解决方案 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./macos-vbox-ubuntu/bug1.jpg"
-                      alt="install-ubuntu5-1"
-                ></p>
-</li>
-<li>
-<p>点击启动即可开始安装ubutnu server</p>
-</li>
-</ul>
-<h2 id="三、其他">三、其他</h2>
-<h3 id="从主机访问虚拟机">从主机访问虚拟机</h3>
-<p>virtual box 默认的网卡 是网络网址转换(NAT) 模式</p>
-<ol>
-<li>
-<p>通过配置端口转发<br>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./macos-vbox-ubuntu/nat1.jpg"
-                      alt="install-nat-1"
-                ><br>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./macos-vbox-ubuntu/nat2.jpg"
-                      alt="install-nat-2"
-                ></p>
-</li>
-<li>
-<p>可以通过修改模式为桥接网卡, 让主机和虚拟机在同一网段, 就能够直接通过虚拟机的ip访问了<br>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./macos-vbox-ubuntu/bridge.jpg"
-                      alt="install-bridge"
-                ></p>
-</li>
-</ol>
+<p>看到域名都是 <code>cn.archive.ubuntu.com</code>; 可以手动将这些都改成阿里云的源 <code>mirrors.aliyun.com</code><br>
+也可以通过下面的命令直接替换</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 万事先备份</span><br><span class="line">cp /etc/apt/sources.list /etc/apt/sources.list.bk</span><br><span class="line">sed -i s/cn.archive.ubuntu.com/mirrors.aliyun.com/g /etc/apt/sources.list</span><br><span class="line"># 验证一波</span><br><span class="line">cat /etc/apt/sources.list | grep -Ev &quot;^$|#&quot;</span><br></pre></td></tr></table></figure></div>
 
             </div>
 
@@ -468,11 +349,11 @@
                 <div class="post-copyright-info">
                     <div class="article-copyright-info-container">
     <ul>
-        <li>Post title：在macos下使用virtual-box安装ubuntu server</li>
+        <li>Post title：linux 系列更换软件源</li>
         <li>Post author：Attson</li>
-        <li>Create time：2020-10-22 21:58:09</li>
+        <li>Create time：2020-09-28 01:37:58</li>
         <li>
-            Post link：https://attson.github.io/p/macos-vbox-ubuntu/
+            Post link：https://attson.github.io/p/linux-source-mirror-change.html
         </li>
         <li>
             Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
@@ -487,15 +368,7 @@
                 <ul class="post-tags-box">
                     
                         <li class="tag-item">
-                            <a href="/tags/macos/">#macos</a>&nbsp;
-                        </li>
-                    
-                        <li class="tag-item">
-                            <a href="/tags/virtual-box/">#virtual-box</a>&nbsp;
-                        </li>
-                    
-                        <li class="tag-item">
-                            <a href="/tags/ubuntu/">#ubuntu</a>&nbsp;
+                            <a href="/tags/linux/">#linux</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -507,13 +380,13 @@
                         <div class="article-prev">
                             <a class="prev"
                             rel="prev"
-                            href="/p/centos-shadowsocks/"
+                            href="/p/macos-vbox-ubuntu.html"
                             >
                                 <span class="left arrow-icon flex-center">
                                     <i class="fa-solid fa-chevron-left"></i>
                                 </span>
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">centos 安装 shadowsocks</span>
+                                    <span class="post-nav-title-item">在macos下使用virtual-box安装ubuntu server</span>
                                     <span class="post-nav-item">Prev posts</span>
                                 </span>
                             </a>
@@ -523,10 +396,10 @@
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/p/linux-source-mirror-change/"
+                            href="/p/asus-ac68u-shadowsocks.html"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">linux 系列更换软件源</span>
+                                    <span class="post-nav-title-item">使用华硕AC68u做局域网透明代理</span>
                                     <span class="post-nav-item">Next posts</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
@@ -603,8 +476,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">在macos下使用virtual-box安装ubuntu server</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%89%88%E6%9C%AC"><span class="nav-text">使用版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85VirtualBox"><span class="nav-text">一、安装VirtualBox</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-text">下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85ubuntu-server"><span class="nav-text">二、安装ubuntu server</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDubuntu-server"><span class="nav-text">下载ubuntu server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85ubuntu-server"><span class="nav-text">安装ubuntu server</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-1-%E6%89%93%E5%BC%80VirBox%EF%BC%8C%E7%82%B9%E5%87%BB%E6%96%B0%E5%BB%BA"><span class="nav-text">Step 1. 打开VirBox，点击新建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-2-%E9%85%8D%E7%BD%AE%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E5%92%8C%E5%86%85%E5%AD%98"><span class="nav-text">Step 2. 配置基础信息和内存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-3-%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%A1%AC%E7%9B%98"><span class="nav-text">Step 3. 配置虚拟硬盘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-4-%E7%82%B9%E5%87%BB%E5%AD%98%E5%82%A8%EF%BC%8C%E6%B7%BB%E5%8A%A0%E7%9B%98%E7%89%87-%E8%AE%BE%E7%BD%AE%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6"><span class="nav-text">Step 4. 点击存储，添加盘片(设置镜像文件)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-5-%E5%90%AF%E5%8A%A8"><span class="nav-text">Step 5. 启动</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%85%B6%E4%BB%96"><span class="nav-text">三、其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8E%E4%B8%BB%E6%9C%BA%E8%AE%BF%E9%97%AE%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-text">从主机访问虚拟机</span></a></li></ol></li></ol>
+        <div class="page-title">linux 系列更换软件源</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-ubuntu-%E9%98%BF%E9%87%8C%E4%BA%91%E6%BA%90"><span class="nav-text">1. ubuntu-阿里云源</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A6%81%E6%B3%A8%E6%84%8F-etc-apt-sources-list-%E9%BB%98%E8%AE%A4%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-text">要注意&#x2F;etc&#x2F;apt&#x2F;sources.list 默认的是什么</span></a></li></ol></li></ol>
 
     </div>
 </div>
