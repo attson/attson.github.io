@@ -802,7 +802,7 @@ ESB)，其中 ESB 产品通常包括用于消息路由、编排、转换和应�
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/p/micro-service-phylogeny/img_1.png"
+                     data-src="/p/micro-service-phylogeny/api_gateway.png"
                       class="" title="img_1.png"
                 >
 <p>服务拆分后，虽然每个服务都具有独立的边界，但是通常每个服务都需要配备适当的治理策略，如访问日志，限流，超时控制，负载均衡，熔断降级等。同时还需要一定的业务控制，如身份认证和权限控制。<br>
@@ -812,7 +812,7 @@ ESB)，其中 ESB 产品通常包括用于消息路由、编排、转换和应�
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/p/micro-service-phylogeny/img.png"
+                     data-src="/p/micro-service-phylogeny/service_mesh.png"
                       class="" title="img.png"
                 >
 <p>在API Gateway 的实践方案中，架构解决了客户端到服务端的问题，但使用API Gateway 并不能很好地处理服务间调用的问题，在Service Mesh 理念没有提出来之前，基本上两种方案解决服务间治理。</p>
