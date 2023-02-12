@@ -334,8 +334,7 @@
             
 
             <div class="article-content markdown-body">
-                <h1>微服务演进</h1>
-<p>What is microservices</p>
+                <p>What is microservices</p>
 <p>A microservice architecture – a variant of the service-oriented architecture structural style – is an architectural<br>
 pattern that arranges an application as a collection of loosely-coupled, fine-grained services, communicating through<br>
 lightweight protocols.</p>
@@ -393,38 +392,38 @@ SOAP 作为远程调用的协议，<br>
 中首次了解到微服务的，在此文中，首先给出了现代微服务的概念：“微服务是一种通过多个小型服务组合来构建单个应用的架构风格，这些服务围绕业务能力而非特定的技术标准来构建。<br>
 各个服务可以采用不同的编程语言，不同的数据存储技术，运行在不同的进程之中。服务采取轻量级的通信机制和自动化的部署机制实现通信与运维。”<br>
 此外，文中列举了微服务的九个核心的业务与技术特征:</p>
-<h3 id="围绕业务能力构建-Organized-around-Business-Capability）">围绕业务能力构建 (Organized around Business Capability）</h3>
+<h4 id="围绕业务能力构建-Organized-around-Business-Capability）">围绕业务能力构建 (Organized around Business Capability）</h4>
 <p>明确了微服务的拆分是围绕业务能力，当拆分一个大型系统时，管理层容易想到的就是按照技术能力去划分，比如UI，服务端，数据库方向拆分，<br>
 但是这种拆分模式，是不利于业务模块独立发展的，一个功能相同的功能，可能分布在不同的产品团队中，各个团队很难对一个概念达成共识，需要频繁地跨团队沟通。<br>
 或者就是每个团队自己独立维护，造成企业资源浪费。 而按照业务能力去划分，此类服务针对该业务领域采用广泛的软件实现，包括用户界面、持久存储和任何外部协作。<br>
 因此，团队是跨职能的，包括开发所需的全部技能：用户体验、数据库和项目管理。</p>
-<h3 id="产品化思维（Products-not-Projects）">产品化思维（Products not Projects）</h3>
+<h4 id="产品化思维（Products-not-Projects）">产品化思维（Products not Projects）</h4>
 <p>软件交付后就认为完成，这个是微服务不推荐的态度，微服务团队应该有产品化思维，需要对微服的整体生命周期负责，就像对待一个产品一样，需要具备用户思维，<br>
 与用户更多的沟通，思考该服务如何为用户提供更好的业务能力。</p>
-<h3 id="强终端弱管道（Smart-Endpoint-and-Dumb-Pipe）">强终端弱管道（Smart Endpoint and Dumb Pipe）</h3>
+<h4 id="强终端弱管道（Smart-Endpoint-and-Dumb-Pipe）">强终端弱管道（Smart Endpoint and Dumb Pipe）</h4>
 <p>在不同进程之间构建通信结构时，我们看到许多产品和方法都强调将重要的智慧融入通信机制本身。这方面的一个很好的例子是企业服务总线 (<br>
 ESB)，其中 ESB 产品通常包括用于消息路由、编排、转换和应用业务规则的复杂设施。<br>
 而微服务理念表明，业务的逻辑规则应该由服务自身去实现，而不应该将逻辑交给大而全的总线。管道只需要满足基础的数据交互逻辑，类似rabbitmq之类，只负责数据传递给对应的服务，<br>
 该服务去完成对应的业务逻辑。</p>
-<h3 id="分散治理（Decentralized-Governance）">分散治理（Decentralized Governance）</h3>
+<h4 id="分散治理（Decentralized-Governance）">分散治理（Decentralized Governance）</h4>
 <p>不同的服务可以根据自己的特性，团队有权利掌握该服务的各方面权利，比如选择一个更适合的编程语言去开发，微服务和SOA在理念上并不会限制该服务的具体实现，<br>
 当然通常情况会尽量选择比较统一的技术栈， 方便团队的统一管理和组织层面的调整。另外权利和责任是相互绑定的，负责该服务的团队，也需要准备好凌晨3点去处理线上问题。</p>
-<h3 id="数据去中心化（Decentralized-Data-Management）">数据去中心化（Decentralized Data Management）</h3>
+<h4 id="数据去中心化（Decentralized-Data-Management）">数据去中心化（Decentralized Data Management）</h4>
 <p>在一个大型系统的数据持久化层面，通常是同一个数据库实例，同一种持久化技术。在微服务理念中，与上面的分散治理一样，微服务的数据管理也是分散的，<br>
 团队也可以根据业务特性选择不同的持久化技术，微服务管理自己的数据维护和查询，其他服务不应该绕过服务访问到对应的数据。<br>
 同时也提到DDD理念，通过数据自治，服务对于数据模型的设计可以更加地聚焦，例如订单层面的产品和供应链层面的产品虽然可能会描述同一个物体，但是在不同的业务领域，他们关注的数据模型是不一致的。<br>
 这里引出的一个问题，在细粒度的微服务架构下，一个复杂的业务逻辑，可能需要不同的服务参与，服务之间由于数据方案都不一致，很难从持久化技术层面保证事务性。<br>
 众所周知，分布式事务难以实现，因此微服务架构强调服务之间的无事务协调，并明确认识到一致性可能只是最终一致性，问题通过补偿操作来处理。</p>
-<h3 id="通过服务来实现独立自治的组件（Componentization-via-Services）">通过服务来实现独立自治的组件（Componentization via Services）</h3>
+<h4 id="通过服务来实现独立自治的组件（Componentization-via-Services）">通过服务来实现独立自治的组件（Componentization via Services）</h4>
 <p>通过服务来实现独立自治的组件表明了与使用类库的形式引入客户端不同，服务处于进程外，可以独立进行升级迭代，而不需要客户端重新去加载编译，<br>
 客户端通常只拥有对该服务的远程调用sdk，这部分应该是稳定的且又客户端选择的。这里引出的一个问题，服务自治，也需要考虑向下兼容的问题，不能对在使用的约定合同有影响。</p>
-<h3 id="基础设施自动化（Infrastructure-Automation）">基础设施自动化（Infrastructure Automation）</h3>
+<h4 id="基础设施自动化（Infrastructure-Automation）">基础设施自动化（Infrastructure Automation）</h4>
 <p>随着服务的拆分，数量逐渐上升，再结合敏捷、MVP的思想，服务的发布频率也逐渐上升。能够将集成发布流程自动化是至关重要的，当然这里要警惕自动化流程仅限于构建和部署，更为关键的是自动化测试。<br>
 没有经过严格自动化测试的服务，发布效率再高，也会被用户吐槽的一无是处。不过自动化测试通常也是最复杂的部分，需要开发者投入大量的时间编写测试用例，也要求开发者的代码是方便测试的。</p>
-<h3 id="容错性设计（Design-for-Failure）">容错性设计（Design for Failure）</h3>
+<h4 id="容错性设计（Design-for-Failure）">容错性设计（Design for Failure）</h4>
 <p>虽然服务划分之后，对应的团队需要保证该服务的稳定性，但是在复杂的运行环境下，还是要保持服务是可能出现问题的。比如流量突增、网络波动等。这个特性会引出很多需要治理的方向，比如增加动态伸缩、熔断降级，<br>
 增加服务监控、服务日志等</p>
-<h3 id="演进式设计（Evolutionary-Design）">演进式设计（Evolutionary Design）</h3>
+<h4 id="演进式设计（Evolutionary-Design）">演进式设计（Evolutionary Design）</h4>
 <p>系统的演进有两种方向，一种是对业务功能新增和下线，一种是对已有业务功能的重新设计。演进式设计需要尽量早期就识别出架构风险，这里说的不是设计一个非常完美的架构，而是在设计层面上，是方便迭代升级的。<br>
 服务组件化后的关键属性是可替换可升级，能够方便的迭代该服务，而不会影响协作者。这里其实也是一个抽象的思想，服务组件应该是抽象化的，并且边界清晰的，互相协作依赖业务抽象。当然也有其他方式可以方便系统演进，比如引进版本化，<br>
 但是版本化往往是最后的手段，版本化会给整个服务架构带来更多的治理问题。</p>
@@ -603,7 +602,7 @@ Service Mesh分为数据平面和控制平面，Sidecar处理的部分就是数�
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">微服务演进</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">微服务演进</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SOA"><span class="nav-text">SOA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="nav-text">微服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%B4%E7%BB%95%E4%B8%9A%E5%8A%A1%E8%83%BD%E5%8A%9B%E6%9E%84%E5%BB%BA-Organized-around-Business-Capability%EF%BC%89"><span class="nav-text">围绕业务能力构建 (Organized around Business Capability）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A7%E5%93%81%E5%8C%96%E6%80%9D%E7%BB%B4%EF%BC%88Products-not-Projects%EF%BC%89"><span class="nav-text">产品化思维（Products not Projects）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%BA%E7%BB%88%E7%AB%AF%E5%BC%B1%E7%AE%A1%E9%81%93%EF%BC%88Smart-Endpoint-and-Dumb-Pipe%EF%BC%89"><span class="nav-text">强终端弱管道（Smart Endpoint and Dumb Pipe）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%95%A3%E6%B2%BB%E7%90%86%EF%BC%88Decentralized-Governance%EF%BC%89"><span class="nav-text">分散治理（Decentralized Governance）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%EF%BC%88Decentralized-Data-Management%EF%BC%89"><span class="nav-text">数据去中心化（Decentralized Data Management）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E6%9C%8D%E5%8A%A1%E6%9D%A5%E5%AE%9E%E7%8E%B0%E7%8B%AC%E7%AB%8B%E8%87%AA%E6%B2%BB%E7%9A%84%E7%BB%84%E4%BB%B6%EF%BC%88Componentization-via-Services%EF%BC%89"><span class="nav-text">通过服务来实现独立自治的组件（Componentization via Services）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E8%87%AA%E5%8A%A8%E5%8C%96%EF%BC%88Infrastructure-Automation%EF%BC%89"><span class="nav-text">基础设施自动化（Infrastructure Automation）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B9%E9%94%99%E6%80%A7%E8%AE%BE%E8%AE%A1%EF%BC%88Design-for-Failure%EF%BC%89"><span class="nav-text">容错性设计（Design for Failure）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%94%E8%BF%9B%E5%BC%8F%E8%AE%BE%E8%AE%A1%EF%BC%88Evolutionary-Design%EF%BC%89"><span class="nav-text">演进式设计（Evolutionary Design）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E5%AE%9E%E6%88%98"><span class="nav-text">微服务架构实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#API-Gateway"><span class="nav-text">API Gateway</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Mesh"><span class="nav-text">Service Mesh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dapr"><span class="nav-text">Dapr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ending"><span class="nav-text">Ending</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SOA"><span class="nav-text">SOA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="nav-text">微服务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%B4%E7%BB%95%E4%B8%9A%E5%8A%A1%E8%83%BD%E5%8A%9B%E6%9E%84%E5%BB%BA-Organized-around-Business-Capability%EF%BC%89"><span class="nav-text">围绕业务能力构建 (Organized around Business Capability）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%A7%E5%93%81%E5%8C%96%E6%80%9D%E7%BB%B4%EF%BC%88Products-not-Projects%EF%BC%89"><span class="nav-text">产品化思维（Products not Projects）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%BA%E7%BB%88%E7%AB%AF%E5%BC%B1%E7%AE%A1%E9%81%93%EF%BC%88Smart-Endpoint-and-Dumb-Pipe%EF%BC%89"><span class="nav-text">强终端弱管道（Smart Endpoint and Dumb Pipe）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%95%A3%E6%B2%BB%E7%90%86%EF%BC%88Decentralized-Governance%EF%BC%89"><span class="nav-text">分散治理（Decentralized Governance）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%EF%BC%88Decentralized-Data-Management%EF%BC%89"><span class="nav-text">数据去中心化（Decentralized Data Management）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E6%9C%8D%E5%8A%A1%E6%9D%A5%E5%AE%9E%E7%8E%B0%E7%8B%AC%E7%AB%8B%E8%87%AA%E6%B2%BB%E7%9A%84%E7%BB%84%E4%BB%B6%EF%BC%88Componentization-via-Services%EF%BC%89"><span class="nav-text">通过服务来实现独立自治的组件（Componentization via Services）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E8%87%AA%E5%8A%A8%E5%8C%96%EF%BC%88Infrastructure-Automation%EF%BC%89"><span class="nav-text">基础设施自动化（Infrastructure Automation）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%B9%E9%94%99%E6%80%A7%E8%AE%BE%E8%AE%A1%EF%BC%88Design-for-Failure%EF%BC%89"><span class="nav-text">容错性设计（Design for Failure）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BC%94%E8%BF%9B%E5%BC%8F%E8%AE%BE%E8%AE%A1%EF%BC%88Evolutionary-Design%EF%BC%89"><span class="nav-text">演进式设计（Evolutionary Design）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E5%AE%9E%E6%88%98"><span class="nav-text">微服务架构实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#API-Gateway"><span class="nav-text">API Gateway</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Mesh"><span class="nav-text">Service Mesh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dapr"><span class="nav-text">Dapr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ending"><span class="nav-text">Ending</span></a></li></ol></li></ol>
 
     </div>
 </div>
