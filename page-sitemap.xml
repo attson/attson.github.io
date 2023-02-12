@@ -4,15 +4,15 @@
     
     
     <url>
-        <loc>https://attson.github.io/tags/</loc>
-        <lastmod>2023-02-12T12:43:56.236Z</lastmod>
+        <loc>https://attson.github.io/categories/</loc>
+        <lastmod>2023-02-12T12:45:15.081Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1</priority>
     </url>
     
     <url>
-        <loc>https://attson.github.io/categories/</loc>
-        <lastmod>2023-02-12T12:43:56.232Z</lastmod>
+        <loc>https://attson.github.io/tags/</loc>
+        <lastmod>2023-02-12T12:45:15.081Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1</priority>
     </url>
