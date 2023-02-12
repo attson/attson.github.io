@@ -800,7 +800,7 @@ ESB)，其中 ESB 产品通常包括用于消息路由、编排、转换和应�
 供应链侧的产品库存服务独立成标准组件，电商系统也可以通过产品库存服务拿到需要的信息，明确服务职责，也不需要重复开发设计。甚至后面比如公司再上一个批发系统，能够很好地利用现有的组件快速上线。这种思路在国内也被称为中台化思想。</p>
 <h2 id="微服务架构实战">微服务架构实战</h2>
 <p>前面讲了微服务的设计理念，从2014年正式提出来之后，基本没有太多的变化。接下来我们看看从技术层面，如何落地微服务架构</p>
-<h3 id="API-Gateway">API Gateway</h3>
+<h4 id="API-Gateway">API Gateway</h4>
 <img  
                      lazyload
                      src="/images/loading.svg"
@@ -810,7 +810,7 @@ ESB)，其中 ESB 产品通常包括用于消息路由、编排、转换和应�
 <p>服务拆分后，虽然每个服务都具有独立的边界，但是通常每个服务都需要配备适当的治理策略，如访问日志，限流，超时控制，负载均衡，熔断降级等。同时还需要一定的业务控制，如身份认证和权限控制。<br>
 如果这些仍然需要各个服务自行管理，那么服务需要处理的不仅仅是业务问题。<br>
 尽管API Gateway在微服务出现之前就已经存在，但是结合微服务架构后，它的作用和意义变得更加明显。在微服务架构的实践中，API Gateway几乎是必不可少的。</p>
-<h3 id="Service-Mesh">Service Mesh</h3>
+<h4 id="Service-Mesh">Service Mesh</h4>
 <img  
                      lazyload
                      src="/images/loading.svg"
@@ -826,7 +826,7 @@ ESB)，其中 ESB 产品通常包括用于消息路由、编排、转换和应�
 <p>而Service Mesh概念中，将服务间调用的问题绑定在单个服务副本上，每个服务副本进行远程调用的时候，都会经过一个称为Sidecar的程序，这个程序与服务副本伴生，提供重试/超时、监控、追踪和服务发现等能力。<br>
 Service Mesh分为数据平面和控制平面，Sidecar处理的部分就是数据平面，控制平面是类似一个控制中心，统一管理Sidecar相关的配置并下发给Sidecar，同时收集Sidecar上报的注册、监控、日志等信息。</p>
 <p>Istio 是比较流行的Service Mesh 实践方案，使用网络代理的方式实现Sidecar，无侵入式实现服务间治理。</p>
-<h3 id="Dapr">Dapr</h3>
+<h4 id="Dapr">Dapr</h4>
 <img  
                      lazyload
                      src="/images/loading.svg"
@@ -840,7 +840,7 @@ Service Mesh分为数据平面和控制平面，Sidecar处理的部分就是数�
 就代表了具备数据存储的一系列中间价，如Mysql、MongoDB、Redis。开发者通过组件绑定的API，像访问远程服务一样去访问存储，而Sidecar程序则会在其中提供关键的能力。</p>
 <p>虽然Dapr官方认为，Dapr并不是Service Mesh的下一代架构，他们有自己的职责范围(<a class="link"   href="https://www.bookstack.cn/read/dapr-1.4-zh/08834f926c98fde9.md" >Dapr与Service Mesh  <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>))，<br>
 因为微软的Dapr是以一个实践产品提出的，即提供了成熟的开箱即用的解决方案，但其组件抽象设计理念，笔者认为是可以作为下一代微服务架构的方向的。</p>
-<h3 id="Ending">Ending</h3>
+<h4 id="Ending">Ending</h4>
 <p>通过以上的几个阶段演进，微服务架构的实践方案，基本已经包含了方方面面，当然架构是随着问题解决的方向不断演进的，永远没有最完美的架构。架构师能做的只是在当前技术背景和环境背景下，选择一个更合适的方案。</p>
 ]]></content>
       <categories>
