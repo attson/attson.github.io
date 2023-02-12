@@ -699,7 +699,7 @@ php -i &gt; info.txt</p>
   <entry>
     <title>微服务演进</title>
     <url>/p/micro-service-phylogeny.html</url>
-    <content><![CDATA[<p>What is microservices</p>
+    <content><![CDATA[<p>What is Microservices</p>
 <p>A microservice architecture – a variant of the service-oriented architecture structural style – is an architectural<br>
 pattern that arranges an application as a collection of loosely-coupled, fine-grained services, communicating through<br>
 lightweight protocols.</p>
@@ -718,12 +718,9 @@ lightweight protocols.</p>
 instead of a monolithic design.</p>
 <p>—— Wikipedia，Microservices</p>
 <p>面向服务的架构( SOA )， 是一种专注于 discrete 服务而不是整体设计的架构风格。discrete service 可以理解为局部的，模块的服务，<br>
-从传统的单体架构系统中逐步的研究其中的模块。<br>
-举个现实的例子就是组装机台式机，通常会由主机，显示器，鼠标，键盘，音箱之类组成，这些组成部分就可以视为 discrete service。<br>
-（<strong>高内聚低耦合之类的技术理念，并不只在软件领域，而是生活中的方法面面</strong>）</p>
-<p>专注于 discrete 服务显而易见的好处是，鼠标、键盘甚至主机中的内存条坏了都可以单独更换，而不需要整体回炉重造。<br>
-当然随着某个模块的发展，会出现一些企业标准甚至行业标准，比如雷蛇鼠标坏了，我换一个罗技的也是可以用，这就是SOA带来的好处。</p>
-<p>从上面例子再去理解SOA原则，就更加清晰了。</p>
+从传统的单体架构系统中逐步的研究其中的模块。比如系统拆分出订单服务，产品服务，库存服务。那订单侧会更关注订单创建，sku售卖相关，产品服务关注产品目录结构，管理产品上下架，<br>
+库存服务则关注库存进货录入，库存数据。同时订单也会结合产品服务，库存服务进行业务逻辑处理。</p>
+<p>SOA原则</p>
 <ul>
 <li><strong>标准化服务合同</strong> 服务遵循标准通信协议，由一组给定服务中的一个或多个服务描述文档共同定义。</li>
 <li><strong>服务引用自治</strong>（松散耦合的一个方面） 服务之间的关系被最小化到他们只知道它们存在的水平，而不知道怎么实现的，底层又是什么，都是不知道的，只知道有这个东西。</li>
