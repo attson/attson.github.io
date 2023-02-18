@@ -20,15 +20,6 @@
   </url>
   
   <url>
-    <loc>https://attson.github.io/p/too-many-open-file.html</loc>
-    
-    <lastmod>2023-02-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://attson.github.io/p/ubuntu-transparent-proxy.html</loc>
     
     <lastmod>2023-02-18</lastmod>
@@ -38,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://attson.github.io/p/rocketmq.html</loc>
+    <loc>https://attson.github.io/p/too-many-open-file.html</loc>
     
     <lastmod>2023-02-18</lastmod>
     
@@ -48,6 +39,15 @@
   
   <url>
     <loc>https://attson.github.io/p/micro-service-phylogeny.html</loc>
+    
+    <lastmod>2023-02-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://attson.github.io/p/rocketmq.html</loc>
     
     <lastmod>2023-02-18</lastmod>
     
