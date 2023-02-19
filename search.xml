@@ -850,6 +850,85 @@ Service Mesh分为数据平面和控制平面，Sidecar处理的部分就是数�
       </tags>
   </entry>
   <entry>
+    <title>配置地址走指定网卡</title>
+    <url>/p/network-interface-auto-route.html</url>
+    <content><![CDATA[<h2 id="背景">背景</h2>
+<p>由于公司提供的vpn属于 L2TP 协议，为二层隧道协议，通过路由表控制，要想实现访问公司服务，最简单的就是将默认路由配置成 vpn<br>
+的网关。（通过VPN连接发送所有流量）</p>
+<p>说明：</p>
+<ol>
+<li>通常vpn会增加指定的私有网段的转发，如果公司内部的服务都是私网地址，一般不需要处理</li>
+<li>当有些公司的服务配置的是公网地址，但是该地址通过ip白名单形式，限制非公司出口ip访问，就可以按照本教材处理</li>
+<li>本教程本质是通过 ip route 配置特定路由，所以也可以解决多网卡下，需要转发指定的地址到指定网卡的场景</li>
+<li>本文档基于macos系统，其他系统思路类似</li>
+</ol>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/network-interface-auto-route/img.png"
+                      class="" title="img.png"
+                >
+<p>在路由表上的效果就是在最上面会添加一条默认路由</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ netstat -nr</span><br><span class="line">Routing tables</span><br><span class="line"></span><br><span class="line">Internet:</span><br><span class="line">Destination        Gateway            Flags        Netif Expire</span><br><span class="line">default            <span class="built_in">link</span><span class="comment">#18            UCSIg         ppp0</span></span><br><span class="line">default            10.89.89.1         UGScg          en0</span><br></pre></td></tr></table></figure></div>
+<p>但是通常我们并不是想要使用vpn转发所有的流量，一是访问非公司的网页时，速度会受公司的统一带宽影响，二是google之类的高级网站，需要使用各自的神秘力量访问，走公司网络时，则无法正常访问了。</p>
+<p>那我们如何实现指定的地址走公司的网络，其他的地址还是走默认的网络呢。</p>
+<h2 id="方案1">方案1</h2>
+<p>其实方案也很简单，就是在路由层面，自己修改路由表，达成能自定义路由</p>
+<h3 id="第一步">第一步</h3>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/network-interface-auto-route/img2.png"
+                      class="" title="img.png"
+                >
+<p>取消转发所有流量，可以看到vpn已经不是优先级最高的</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ netstat -nr</span><br><span class="line">Routing tables</span><br><span class="line"></span><br><span class="line">Internet:</span><br><span class="line">Destination        Gateway            Flags        Netif Expire</span><br><span class="line">default            10.89.89.1         UGScg          en0</span><br><span class="line">default            <span class="built_in">link</span><span class="comment">#18            UGScg          ppp0</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="第二步">第二步</h3>
+<p>添加指定的路由规则，比如我们要让 <a class="link"   href="https://about.gitlab.com" >https://about.gitlab.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 走vpn网络，首先获取该域名的ip地址</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ dig about.gitlab.com</span><br><span class="line"></span><br><span class="line">; &lt;&lt;&gt;&gt; DiG 9.10.6 &lt;&lt;&gt;&gt; about.gitlab.com</span><br><span class="line">;; global options: +cmd</span><br><span class="line">;; Got answer:</span><br><span class="line">;; -&gt;&gt;HEADER&lt;&lt;- <span class="string">opcode: QUERY, status: NOERROR, id: 36117</span></span><br><span class="line"><span class="string">;; flags: qr rd ra; QUERY: 1, ANSWER: 4, AUTHORITY: 0, ADDITIONAL: 1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;; OPT PSEUDOSECTION:</span></span><br><span class="line"><span class="string">; EDNS: version: 0, flags:; udp: 1232</span></span><br><span class="line"><span class="string">;; QUESTION SECTION:</span></span><br><span class="line"><span class="string">;about.gitlab.com.		IN	A</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;; ANSWER SECTION:</span></span><br><span class="line"><span class="string">about.gitlab.com.	30	IN	A	151.101.66.49</span></span><br><span class="line"><span class="string">about.gitlab.com.	30	IN	A	151.101.130.49</span></span><br><span class="line"><span class="string">about.gitlab.com.	30	IN	A	151.101.194.49</span></span><br><span class="line"><span class="string">about.gitlab.com.	30	IN	A	151.101.2.49</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">;; Query time: 20 msec</span></span><br><span class="line"><span class="string">;; SERVER: 10.89.89.1#53(10.89.89.1)</span></span><br><span class="line"><span class="string">;; WHEN: Sun Feb 19 14:54:41 CST 2023</span></span><br><span class="line"><span class="string">;; MSG SIZE  rcvd: 109</span></span><br></pre></td></tr></table></figure></div>
+<p>然后找到vpn的网关地址</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/network-interface-auto-route/img3.png"
+                      class="" title="img.png"
+                >
+<p>然后将地址添加到对应的网关下 192.168.199.195</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sudo route add 151.101.66.49 192.168.199.195</span><br><span class="line">sudo route add 151.101.130.49 192.168.199.195</span><br><span class="line">sudo route add 151.101.194.49 192.168.199.195</span><br><span class="line">sudo route add 151.101.2.49 192.168.199.195</span><br></pre></td></tr></table></figure></div>
+<p>这时候 <a class="link"   href="https://about.gitlab.com" >https://about.gitlab.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 就会走公司网络了，其他没有配置的仍然走原先的网络.</p>
+<h4 id="说明">说明</h4>
+<ol>
+<li>Route 命令添加的路由重启之后会失效，若需要持久化需要使用（&quot;xxx&quot;是对应的网络连接，macos<br>
+下对网络连接的命名）<code>networksetup -setadditionalroutes xxx 151.101.66.49 255.255.255.255 192.168.199.195</code></li>
+<li>vpn的网关地址可能会在重新连接更新，也是需要重新配置</li>
+<li>如果域名的 dns 解析地址更换了，也是需要重新配置</li>
+</ol>
+<p>总结: 不推荐使用手动配置处理该场景，因为经常需要重新配置。所以理想情况就是，启动vpn之后，自动添加所需要路由，重连会动态修改，并且能够支持dns识别。请看方案2</p>
+<h2 id="方案2">方案2</h2>
+<p>Github 项目 <a class="link"   href="https://github.com/attson/niar" >https://github.com/attson/niar <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 实现当对应的 network interface 连接时，自动添加相关的路由</p>
+<h3 id="第一步-2">第一步</h3>
+<p>Macos 请注意 darwin_amd64 和 darwin_arm64 选择</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">curl -s https://raw.githubusercontent.com/attson/niar/main/install/darwin.sh | NIAR_VERSION=v0.0.4 NIAR_OS=darwin_amd64 bash</span><br></pre></td></tr></table></figure></div>
+<p><em>执行过程会询问密码，需要root权限去管理route.</em></p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#...</span></span><br><span class="line"><span class="comment"># 执行输出日志</span></span><br><span class="line"></span><br><span class="line">----------- install success. enjoy it! ----------</span><br><span class="line"></span><br><span class="line">default config: don<span class="string">&#x27;t forget update</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">  &quot;interfaces&quot;: [</span></span><br><span class="line"><span class="string">    &#123;</span></span><br><span class="line"><span class="string">      &quot;name&quot;: &quot;ppp0&quot;,</span></span><br><span class="line"><span class="string">      &quot;routes&quot;: [</span></span><br><span class="line"><span class="string">        &quot;github.com&quot;,</span></span><br><span class="line"><span class="string">        &quot;192.168.188.11&quot;,</span></span><br><span class="line"><span class="string">        &quot;192.168.188.0/24&quot;</span></span><br><span class="line"><span class="string">      ]</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  ]</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">edit config: vim /usr/local/bin/niar_0.0.4_darwin_amd64/config.json</span></span><br><span class="line"><span class="string">[notice] com.attson.niar runAtLoad...</span></span><br><span class="line"><span class="string">start cmd: sudo launchctl load /Library/LaunchDaemons/com.attson.niar.plist</span></span><br><span class="line"><span class="string">stop cmd: sudo launchctl unload /Library/LaunchDaemons/com.attson.niar.plist</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="第二步-2">第二步</h3>
+<p>配置 /usr/local/bin/niar_0.0.4_darwin_amd64/config.json, 添加你需要代理的地址，支持域名，ip，ip，ip+mask。</p>
+<p>配置的时候注意interface name, 这个通过 <code>ifconfig</code> 可以查看, 而不是 macos 网络连接里面的名称</p>
+<div class="highlight-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;interfaces&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ppp0&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;routes&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;about.gitlab.com&quot;</span></span><br><span class="line">      <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启动</span></span><br><span class="line">sudo launchctl load /Library/LaunchDaemons/com.attson.niar.plist</span><br><span class="line"><span class="comment"># 暂停</span></span><br><span class="line">sudo launchctl unload /Library/LaunchDaemons/com.attson.niar.plist</span><br><span class="line"><span class="comment"># 日志</span></span><br><span class="line"><span class="built_in">tail</span> -f /usr/local/var/log/com.attson.niar.log</span><br></pre></td></tr></table></figure></div>
+<p>这样就不需要频繁自己修改路由了，vpn挂着，也不影响正常上网。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>macos</tag>
+        <tag>network</tag>
+        <tag>route</tag>
+        <tag>vpn</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>开源版 rocketmq 安装教程及问题解决</title>
     <url>/p/rocketmq.html</url>
     <content><![CDATA[<h2 id="一、安装和启动">一、安装和启动</h2>
