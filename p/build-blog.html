@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="程序员,技术,php,java,golang,javascript,linux,微服务,前端,后端,架构,技术管理">
+    <meta name="description" content="Hexo Theme Redefine">
+    <meta name="author" content="Attson">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://attson.github.io/p/build-blog.html"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Hexo 博客搭建">
+    <meta property="og:description" content="Hexo Theme Redefine">
+    <meta property="og:url" content="https://attson.github.iop/build-blog.html">
+    <meta property="og:image" content="/images/my_logo.svg">
+    <meta property="og:site_name" content="Attson Thinking">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hexo 博客搭建">
+    <meta name="twitter:description" content="Hexo Theme Redefine">
+    <meta name="twitter:image" content="/images/my_logo.svg">
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/my_logo.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/my_logo.svg">
+    <meta name="theme-color" content="#005080">
+    <link rel="shortcut icon" href="/images/my_logo.svg">
+    
+    <title>
+        
+            Hexo 博客搭建 -
+        
+        Attson Thinking
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    
+    
+    
+    
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"attson.github.io","root":"/","language":"en","path":"search.xml"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/my_avatar.svg","favicon":"/images/my_logo.svg","article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/background.jpeg","dark":"/images/background.jpeg"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"description":"可怕的不是死亡，而是你从未真正活过","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.1.2","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}}};
+    REDEFINE.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="menu-wrapper">
+    
+    <div class="menu-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Attson Thinking
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        ARCHIVES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/tags"  >
+                                    
+                                        
+                                        TAGS
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/categories"  >
+                                    
+                                        
+                                        CATEGORIES
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="menu-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                ARCHIVES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/tags"  >
+                             
+                                
+                                TAGS
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/categories"  >
+                             
+                                
+                                CATEGORIES
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">Hexo 博客搭建</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/my_avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Attson</span>
+                            
+                                <span class="author-label">lol</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="pc">2023-01-01 20:56:44</span>
+        <span class="mobile">2023-01-01 20:56</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="pc">2023-03-01 14:46:25</span>
+            <span class="mobile">2023-03-01 14:46</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%8D%9A%E5%AE%A2/">博客</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/example/">example</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-file-word"></i>&nbsp;<span>1.4k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>7 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h1>Hexo 博客搭建</h1>
+<h2 id="What-is-Hexo">What is Hexo?</h2>
+<p>Hexo is a fast, simple and powerful blog framework. You write posts in Markdown (or other markup languages) and Hexo<br>
+generates static files with a beautiful theme in seconds.</p>
+<p>(copy from <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/" >https://hexo.io/docs/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>)</p>
+<ul>
+<li>hexo 是一个博客搭建框架</li>
+<li>hexo 自带主题比较简单，通常会选择找一个更适合的主题</li>
+</ul>
+<h2 id="Hexo-环境">Hexo 环境</h2>
+<ul>
+<li>nodejs</li>
+</ul>
+<p>nodejs 安装推荐使用<a class="link"   target="_blank" rel="noopener" href="https://github.com/nvm-sh/nvm" >nvm <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>, 支持本地多版本环境切换</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/#Install-Hexo" >hexo-cli <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+</ul>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure></div>
+<h2 id="Hexo-Setup">Hexo Setup</h2>
+<p>Once Hexo is installed, run the following commands to initialize Hexo in the target <folder>.</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br><span class="line"><span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure></div>
+<p>Once initialized, here’s what your project folder will look like:</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── <span class="built_in">source</span></span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure></div>
+<h3 id="config-yml">_config.yml</h3>
+<p>Site configuration file. You can configure most settings here.</p>
+<h3 id="package-json">package.json</h3>
+<p>Application data. The EJS, Stylus and Markdown renderers are installed by default. If you want, you can uninstall them<br>
+later.</p>
+<p>package.json</p>
+<div class="highlight-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hexo-site&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;private&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;hexo&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;dependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;hexo&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^3.8.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;hexo-generator-archive&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^0.1.5&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;hexo-generator-category&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^0.1.3&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;hexo-generator-index&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^0.2.1&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;hexo-generator-tag&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^0.2.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;hexo-renderer-ejs&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^0.3.1&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;hexo-renderer-stylus&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^0.3.3&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;hexo-renderer-marked&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^0.3.2&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;hexo-server&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^0.3.3&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></div>
+<p>copy from (<a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/setup" >https://hexo.io/docs/setup <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>)</p>
+<h2 id="Hexo-主题安装">Hexo 主题安装</h2>
+<p>本站点使用 <a class="link"   target="_blank" rel="noopener" href="https://redefine-docs.evanluo.top/" >redefine 主题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>, 当前安装版本 v0.4.5</p>
+<ul>
+<li>简洁、五脏俱全</li>
+</ul>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> your-hexo-site</span><br><span class="line">npm install hexo-theme-redefine@latest</span><br></pre></td></tr></table></figure></div>
+<h3 id="安装完成后，在-Hexo-配置文件中将-theme-设置为-Redefine。">安装完成后，在 Hexo 配置文件中将 theme 设置为 Redefine。</h3>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># _config.yml</span></span><br><span class="line">theme: redefine</span><br></pre></td></tr></table></figure></div>
+<p>顺便删除自带主题</p>
+<div class="highlight-container" data-rel="Yaml"><figure class="iseeu highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">rm</span> <span class="string">_config.landscape.yml</span></span><br><span class="line"></span><br><span class="line"><span class="string">npm</span> <span class="string">remove</span> <span class="string">hexo-theme-landscape</span></span><br></pre></td></tr></table></figure></div>
+<p>这个主题基本是开箱即用，默认的配置就挺好的，可以修改一些偏个人信息的部分</p>
+<h3 id="修改配置">修改配置</h3>
+<p>_config.redefine.yml</p>
+<div class="highlight-container" data-rel="Yaml"><figure class="iseeu highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基础信息</span></span><br><span class="line"><span class="attr">base_info:</span></span><br><span class="line">  <span class="attr">title:</span> <span class="string">Attson</span> <span class="string">Thinking</span> <span class="comment"># Site title</span></span><br><span class="line">  <span class="attr">author:</span> <span class="string">Attson</span> <span class="comment"># Author name</span></span><br><span class="line">  <span class="attr">url:</span> <span class="string">https://attson.github.io</span> <span class="comment"># Site url</span></span><br><span class="line">  <span class="comment"># Logo image (You can use local image, image external link or don’t fill)</span></span><br><span class="line">  <span class="attr">logo_img:</span> <span class="comment"># logo image on the left of the navigation bar</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 作者头像和网站图标部分</span></span><br><span class="line"><span class="attr">style:</span></span><br><span class="line">  <span class="comment"># 说明: images 路径 -&gt; 在source/images </span></span><br><span class="line">  <span class="comment"># &lt;= v0.4.5 主题内置文件 images/(avatar.svg loading.svg logo.svg logo.webp), 请避开这些文件命名</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">/images/my_avatar.svg</span> <span class="comment"># avatar of the author</span></span><br><span class="line">  <span class="comment"># Favicon (You can use local image or image external link)</span></span><br><span class="line">  <span class="attr">favicon:</span> <span class="string">/images/my_logo.svg</span> <span class="comment"># favicon of the site</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">first_screen:</span></span><br><span class="line">    <span class="attr">background_image:</span></span><br><span class="line">      <span class="attr">light:</span> <span class="string">/images/background.jpeg</span> <span class="comment"># background image of the first screen, use relative path or external link (if your website is in subdirectory, use external link)</span></span><br><span class="line">      <span class="attr">dark:</span> <span class="string">/images/background.jpeg</span> <span class="comment"># background image of the first screen, use relative path or external link (if your website is in subdirectory, use external link)</span></span><br><span class="line">    <span class="comment"># 网站首页一段文案，可以改成自己喜欢的</span></span><br><span class="line">    <span class="attr">description:</span> <span class="string">可怕的不是死亡，而是你从未真正活过</span> <span class="comment"># the title in the middle of the first screen. HTML supported (e.g. svg html code of your logo)</span></span><br><span class="line"><span class="comment"># 菜单部分</span></span><br><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="comment"># 增加 tags 页</span></span><br><span class="line">  <span class="attr">Tags:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">/tags</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="gitalk-评论支持">gitalk 评论支持</h3>
+<p><a class="link"   target="_blank" rel="noopener" href="https://redefine-docs.evanluo.top/docs/configuration-guide/comment#gitalk" >https://redefine-docs.evanluo.top/docs/configuration-guide/comment#gitalk <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>[redefine &lt;= v0.4.5 gitalk 代码有<a class="link"   target="_blank" rel="noopener" href="https://github.com/EvanNotFound/hexo-theme-redefine/issues/36" >bug #36 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>]</p>
+<div class="highlight-container" data-rel="Yaml"><figure class="iseeu highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comment:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">use:</span> <span class="string">gitalk</span> <span class="comment"># values: waline | gitalk | twikoo</span></span><br><span class="line">  <span class="comment"># Gitalk</span></span><br><span class="line">  <span class="comment"># See: https://github.com/gitalk/gitalk</span></span><br><span class="line">  <span class="attr">gitalk:</span></span><br><span class="line">    <span class="attr">github_id:</span> <span class="string">attson</span> <span class="comment"># GitHub repo owner</span></span><br><span class="line">    <span class="attr">repository:</span> <span class="string">attson.github.io</span> <span class="comment"># Repository name to store issues</span></span><br><span class="line">    <span class="attr">client_id:</span> <span class="string">&lt;GitHub</span> <span class="string">Application</span> <span class="string">Client</span> <span class="string">ID&gt;</span> <span class="comment"># GitHub Application Client ID</span></span><br><span class="line">    <span class="attr">client_secret:</span> <span class="string">&lt;GitHub</span> <span class="string">Application</span> <span class="string">Client</span> <span class="string">Secret&gt;</span> <span class="comment"># GitHub Application Client Secret</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="新建github-oath-应用">新建github oath 应用</h4>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/settings/applications/new" >https://github.com/settings/applications/new <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/build-blog/application.png"
+                      class="" title="comment.png"
+                >
+<h2 id="部署-github-io">部署 <a class="link"   target="_blank" rel="noopener" href="http://github.io" >github.io <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h2>
+<ul>
+<li>本站点为了区分源文件和静态站点文件，采用两个仓库来维护博客</li>
+<li>私有仓库 attson-blog 用于放源文件</li>
+<li>公开仓库 <a href="http://attson.github.io">attson.github.io</a> 用于放build后的静态文件, GitHub pages</li>
+</ul>
+<h3 id="自动化部署使用-github-workflows">自动化部署使用 github workflows</h3>
+<ul>
+<li>使用 github workflows 好处是不需要再依赖其他deploy插件</li>
+</ul>
+<p>增加文件 .github/workflows/deploy.yml</p>
+<div class="highlight-container" data-rel="Yaml"><figure class="iseeu highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 文件内容基本来自 https://hexo.io/docs/github-pages</span></span><br><span class="line"><span class="comment"># 统一使用v3 版本 v2 部分功能已弃用</span></span><br><span class="line"></span><br><span class="line"><span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">master</span>  <span class="comment"># default branch</span></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">pages:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/checkout@v3</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">token:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.GITHUB_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="comment"># If your repository depends on submodule, please see: https://github.com/actions/checkout</span></span><br><span class="line">          <span class="attr">submodules:</span> <span class="string">recursive</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Use</span> <span class="string">Node.js</span> <span class="number">16.</span><span class="string">x</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v3</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="string">&#x27;16&#x27;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Cache</span> <span class="string">NPM</span> <span class="string">dependencies</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/cache@v3</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">path:</span> <span class="string">node_modules</span></span><br><span class="line">          <span class="attr">key:</span> <span class="string">$&#123;&#123;</span> <span class="string">runner.OS</span> <span class="string">&#125;&#125;-npm-cache</span></span><br><span class="line">          <span class="attr">restore-keys:</span> <span class="string">|</span></span><br><span class="line"><span class="string">            $&#123;&#123; runner.OS &#125;&#125;-npm-cache</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">Dependencies</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">npm</span> <span class="string">install</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">npm</span> <span class="string">run</span> <span class="string">build</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">peaceiris/actions-gh-pages@v3</span></span><br><span class="line">        <span class="comment"># 配置说明 https://github.com/peaceiris/actions-gh-pages</span></span><br><span class="line">        <span class="comment"># 修改最后部署的部分 (如不区分两个仓库，则无需修改)</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">deploy_key:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.DEPLOY_GITHUB_IO_SECRECT</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">external_repository:</span> <span class="string">&quot;attson/attson.github.io&quot;</span></span><br><span class="line">          <span class="attr">publish_branch:</span> <span class="string">master</span></span><br><span class="line">          <span class="attr">publish_dir:</span> <span class="string">./public</span></span><br><span class="line">          <span class="comment"># 修改 commit 信息，默认是 attson/attson-blog@30438be</span></span><br><span class="line">          <span class="attr">full_commit_message:</span> <span class="string">$&#123;&#123;</span> <span class="string">github.event.head_commit.message</span> <span class="string">&#125;&#125;</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="其中-deploy-key-需要在两个仓库分别设置-ssh-私钥和公钥">其中 deploy_key 需要在两个仓库分别设置 ssh 私钥和公钥</h3>
+<p>生成keys</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -b 4096 -C <span class="string">&quot;&lt;your email address&gt;&quot;</span> -f <span class="string">&quot;attson.github.io&quot;</span> -N <span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>Title 任意</li>
+</ul>
+<h4 id="在公开仓库-attson-github-io-添加-deploy-key，用于支持部署（公钥）">在公开仓库 <a href="http://attson.github.io">attson.github.io</a> 添加 deploy key，用于支持部署（公钥）</h4>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/build-blog/deploy.png"
+                      class="" title="deploy.png"
+                >
+<h4 id="在私有仓库-attson-blog-添加-secrets-key，用于访问-attson-github-io（私钥）">在私有仓库 attson-blog 添加 secrets key，用于访问 <a href="http://attson.github.io">attson.github.io</a>（私钥）</h4>
+<ul>
+<li>取一个名字，该名字需与 .github/workflows/deploy.yml 中 deploy_key 一致 DEPLOY_GITHUB_IO_SECRECT</li>
+</ul>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/build-blog/secret.png"
+                      class="" title="secret.png"
+                >
+<h4 id="git-commit-git-push">git commit &amp;&amp; git push</h4>
+<ul>
+<li>配置完以上后，就可以直接提交代码到 源文件仓库了，github 的 workflow 会在提交之后自动触发</li>
+<li>在 Actions 处可以看到 workflow 情况</li>
+</ul>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/build-blog/action.png"
+                      class="" title="action.png"
+                >
+<h2 id="其他">其他</h2>
+<h3 id="markdown-嵌套图片的问题">markdown 嵌套图片的问题</h3>
+<ul>
+<li>官方推荐的嵌入图片的方式 <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/zh-tw/docs/tag-plugins#Embed-image" >https://hexo.io/zh-tw/docs/tag-plugins#Embed-image <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 不太符合markdown 通用写法</li>
+</ul>
+<p>本站点使用 <a class="link"   target="_blank" rel="noopener" href="https://github.com/yiyungent/hexo-asset-img" >https://github.com/yiyungent/hexo-asset-img <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 插件</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-asset-img --save</span><br></pre></td></tr></table></figure></div>
+<h3 id="markdown-默认渲染器">markdown 默认渲染器</h3>
+<ul>
+<li>
+<p>hexo 默认使用 hexo-renderer-marked 对 markdown 渲染，渲染库支持的语法和功能较少，无法用插件方式新增其他语法，</p>
+</li>
+<li>
+<p>推荐使用 <a class="link"   target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-renderer-markdown-it" >hexo-renderer-markdown-it <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>, 默认支持的语法更多，也可以添加额外的插件</p>
+</li>
+</ul>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br><span class="line"></span><br><span class="line">npm install hexo-renderer-markdown-it --save</span><br></pre></td></tr></table></figure></div>
+<h3 id="参考">参考</h3>
+<ul>
+<li>seo 优化 <a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/6844904178452529160" >https://juejin.cn/post/6844904178452529160 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+</ul>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Hexo 博客搭建</li>
+        <li>Post author：Attson</li>
+        <li>Create time：2023-01-01 20:56:44</li>
+        <li>
+            Post link：https://attson.github.io/p/build-blog.html
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/example/">#example</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/p/composer-private.html"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Composer 私有仓库搭建</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/p/movie-yinruchenyan.html"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">隐入尘烟观影报告</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-pjax
+            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+    <script data-pjax>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: '24a34a0f831995c77ed0',
+                    clientSecret: 'a5516d7f525afe76657721dc3973a54ba9ecb01f',
+                    repo: 'attson.github.io',
+                    owner: 'attson',
+                    admin: ['attson'],
+                    id: __gitalk__pathname,
+                    language: 'en'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Hexo 博客搭建</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">Hexo 博客搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-Hexo"><span class="nav-text">What is Hexo?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E7%8E%AF%E5%A2%83"><span class="nav-text">Hexo 环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-Setup"><span class="nav-text">Hexo Setup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#config-yml"><span class="nav-text">_config.yml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#package-json"><span class="nav-text">package.json</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E4%B8%BB%E9%A2%98%E5%AE%89%E8%A3%85"><span class="nav-text">Hexo 主题安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E5%90%8E%EF%BC%8C%E5%9C%A8-Hexo-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E5%B0%86-theme-%E8%AE%BE%E7%BD%AE%E4%B8%BA-Redefine%E3%80%82"><span class="nav-text">安装完成后，在 Hexo 配置文件中将 theme 设置为 Redefine。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="nav-text">修改配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gitalk-%E8%AF%84%E8%AE%BA%E6%94%AF%E6%8C%81"><span class="nav-text">gitalk 评论支持</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B0%E5%BB%BAgithub-oath-%E5%BA%94%E7%94%A8"><span class="nav-text">新建github oath 应用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2-github-io"><span class="nav-text">部署 github.io </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E4%BD%BF%E7%94%A8-github-workflows"><span class="nav-text">自动化部署使用 github workflows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%B8%AD-deploy-key-%E9%9C%80%E8%A6%81%E5%9C%A8%E4%B8%A4%E4%B8%AA%E4%BB%93%E5%BA%93%E5%88%86%E5%88%AB%E8%AE%BE%E7%BD%AE-ssh-%E7%A7%81%E9%92%A5%E5%92%8C%E5%85%AC%E9%92%A5"><span class="nav-text">其中 deploy_key 需要在两个仓库分别设置 ssh 私钥和公钥</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8%E5%85%AC%E5%BC%80%E4%BB%93%E5%BA%93-attson-github-io-%E6%B7%BB%E5%8A%A0-deploy-key%EF%BC%8C%E7%94%A8%E4%BA%8E%E6%94%AF%E6%8C%81%E9%83%A8%E7%BD%B2%EF%BC%88%E5%85%AC%E9%92%A5%EF%BC%89"><span class="nav-text">在公开仓库 attson.github.io 添加 deploy key，用于支持部署（公钥）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93-attson-blog-%E6%B7%BB%E5%8A%A0-secrets-key%EF%BC%8C%E7%94%A8%E4%BA%8E%E8%AE%BF%E9%97%AE-attson-github-io%EF%BC%88%E7%A7%81%E9%92%A5%EF%BC%89"><span class="nav-text">在私有仓库 attson-blog 添加 secrets key，用于访问 attson.github.io（私钥）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-commit-git-push"><span class="nav-text">git commit &amp;&amp; git push</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#markdown-%E5%B5%8C%E5%A5%97%E5%9B%BE%E7%89%87%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">markdown 嵌套图片的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#markdown-%E9%BB%98%E8%AE%A4%E6%B8%B2%E6%9F%93%E5%99%A8"><span class="nav-text">markdown 默认渲染器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></li></ol></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-regular fa-computer-classic"></i>&nbsp;&nbsp;<a href="/">Attson</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br> 
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v1.1.2</a>
+        </div>
+        
+        
+        
+            <div id="start_time_div" style="display:none">
+                2023/01/01 21:00:00
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="unfolded-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="fa-regular fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="folded-tools-list">
+        <li class="right-bottom-tools tool-toggle-show flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/menu-shrink.js"></script>
+
+<script src="/js/tools/go-top-bottom.js"></script>
+
+<script src="/js/tools/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/tools/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/tools/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/toc-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

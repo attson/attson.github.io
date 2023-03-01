@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://attson.github.io/p/ubuntu-transparent-proxy.html</loc>
+    <loc>https://attson.github.io/p/too-many-open-file.html</loc>
     
     <lastmod>2023-03-01</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://attson.github.io/p/too-many-open-file.html</loc>
+    <loc>https://attson.github.io/p/ubuntu-transparent-proxy.html</loc>
     
     <lastmod>2023-03-01</lastmod>
     
@@ -74,24 +74,6 @@
   </url>
   
   <url>
-    <loc>https://attson.github.io/p/gitalk-init.html</loc>
-    
-    <lastmod>2023-03-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://attson.github.io/p/linux-source-mirror-change.html</loc>
-    
-    <lastmod>2023-03-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://attson.github.io/p/mac-php-xdebug.html</loc>
     
     <lastmod>2023-03-01</lastmod>
@@ -102,6 +84,24 @@
   
   <url>
     <loc>https://attson.github.io/p/macos-vbox-ubuntu.html</loc>
+    
+    <lastmod>2023-03-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://attson.github.io/p/gitalk-init.html</loc>
+    
+    <lastmod>2023-03-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://attson.github.io/p/linux-source-mirror-change.html</loc>
     
     <lastmod>2023-03-01</lastmod>
     
