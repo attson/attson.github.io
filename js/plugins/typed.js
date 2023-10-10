@@ -1,23 +1,58 @@
 /*
-author: @jiangwen5945
-date: 2023-03-10
+author: @jiangwen5945 & EvanNotFound
 */
+export const config = {
+  usrTypeSpeed: theme.home_banner.subtitle.typing_speed,
+  usrBackSpeed: theme.home_banner.subtitle.backing_speed,
+  usrBackDelay: theme.home_banner.subtitle.backing_delay,
+  usrStartDelay: theme.home_banner.subtitle.starting_delay,
+  usrLoop: theme.home_banner.subtitle.loop,
+  usrSmartBackspace: theme.home_banner.subtitle.smart_backspace,
+  usrHitokotoAPI: theme.home_banner.subtitle.hitokoto.api,
+};
 
-REDEFINE.initTyped = (id) => {
-    const sentenceList = [];
-    for (const t of REDEFINE.theme_config.style.first_screen.subtitle.list) {
-      sentenceList.push(t);
-    }
-    if(document.getElementById(id)){
-      const st = new Typed("#"+id, {
+export default function initTyped(id) {
+  const {
+    usrTypeSpeed,
+    usrBackSpeed,
+    usrBackDelay,
+    usrStartDelay,
+    usrLoop,
+    usrSmartBackspace,
+    usrHitokotoAPI,
+  } = config;
+
+  function typing(dataList) {
+    const st = new Typed("#" + id, {
+      strings: [dataList],
+      typeSpeed: usrTypeSpeed || 100,
+      smartBackspace: usrSmartBackspace || false,
+      backSpeed: usrBackSpeed || 80,
+      backDelay: usrBackDelay || 1500,
+      loop: usrLoop || false,
+      startDelay: usrStartDelay || 500,
+    });
+  }
+
+  if (theme.home_banner.subtitle.hitokoto.enable) {
+    fetch(usrHitokotoAPI)
+      .then((response) => response.json())
+      .then((data) => {
+        typing(data.hitokoto);
+      })
+      .catch(console.error);
+  } else {
+    const sentenceList = [...theme.home_banner.subtitle.text];
+    if (document.getElementById(id)) {
+      const st = new Typed("#" + id, {
         strings: sentenceList,
-        typeSpeed: 100,//打字的速度
-        smartBackspace: true, // 开启智能退格 默认false
-        backSpeed: 80,//后退速度
-        backDelay: 1500,//后退延迟
-        loop: true,//是否循环
-        startDelay: 500,//起始时间
-        // cursorChar: '♡', // 光标
+        typeSpeed: usrTypeSpeed || 100,
+        smartBackspace: usrSmartBackspace || false,
+        backSpeed: usrBackSpeed || 80,
+        backDelay: usrBackDelay || 1500,
+        loop: usrLoop || false,
+        startDelay: usrStartDelay || 500,
       });
     }
+  }
 }
