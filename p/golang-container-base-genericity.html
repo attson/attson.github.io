@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="程序员,技术,php,java,golang,javascript,linux,微服务,前端,后端,架构,技术管理">
+    <meta name="keywords" content="golang">
     
     <meta name="author" content="Attson">
     <!-- preconnect -->
@@ -13,23 +13,22 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://attson.github.io/p/mac-php-xdebug.html"/>
+    <link rel="canonical" href="https://attson.github.io/p/golang-container-base-genericity.html"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="mac php + xdebug安装教程，自定义安装版本，避免使用macos自带php，容易在升级后环境异常">
+        <meta name="description" content="基于 Golang 泛型实现的简单容器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mac php + xdebug安装">
-<meta property="og:url" content="https://attson.github.io/p/mac-php-xdebug.html">
+<meta property="og:title" content="基于 Golang 泛型实现的简单容器">
+<meta property="og:url" content="https://attson.github.io/p/golang-container-base-genericity.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="mac php + xdebug安装教程，自定义安装版本，避免使用macos自带php，容易在升级后环境异常">
+<meta property="og:description" content="基于 Golang 泛型实现的简单容器">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2017-11-29T14:23:21.000Z">
+<meta property="article:published_time" content="2023-10-19T00:00:46.000Z">
 <meta property="article:modified_time" content="2023-10-18T16:13:23.411Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="example">
-<meta property="article:tag" content="php">
+<meta property="article:tag" content="golang">
 <meta name="twitter:card" content="summary">
     
     
@@ -42,7 +41,7 @@
     
     <title>
         
-            mac php + xdebug安装 -
+            基于 Golang 泛型实现的简单容器 -
         
         Attson Thinking
     </title>
@@ -300,7 +299,7 @@
 
         <div class="article-title">
             
-                <h1 class="article-title-regular">mac php + xdebug安装</h1>
+                <h1 class="article-title-regular">基于 Golang 泛型实现的简单容器</h1>
             
             </div>
             
@@ -322,8 +321,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2017-11-29 14:23:21</span>
-        <span class="mobile">2017-11-29 14:23:21</span>
+        <span class="desktop">2023-10-19 00:46</span>
+        <span class="mobile">2023-10-19 00:46</span>
         <span class="hover-info">创建</span>
     </span>
     
@@ -358,11 +357,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/example/">example</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/php/">php</a>&nbsp;
+                        <a href="/tags/golang/">golang</a>&nbsp;
                     </li>
                 
             </ul>
@@ -372,12 +367,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>868 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>528 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>3 分钟</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>2 分钟</span>
         </span>
     
     
@@ -396,52 +391,27 @@
 
 
         <div class="article-content markdown-body">
-            <h1>mac php + xdebug安装</h1>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">背景：之前用的自带php 配置的xdebug，突然发现不能用了，error.log 也不记录在之前的日志文件里了</span><br><span class="line">查看php -v 成了7.1 的了，一脸xx</span><br><span class="line"></span><br><span class="line">最后进/usr/bin 看，php确实变成了7.1</span><br><span class="line">/ect 下面之前配置的php.ini 也不见了</span><br><span class="line">最后在查问题时，看到一篇https://www.cnblogs.com/ailhc/p/7398479.html，提到mac在系统更新</span><br><span class="line">时候，会将自带的配置给还原</span><br><span class="line">然后便想到，放弃自带php，再见</span><br></pre></td></tr></table></figure></div>
-<h4 id="首先">首先</h4>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//因为自带的php可能其他地方会用到，就不删除了，重新装一个</span><br><span class="line">brew update</span><br><span class="line">brew search php</span><br><span class="line">brew install php71</span><br><span class="line"></span><br><span class="line">安装后查看下php -v php-fpm -v 是不是最新的7.1.11 mac最新自带 7.1.7</span><br><span class="line">如果不是查看环境变量</span><br><span class="line">echo $PATH </span><br><span class="line">看看/usr/local/bin/和/usr/local/sbin 是不是写在/usr/bin和/usr/sbin之前</span><br><span class="line">没有则添加，不是则修改</span><br></pre></td></tr></table></figure></div>
-<h4 id="安装个php-version-有需要安装多版本的可以安装">安装个php-version(有需要安装多版本的可以安装)</h4>
-<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">brew install php-version</span><br><span class="line">source $(brew --prefix php-version)/php-version.sh &amp;&amp; php-version</span><br><span class="line">php-version 查看当前安装的版本(自带的是看不到的?)</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 只能在当前终端有效, 新切换的终端输入php -v不变，但是我们只要在切换过的终端，</span></span><br><span class="line"><span class="comment"> * 启动php-fpm，后台运行的就是切换后的fpm。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">php-version <span class="number">7.1</span>.<span class="number">11</span>  <span class="comment">//更换版本</span></span><br></pre></td></tr></table></figure></div>
-<h4 id="配置php-php-fpm">配置php php-fpm</h4>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//brew 安装的php，配置文件在/usr/loacl/etc/php</span><br><span class="line">cd /usr/loacl/etc/php</span><br><span class="line">//找到对应的版本</span><br><span class="line">cd 7.1</span><br><span class="line">//vim php.ini 没有则增加</span><br><span class="line">display_errors = off //不显示错误信息(不输出到页面或屏幕上)</span><br><span class="line">log_errors = On</span><br><span class="line">error_log = &quot;/usr/local/lnmp/php/var/log/error_log&quot;(自定义，绝对路径)</span><br><span class="line">error_reporting=E_ALL</span><br><span class="line">date.timezone = PRC</span><br><span class="line"></span><br><span class="line">//vim php-fpm.conf 没有则增加</span><br><span class="line">catch_workers_output = yes</span><br><span class="line">error_log = &quot;/usr/local/lnmp/php/var/log/error_log&quot;(自定义，绝对路径)</span><br><span class="line"></span><br><span class="line">//注意!</span><br><span class="line">php_admin_value[error_log]参数会覆盖php.ini中的error_log 参数</span><br><span class="line"></span><br><span class="line">最终按phpinfo 里的error_log配置为准</span><br></pre></td></tr></table></figure></div>
-<h4 id="启动php-fpm">启动php-fpm</h4>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">php-fpm -v  先查看是不是要启动的版本</span><br><span class="line">sudo php-fpm</span><br><span class="line"></span><br><span class="line">//出现问题 php-fpm 并不在后台运行</span><br><span class="line">终端输出</span><br><span class="line">NOTICE: fpm is running, pid 42540</span><br><span class="line">NOTICE: ready to handle connections</span><br><span class="line"></span><br><span class="line">结束php-fpm</span><br><span class="line">sudo killall php-fpm</span><br><span class="line">修改php-fpm.conf</span><br><span class="line">daemonize = yes  (如果设置为no, fpm会运行在前台)</span><br><span class="line">再启动</span><br><span class="line"></span><br><span class="line">在页面输出phpinfo()查看配置</span><br></pre></td></tr></table></figure></div>
-<h4 id="安装Xdebug">安装Xdebug</h4>
-<p>寻找对应php版本的xdebug版本</p>
-<ol>
-<li>
-<p>先将info输出到一个文件<br>
-php -i &gt; info.txt</p>
-</li>
-<li>
-<p>打开info.txt 复制所有内容</p>
-</li>
-<li>
-<p>打开寻找合适xdebug的页面https://xdebug.org/wizard.php</p>
-</li>
-<li>
-<p>将刚才复制的内容粘贴至提供的输入框中 点击Analyse my phpinfo() output 就会显示下载安装步骤，<br>
-跟着一步步执行就好了</p>
-</li>
-</ol>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">出现问题 配置之后php -v | php -m 显示</span><br><span class="line">Zend OPcache requires Zend Engine API version 220090626.</span><br><span class="line">The Zend Engine API version 220100525 which is installed, is newer.</span><br><span class="line">Contact Zend Technologies at http://www.zend.com/ for a later version of Zend OPcache.</span><br><span class="line"></span><br><span class="line">解决办法，重新配置xdebug，删除之前的xdebug.so(移动过去的那个) 和 xdebug文件夹，</span><br><span class="line">重新解压</span><br><span class="line">按照上面执行步骤，在执行phpize 时候，使用绝对路径，php所在的路径 </span><br><span class="line">/usr/local/Cellar/php71/7.1.11_22/bin/phpize</span><br></pre></td></tr></table></figure></div>
-<h4 id="配置xdebug">配置xdebug</h4>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">xdebug.remote_enable = 1</span><br><span class="line">xdebug.remote_handler = &quot;dbgp&quot;</span><br><span class="line">xdebug.remote_host = &quot;127.0.0.1&quot;</span><br><span class="line">xdebug.remote_port = 9001 </span><br><span class="line">xdebug.remote_log = &quot;/var/log/php-fpm/xdebug.log&quot;</span><br></pre></td></tr></table></figure></div>
-<h4 id="参考文章">参考文章</h4>
-<ul>
-<li>
-<p>php error_log配置 <a class="link"   target="_blank" rel="noopener" href="http://www.jb51.net/article/31499.htm" >http://www.jb51.net/article/31499.htm <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-</li>
-<li>
-<p>php-fpm 配置详解 <a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/jonsea/p/5522018.html" >https://www.cnblogs.com/jonsea/p/5522018.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-</li>
-<li>
-<p>php-version 安装 <a class="link"   target="_blank" rel="noopener" href="http://www.jianshu.com/p/bee30e411b00" >http://www.jianshu.com/p/bee30e411b00 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-</li>
-<li>
-<p>xdbug配置 <a class="link"   target="_blank" rel="noopener" href="https://www.awaimai.com/1290.html" >https://www.awaimai.com/1290.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> <a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/purelightme/p/6605648.html" >https://www.cnblogs.com/purelightme/p/6605648.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-</li>
-</ul>
+            <h2 id="概述">概述</h2>
+<p>golang 1.18 有泛型之后，对业务代码的编写友好很多，可以更方便的实现一些不限类型的通用库。</p>
+<p>最近尝试在 golang 中实现 ddd 的分层抽象，离不开注册和构建概念，如果没有泛型，那就需要很多强制业务代码中的类型转换代码，看起来不太优雅。</p>
+<p>所以拿泛型实现了一个简单的容器，很方便解决了这个问题。</p>
+<h2 id="使用示例">使用示例</h2>
+<h2 id="使用示例-2">使用示例</h2>
+<div class="highlight-container" data-rel="Go"><figure class="iseeu highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;github.com/attson/container&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Test <span class="keyword">struct</span> &#123;</span><br><span class="line">	Name <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t Test)</span></span> Key() <span class="type">string</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> t.Name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> I <span class="keyword">interface</span> &#123;</span><br><span class="line">	Key() <span class="type">string</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="为结构体注册一个构建函数">为结构体注册一个构建函数</h3>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 为结构体注册一个构建函数</span><br><span class="line">container.Register[Test](func() any &#123;</span><br><span class="line">    return Test&#123;</span><br><span class="line">        Name: &quot;test&quot;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">// 通过容器构建实例</span><br><span class="line">v1 := container.Make[Test]()</span><br><span class="line">println(v1.Name) // test</span><br></pre></td></tr></table></figure></div>
+<h3 id="为结构体指针注册一个构建函数">为结构体指针注册一个构建函数</h3>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 为结构体指针注册一个构建函数</span><br><span class="line">container.Register[*Test](func() any &#123;</span><br><span class="line">    return &amp;Test&#123;</span><br><span class="line">        Name: &quot;test_pointer&quot;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">// 通过容器构建实例</span><br><span class="line">v2 := container.Make[*Test]()</span><br><span class="line">println(v2.Name) // test_pointer</span><br></pre></td></tr></table></figure></div>
+<h3 id="为接口注册一个构建函数">为接口注册一个构建函数</h3>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 为接口注册一个构建函数</span><br><span class="line">container.Register[I](func() any &#123;</span><br><span class="line">    return Test&#123;</span><br><span class="line">        Name: &quot;test_interface&quot;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">// 通过容器构建实例</span><br><span class="line">v3 := container.Make[I]()</span><br><span class="line">println(v3.Key()) // test_interface</span><br></pre></td></tr></table></figure></div>
+<h3 id="在容器中设置一个实例-单例">在容器中设置一个实例(单例)</h3>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 在容器中设置一个实例(单例)</span><br><span class="line">container.Set[Test](Test&#123;</span><br><span class="line">    Name: &quot;test_set&quot;,</span><br><span class="line">&#125;)</span><br><span class="line">// 通过容器获取实例</span><br><span class="line">v4 := container.Get[Test]()</span><br><span class="line">println(v4.Name) // test_set</span><br><span class="line">	</span><br></pre></td></tr></table></figure></div>
+<h3 id="在容器中设置一个指针实例">在容器中设置一个指针实例</h3>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 在容器中设置一个指针实例</span><br><span class="line">container.Set[*Test](&amp;Test&#123;</span><br><span class="line">    Name: &quot;test_pointer_set&quot;,</span><br><span class="line">&#125;)</span><br><span class="line">// 通过容器获取实例</span><br><span class="line">v5 := container.Get[*Test]()</span><br><span class="line">println(v5.Name) // test_pointer_set</span><br></pre></td></tr></table></figure></div>
+<h3 id="在容器中设置一个接口实例">在容器中设置一个接口实例</h3>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 在容器中设置一个接口实例</span><br><span class="line">container.Set[I](Test&#123;</span><br><span class="line">    Name: &quot;test_interface_set&quot;,</span><br><span class="line">&#125;)</span><br><span class="line">// 通过容器获取实例</span><br><span class="line">v6 := container.Get[I]()</span><br><span class="line">println(v6.Key()) // test_interface_set</span><br></pre></td></tr></table></figure></div>
+<h2 id="总结">总结</h2>
+<p>总体使用起来简单了很多，这里针对比较复杂的业务项目，需要抽象实现分离等规范的项目</p>
 
         </div>
 
@@ -449,10 +419,10 @@ php -i &gt; info.txt</p>
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> mac php + xdebug安装</li>
+        <li><strong>标题:</strong> 基于 Golang 泛型实现的简单容器</li>
         <li><strong>作者:</strong> Attson</li>
         <li><strong>创建于
-                :</strong> 2017-11-29 14:23:21</li>
+                :</strong> 2023-10-19 00:00:46</li>
         
             <li>
                 <strong>更新于
@@ -460,7 +430,7 @@ php -i &gt; info.txt</p>
             </li>
         
         <li>
-            <strong>链接:</strong> https://attson.github.io/p/mac-php-xdebug.html
+            <strong>链接:</strong> https://attson.github.io/p/golang-container-base-genericity.html
         </li>
         <li>
             <strong>
@@ -481,11 +451,7 @@ php -i &gt; info.txt</p>
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
-                        <a href="/tags/example/">#example</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item">
-                        <a href="/tags/php/">#php</a>&nbsp;
+                        <a href="/tags/golang/">#golang</a>&nbsp;
                     </li>
                 
             </ul>
@@ -497,27 +463,27 @@ php -i &gt; info.txt</p>
     <div class="recommended-article-header">
      <i aria-hidden="true"></i><span>推荐阅读</span>
     </div>
-    <div class="recommended-article-group"><a class="recommended-article-item" href="/p/composer-private.html" title="Composer 私有仓库搭建" rel="bookmark">
-  <img src="/p/composer-private/thumbnail.png" alt="Composer 私有仓库搭建" class="!max-w-none">
-  <span class="title">Composer 私有仓库搭建</span>
-</a><a class="recommended-article-item" href="/p/how-to-learn-a-new-program-language.html" title="如何快速学习一门新编程语言" rel="bookmark">
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/p/how-to-learn-a-new-program-language.html" title="如何快速学习一门新编程语言" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="如何快速学习一门新编程语言" class="!max-w-none">
   <span class="title">如何快速学习一门新编程语言</span>
-</a><a class="recommended-article-item" href="/p/network-interface-auto-route.html" title="配置地址走指定网卡" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="配置地址走指定网卡" class="!max-w-none">
-  <span class="title">配置地址走指定网卡</span>
+</a><a class="recommended-article-item" href="/p/micro-service-phylogeny.html" title="微服务演进" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="微服务演进" class="!max-w-none">
+  <span class="title">微服务演进</span>
+</a><a class="recommended-article-item" href="/p/gitalk-init.html" title="Hexo Gitalk 评论自动初始化" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Hexo Gitalk 评论自动初始化" class="!max-w-none">
+  <span class="title">Hexo Gitalk 评论自动初始化</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
    <div class="recommended-article-header">
      <i aria-hidden="true"></i><span>推荐阅读</span>
    </div>
-   <div class="recommended-article-group"><a class="recommended-article-item" href="/p/composer-private.html" title="Composer 私有仓库搭建" rel="bookmark">
-  <img src="/p/composer-private/thumbnail.png" alt="Composer 私有仓库搭建" class="!max-w-none">
-  <span class="title">Composer 私有仓库搭建</span>
-</a><a class="recommended-article-item" href="/p/how-to-learn-a-new-program-language.html" title="如何快速学习一门新编程语言" rel="bookmark">
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/p/how-to-learn-a-new-program-language.html" title="如何快速学习一门新编程语言" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="如何快速学习一门新编程语言" class="!max-w-none">
   <span class="title">如何快速学习一门新编程语言</span>
+</a><a class="recommended-article-item" href="/p/micro-service-phylogeny.html" title="微服务演进" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="微服务演进" class="!max-w-none">
+  <span class="title">微服务演进</span>
 </a></div>
    </div>
   </div>
@@ -525,21 +491,21 @@ php -i &gt; info.txt</p>
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                        rel="prev"
-                        href="/p/asus-ac68u-shadowsocks.html"
+                
+                    <div class="article-next">
+                        <a class="next"
+                        rel="next"
+                        href="/p/how-to-learn-a-new-program-language.html"
                         >
-                            <span class="left arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">使用华硕AC68u做局域网透明代理</span>
-                                <span class="post-nav-item">上一篇</span>
+                                <span class="post-nav-title-item">如何快速学习一门新编程语言</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
                             </span>
                         </a>
                     </div>
-                
                 
             </div>
         
@@ -610,8 +576,8 @@ php -i &gt; info.txt</p>
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">此页目录</div>
-        <div class="page-title">mac php + xdebug安装</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">mac php + xdebug安装</span></a></li></ol>
+        <div class="page-title">基于 Golang 泛型实现的简单容器</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="nav-text">使用示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B-2"><span class="nav-text">使用示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E7%BB%93%E6%9E%84%E4%BD%93%E6%B3%A8%E5%86%8C%E4%B8%80%E4%B8%AA%E6%9E%84%E5%BB%BA%E5%87%BD%E6%95%B0"><span class="nav-text">为结构体注册一个构建函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E7%BB%93%E6%9E%84%E4%BD%93%E6%8C%87%E9%92%88%E6%B3%A8%E5%86%8C%E4%B8%80%E4%B8%AA%E6%9E%84%E5%BB%BA%E5%87%BD%E6%95%B0"><span class="nav-text">为结构体指针注册一个构建函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E6%8E%A5%E5%8F%A3%E6%B3%A8%E5%86%8C%E4%B8%80%E4%B8%AA%E6%9E%84%E5%BB%BA%E5%87%BD%E6%95%B0"><span class="nav-text">为接口注册一个构建函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E5%AE%B9%E5%99%A8%E4%B8%AD%E8%AE%BE%E7%BD%AE%E4%B8%80%E4%B8%AA%E5%AE%9E%E4%BE%8B-%E5%8D%95%E4%BE%8B"><span class="nav-text">在容器中设置一个实例(单例)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E5%AE%B9%E5%99%A8%E4%B8%AD%E8%AE%BE%E7%BD%AE%E4%B8%80%E4%B8%AA%E6%8C%87%E9%92%88%E5%AE%9E%E4%BE%8B"><span class="nav-text">在容器中设置一个指针实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E5%AE%B9%E5%99%A8%E4%B8%AD%E8%AE%BE%E7%BD%AE%E4%B8%80%E4%B8%AA%E6%8E%A5%E5%8F%A3%E5%AE%9E%E4%BE%8B"><span class="nav-text">在容器中设置一个接口实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol>
 
     </div>
 </div>

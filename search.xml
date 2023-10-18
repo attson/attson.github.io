@@ -485,6 +485,38 @@ later.</p>
       </tags>
   </entry>
   <entry>
+    <title>基于 Golang 泛型实现的简单容器</title>
+    <url>/p/golang-container-base-genericity.html</url>
+    <content><![CDATA[<h2 id="概述">概述</h2>
+<p>golang 1.18 有泛型之后，对业务代码的编写友好很多，可以更方便的实现一些不限类型的通用库。</p>
+<p>最近尝试在 golang 中实现 ddd 的分层抽象，离不开注册和构建概念，如果没有泛型，那就需要很多强制业务代码中的类型转换代码，看起来不太优雅。</p>
+<p>所以拿泛型实现了一个简单的容器，很方便解决了这个问题。</p>
+<h2 id="使用示例">使用示例</h2>
+<h2 id="使用示例-2">使用示例</h2>
+<div class="highlight-container" data-rel="Go"><figure class="iseeu highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;github.com/attson/container&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Test <span class="keyword">struct</span> &#123;</span><br><span class="line">	Name <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t Test)</span></span> Key() <span class="type">string</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> t.Name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> I <span class="keyword">interface</span> &#123;</span><br><span class="line">	Key() <span class="type">string</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="为结构体注册一个构建函数">为结构体注册一个构建函数</h3>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 为结构体注册一个构建函数</span><br><span class="line">container.Register[Test](func() any &#123;</span><br><span class="line">    return Test&#123;</span><br><span class="line">        Name: &quot;test&quot;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">// 通过容器构建实例</span><br><span class="line">v1 := container.Make[Test]()</span><br><span class="line">println(v1.Name) // test</span><br></pre></td></tr></table></figure></div>
+<h3 id="为结构体指针注册一个构建函数">为结构体指针注册一个构建函数</h3>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 为结构体指针注册一个构建函数</span><br><span class="line">container.Register[*Test](func() any &#123;</span><br><span class="line">    return &amp;Test&#123;</span><br><span class="line">        Name: &quot;test_pointer&quot;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">// 通过容器构建实例</span><br><span class="line">v2 := container.Make[*Test]()</span><br><span class="line">println(v2.Name) // test_pointer</span><br></pre></td></tr></table></figure></div>
+<h3 id="为接口注册一个构建函数">为接口注册一个构建函数</h3>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 为接口注册一个构建函数</span><br><span class="line">container.Register[I](func() any &#123;</span><br><span class="line">    return Test&#123;</span><br><span class="line">        Name: &quot;test_interface&quot;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">// 通过容器构建实例</span><br><span class="line">v3 := container.Make[I]()</span><br><span class="line">println(v3.Key()) // test_interface</span><br></pre></td></tr></table></figure></div>
+<h3 id="在容器中设置一个实例-单例">在容器中设置一个实例(单例)</h3>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 在容器中设置一个实例(单例)</span><br><span class="line">container.Set[Test](Test&#123;</span><br><span class="line">    Name: &quot;test_set&quot;,</span><br><span class="line">&#125;)</span><br><span class="line">// 通过容器获取实例</span><br><span class="line">v4 := container.Get[Test]()</span><br><span class="line">println(v4.Name) // test_set</span><br><span class="line">	</span><br></pre></td></tr></table></figure></div>
+<h3 id="在容器中设置一个指针实例">在容器中设置一个指针实例</h3>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 在容器中设置一个指针实例</span><br><span class="line">container.Set[*Test](&amp;Test&#123;</span><br><span class="line">    Name: &quot;test_pointer_set&quot;,</span><br><span class="line">&#125;)</span><br><span class="line">// 通过容器获取实例</span><br><span class="line">v5 := container.Get[*Test]()</span><br><span class="line">println(v5.Name) // test_pointer_set</span><br></pre></td></tr></table></figure></div>
+<h3 id="在容器中设置一个接口实例">在容器中设置一个接口实例</h3>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 在容器中设置一个接口实例</span><br><span class="line">container.Set[I](Test&#123;</span><br><span class="line">    Name: &quot;test_interface_set&quot;,</span><br><span class="line">&#125;)</span><br><span class="line">// 通过容器获取实例</span><br><span class="line">v6 := container.Get[I]()</span><br><span class="line">println(v6.Key()) // test_interface_set</span><br></pre></td></tr></table></figure></div>
+<h2 id="总结">总结</h2>
+<p>总体使用起来简单了很多，这里针对比较复杂的业务项目，需要抽象实现分离等规范的项目</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>golang</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何快速学习一门新编程语言</title>
     <url>/p/how-to-learn-a-new-program-language.html</url>
     <content><![CDATA[<h2 id="概述">概述</h2>
