@@ -9,6 +9,9 @@
     "id": "/p/centos-shadowsocks.html"
   },
   {
+    "id": "/p/cloudflare_cdn_proxy.html"
+  },
+  {
     "id": "/p/composer-private.html"
   },
   {
@@ -46,8 +49,5 @@
   },
   {
     "id": "/p/ubuntu-transparent-proxy.html"
-  },
-  {
-    "id": "/p/cloudflare_cdn_proxy.html"
   }
 ]

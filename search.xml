@@ -258,7 +258,7 @@ later.</p>
 <li>你需要具备外币卡/Paypal (只开通服务，不收费)</li>
 <li>两个主域名</li>
 </ol>
-<h3 id="CDN-技术">CDN 技术</h3>
+<h2 id="CDN-技术">CDN 技术</h2>
 <p>在配置之前，在简单说一下cdn技术</p>
 <p>内容交付网络(CDN) 是一组分布在不同地理位置的服务器，它将Web 内容存放在更靠近用户的位置，从而加速Web 内容的交付</p>
 <img  
@@ -275,7 +275,7 @@ later.</p>
 </ol>
 <p>结论，当你的所有资源都是非静态资源（或者缓存策略都是不缓存），那就会按照 cdn 服务商优化链路，访问到源站，即 <strong>DCDN</strong></p>
 <p><strong>当然有一些服务商提供的CDN只支持静态资源，就无法作为流量节点加速使用</strong></p>
-<h2 id="简化流程">简化流程</h2>
+<h2 id="简易流程">简易流程</h2>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">客户端 -&gt; [cloudflare ip/域名 -&gt; 回源策略] -&gt; server.ip</span><br></pre></td></tr></table></figure></div>
 <h2 id="先讲原理">先讲原理</h2>
 <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">127.0.0.1 -&gt; 104.27.112.31 (cf 公共cnd节点 ip) -&gt; server.ip</span><br></pre></td></tr></table></figure></div>

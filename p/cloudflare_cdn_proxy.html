@@ -46,7 +46,7 @@
 <meta property="og:image" content="https://attson.github.io/p/cloudflare_cdn_proxy/img20.png">
 <meta property="og:image" content="https://attson.github.io/p/cloudflare_cdn_proxy/img21.png">
 <meta property="article:published_time" content="2024-08-15T02:00:46.000Z">
-<meta property="article:modified_time" content="2024-08-14T18:48:18.387Z">
+<meta property="article:modified_time" content="2024-08-14T18:51:33.909Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="network">
 <meta name="twitter:card" content="summary">
@@ -353,8 +353,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-08-14 18:48:18</span>
-            <span class="mobile">2024-08-14 18:48:18</span>
+            <span class="desktop">2024-08-14 18:51:33</span>
+            <span class="mobile">2024-08-14 18:51:33</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -421,7 +421,7 @@
 <li>你需要具备外币卡/Paypal (只开通服务，不收费)</li>
 <li>两个主域名</li>
 </ol>
-<h3 id="CDN-技术">CDN 技术</h3>
+<h2 id="CDN-技术">CDN 技术</h2>
 <p>在配置之前，在简单说一下cdn技术</p>
 <p>内容交付网络(CDN) 是一组分布在不同地理位置的服务器，它将Web 内容存放在更靠近用户的位置，从而加速Web 内容的交付</p>
 <img  
@@ -438,7 +438,7 @@
 </ol>
 <p>结论，当你的所有资源都是非静态资源（或者缓存策略都是不缓存），那就会按照 cdn 服务商优化链路，访问到源站，即 <strong>DCDN</strong></p>
 <p><strong>当然有一些服务商提供的CDN只支持静态资源，就无法作为流量节点加速使用</strong></p>
-<h2 id="简化流程">简化流程</h2>
+<h2 id="简易流程">简易流程</h2>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">客户端 -&gt; [cloudflare ip/域名 -&gt; 回源策略] -&gt; server.ip</span><br></pre></td></tr></table></figure></div>
 <h2 id="先讲原理">先讲原理</h2>
 <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 -&gt; 104.27.112.31 (cf 公共cnd节点 ip) -&gt; server.ip</span><br></pre></td></tr></table></figure></div>
@@ -649,7 +649,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2024-08-14 18:48:18
+                    :</strong> 2024-08-14 18:51:33
             </li>
         
         <li>
@@ -800,7 +800,7 @@
     <div class="post-toc">
         <div class="toc-title">此页目录</div>
         <div class="page-title">基于 Cloudflare 加速(中转)节点访问</div>
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CDN-%E6%8A%80%E6%9C%AF"><span class="nav-text">CDN 技术</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8C%96%E6%B5%81%E7%A8%8B"><span class="nav-text">简化流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E8%AE%B2%E5%8E%9F%E7%90%86"><span class="nav-text">先讲原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cloudflare-%E9%85%8D%E7%BD%AE"><span class="nav-text">Cloudflare 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%BD%91%E7%AB%99%EF%BC%88%E8%AE%A9CF%E6%89%98%E7%AE%A1%E4%B8%80%E4%B8%AA%E5%9F%9F%E5%90%8D%EF%BC%8C%E7%94%A8%E4%BA%8E%E5%9B%9E%E6%BA%90%EF%BC%89"><span class="nav-text">配置网站（让CF托管一个域名，用于回源）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-text">注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%B0%83%E6%95%B4%E5%9B%9E%E6%BA%90%E7%AB%AF%E5%8F%A3%E5%92%8CSSL%E7%AD%96%E7%95%A5"><span class="nav-text">如何调整回源端口和SSL策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E"><span class="nav-text">其他说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-text">参考链接</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CDN-%E6%8A%80%E6%9C%AF"><span class="nav-text">CDN 技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E6%98%93%E6%B5%81%E7%A8%8B"><span class="nav-text">简易流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E8%AE%B2%E5%8E%9F%E7%90%86"><span class="nav-text">先讲原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cloudflare-%E9%85%8D%E7%BD%AE"><span class="nav-text">Cloudflare 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%BD%91%E7%AB%99%EF%BC%88%E8%AE%A9CF%E6%89%98%E7%AE%A1%E4%B8%80%E4%B8%AA%E5%9F%9F%E5%90%8D%EF%BC%8C%E7%94%A8%E4%BA%8E%E5%9B%9E%E6%BA%90%EF%BC%89"><span class="nav-text">配置网站（让CF托管一个域名，用于回源）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-text">注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%B0%83%E6%95%B4%E5%9B%9E%E6%BA%90%E7%AB%AF%E5%8F%A3%E5%92%8CSSL%E7%AD%96%E7%95%A5"><span class="nav-text">如何调整回源端口和SSL策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E"><span class="nav-text">其他说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-text">参考链接</span></a></li></ol></li></ol>
 
     </div>
 </div>
