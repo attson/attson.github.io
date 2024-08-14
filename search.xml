@@ -251,6 +251,236 @@ later.</p>
       </tags>
   </entry>
   <entry>
+    <title>基于 Cloudflare 加速(中转)节点访问</title>
+    <url>/p/cloudflare_cdn_proxy.html</url>
+    <content><![CDATA[<p>前提：</p>
+<ol>
+<li>你需要具备外币卡/Paypal (只开通服务，不收费)</li>
+<li>两个主域名</li>
+</ol>
+<h3 id="CDN-技术">CDN 技术</h3>
+<p>在配置之前，在简单说一下cdn技术</p>
+<p>内容交付网络(CDN) 是一组分布在不同地理位置的服务器，它将Web 内容存放在更靠近用户的位置，从而加速Web 内容的交付</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/cloudflare_cdn_proxy/img2.png"
+                      class="" title="img.png"
+                >
+<p>简而言之</p>
+<ol>
+<li>cdn 就是一个服务商搭建的一套网状覆盖区域的 节点池</li>
+<li>每个节点都会缓存静态资源</li>
+<li>cdn访问就近的节点，如果该节点无所需资源，会按照cdn服务商自己的链路往上游节点访问，直至访问到 <strong>源站</strong></li>
+</ol>
+<p>结论，当你的所有资源都是非静态资源（或者缓存策略都是不缓存），那就会按照 cdn 服务商优化链路，访问到源站，即 <strong>DCDN</strong></p>
+<p><strong>当然有一些服务商提供的CDN只支持静态资源，就无法作为流量节点加速使用</strong></p>
+<h2 id="简化流程">简化流程</h2>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">客户端 -&gt; [cloudflare ip/域名 -&gt; 回源策略] -&gt; server.ip</span><br></pre></td></tr></table></figure></div>
+<h2 id="先讲原理">先讲原理</h2>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">127.0.0.1 -&gt; 104.27.112.31 (cf 公共cnd节点 ip) -&gt; server.ip</span><br></pre></td></tr></table></figure></div>
+<h4 id="为什么通过-cf-ip-能够直接访问到-server-ip"><strong>为什么通过 cf ip 能够直接访问到 server.ip?</strong></h4>
+<p>难道是 cf 里面可以直接配置 ip -&gt; server.ip 的反向代理？类似 nginx ?</p>
+<p>显然不是那么简单，如果是单纯使用nginx ip 代理方案，那不就是所有人访问这个公共ip 都会指向自己的server.ip 了。</p>
+<p>所以上面的链路体现的不完善，再完善上面的链路:</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">127.0.0.1 -&gt; my.server.com + 104.27.112.31 (cf 公共cnd节点 ip) -&gt; server.ip</span><br></pre></td></tr></table></figure></div>
+<p>在真实的链路中，需要指定自己的域名，然后cf根据 “域名-&gt;server.ip 的映射关系”，完成代理链路</p>
+<p>理论成立开始实操</p>
+<h2 id="Cloudflare-配置">Cloudflare 配置</h2>
+<p>在 Cloudflare 中的 DCDN 产品，是 <strong>网站服务里面 -&gt; SSL/TLS -&gt; 自定义主机名</strong> 提供的</p>
+<p>所以在上述的理论链路在cf平台配置后实际链路是这样的</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">127.0.0.1 -&gt; my.server.com + 104.27.112.31 (cf 公共cnd节点 ip) -&gt; ssl/tls 回源策略 -&gt; 回源域名 -&gt; 回源域名dns解析 -&gt; server.ip</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li><em><strong>回源域名必须是在 cf 管理的域名</strong></em> (回源域名其实在使用时对用户时无感的，只用于回源域名解析)</li>
+<li><em><strong><a class="link"   href="http://my.server.com" >my.server.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 必须是非 cf 管理的域名</strong></em> (用户真实使用的域名)</li>
+</ul>
+<p>所以本质是:</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">127.0.0.1 -&gt; 需要加速的节点 </span><br><span class="line">变成</span><br><span class="line">127.0.0.1 -&gt; cf -&gt; 需要加速的节点</span><br></pre></td></tr></table></figure></div>
+<p>这个过程需要两个主域名参与配置</p>
+<h3 id="配置网站（让CF托管一个域名，用于回源）">配置网站（让CF托管一个域名，用于回源）</h3>
+<p>打开：<a class="link"   href="https://dash.cloudflare.com/sign-up" >https://dash.cloudflare.com/sign-up <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><strong>1、</strong> 注册一个 Cloudflare 账号，有账号的话你就登录啊</p>
+<p><strong>2、</strong> 添加主域名，用于回源的</p>
+<p>这个域名不重要，用户不会直接访问，如果没有的话，可以找个免费域名平台申请一个</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/cloudflare_cdn_proxy/img3.png"
+                      class="" title="img.png"
+                >
+<p><strong>3、</strong> 选择免费计划，点击继续</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/cloudflare_cdn_proxy/img4.png"
+                      class="" title="img.png"
+                >
+<p><strong>4、</strong> 添加一个dns记录，<strong>用于回源</strong></p>
+<p>Cloudflare会自动检测你现在有的DNS记录，自动添加。</p>
+<p>如果已经有一条用于回源的记录，A记录或者CNAME都行，则无需再建 (指向服务节点)</p>
+<p>如 <a class="link"   href="http://origin.test.com" >origin.test.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/cloudflare_cdn_proxy/img5.png"
+                      class="" title="img.png"
+                >
+<p><strong>5、</strong> 修改该主域名的dns解析，让CF管理</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/cloudflare_cdn_proxy/img6.png"
+                      class="" title="img.png"
+                >
+<p><strong>具体如何修改，不同的运营商方式不同，以阿里云为例</strong></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/cloudflare_cdn_proxy/img7.png"
+                      class="" title="img.png"
+                >
+<p><strong>6、</strong> DNS托管完成后，回到CF平台，开启SaaS服务，<strong>需要绑定外币卡/Paypal</strong>，不会扣费</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/cloudflare_cdn_proxy/img8.png"
+                      class="" title="img_1.png"
+                >
+<p><strong>7、</strong> 配置 SSL/TLS -&gt; 自定义主机名 -&gt; 回退源</p>
+<ul>
+<li>回退源就是上面配置的 <a class="link"   href="http://origin.test.com" >origin.test.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+</ul>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/cloudflare_cdn_proxy/img9.png"
+                      class="" title="img.png"
+                >
+<p>添加后点击刷新，正常情况下 回退源状态 应为：有效</p>
+<p><strong>8、</strong> 添加自定义主机名。该域名就是真实加速域名，必须是非CF管理域名</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/cloudflare_cdn_proxy/img10.png"
+                      class="" title="img.png"
+                >
+<p><strong>9、</strong> 配置主机名和SSL验证，CF需要验证你有该域名的管理权限和下发SSL证书</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/cloudflare_cdn_proxy/img11.png"
+                      class="" title="img.png"
+                >
+<p><strong>回到你的需要加速域名的域名管理平台，添加dns txt记录，用于验证主机。以阿里云为例</strong></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/cloudflare_cdn_proxy/img12.png"
+                      class="" title="img.png"
+                >
+<p><strong>主机名验证完成后，添加dns txt记录，用于颁发SSL。以阿里云为例</strong></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/cloudflare_cdn_proxy/img13.png"
+                      class="" title="img.png"
+                >
+<p><strong>都验证完成后状态</strong></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/cloudflare_cdn_proxy/img14.png"
+                      class="" title="img.png"
+                >
+<p><strong>10、</strong> 最后确保 <a class="link"   href="http://blog.mysite.com" >blog.mysite.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 解析到CF上，A记录或者CNAME</p>
+<ul>
+<li>A记录解析到CF ip上 (优选ip)</li>
+<li>CNAME解析到CF 域名上 (优选域名)</li>
+</ul>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/cloudflare_cdn_proxy/img15.png"
+                      class="" title="img.png"
+                >
+<p><strong>此时，访问 <a class="link"   href="http://blog.mysite.com" >blog.mysite.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 就会通过CF节点，并回源到 <a class="link"   href="http://origin.test.com" >origin.test.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></strong></p>
+<h2 id="注意事项">注意事项</h2>
+<p>默认情况下，选择回源的模式是 灵活，意味着 CF -&gt; <a class="link"   href="http://origin.test.com" >origin.test.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 走的都是80端口，无SSL</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/cloudflare_cdn_proxy/img16.png"
+                      class="" title="img.png"
+                >
+<p>比如 curl <a class="link"   href="http://blog.mysite.com" >http://blog.mysite.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or curl <a class="link"   href="https://blog.mysite.com" >https://blog.mysite.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>都是相当于 curl <a class="link"   href="http://origin.test.com" >http://origin.test.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<hr>
+<p>但是实测当 curl <a class="link"   href="https://blog.mysite.com:8443" >https://blog.mysite.com:8443 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 时，cf 会强制后端链路需要SSL, 相当于 curl <a class="link"   href="http://origin.test.com:8443" >http://origin.test.com:8443 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   href="https://developers.cloudflare.com/fundamentals/reference/network-ports/" >其他支持的端口没有测试 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="如何调整回源端口和SSL策略">如何调整回源端口和SSL策略</h3>
+<p><strong>1、</strong> SSL 策略</p>
+<p>方式一、在上图中调整为 <strong>完全模式</strong>，则会按照请求端口并使用SSL建立回源链接。（这个配置会对该域下所有的自定义主机名生效）</p>
+<p>方式二、通过规则配置，针对不同规则应用配置，比如指定 <a class="link"   href="http://blog.mysite.com" >blog.mysite.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 的回源是使用 <strong>完全模式</strong></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/cloudflare_cdn_proxy/img17.png"
+                      class="" title="img.png"
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/cloudflare_cdn_proxy/img18.png"
+                      class="" title="img.png"
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/cloudflare_cdn_proxy/img19.png"
+                      class="" title="img.png"
+                >
+<p><strong>2、</strong> 回源端口自定义</p>
+<p>比如想要实现 curl <a class="link"   href="http://blog.mysite.com" >http://blog.mysite.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> -&gt; curl <a class="link"   href="https://origin.test.com:8443" >https://origin.test.com:8443 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/cloudflare_cdn_proxy/img20.png"
+                      class="" title="img.png"
+                >
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/p/cloudflare_cdn_proxy/img21.png"
+                      class="" title="img.png"
+                >
+<h3 id="其他说明">其他说明</h3>
+<ul>
+<li>因为节点基本在海外，所以套CF中转，速度不会很理想</li>
+<li>但是使用移动网络的话，可能会使用 Cloudflare 香港节点，理论上会有不错的速度</li>
+<li>作为代理的话，可以用于防止 ip 被墙或者已经被墙</li>
+<li>作为免费cdn，会有一定的价值，毕竟不会被墙</li>
+<li>这套方案理论上可以做其他更多的事情</li>
+<li>如果过程中出现5xx 4xx
+<ul>
+<li>请检查是否一个主域名在CF管理，一个在其他平台</li>
+<li>请检查回源端口和回源ssl策略</li>
+</ul>
+</li>
+</ul>
+<h3 id="参考链接">参考链接</h3>
+<ul>
+<li><a class="link"   href="https://github.com/233boy/v2ray/wiki/%E4%BD%BF%E7%94%A8Cloudflare%E4%B8%AD%E8%BD%ACV2Ray%E6%B5%81%E9%87%8F" >https://github.com/233boy/v2ray/wiki/使用Cloudflare中转V2Ray流量 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   href="https://linux.do/t/topic/114314" >https://linux.do/t/topic/114314 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>network</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Composer 私有仓库搭建</title>
     <url>/p/composer-private.html</url>
     <content><![CDATA[<h1>Composer 私有仓库搭建</h1>
@@ -1052,8 +1282,8 @@ Service Mesh分为数据平面和控制平面，Sidecar处理的部分就是数�
         <category>技术</category>
       </categories>
       <tags>
-        <tag>macos</tag>
         <tag>network</tag>
+        <tag>macos</tag>
         <tag>route</tag>
         <tag>vpn</tag>
       </tags>
