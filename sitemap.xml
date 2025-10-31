@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://attson.github.io/p/too-many-open-file.html</loc>
+    <loc>https://attson.github.io/p/ubuntu-transparent-proxy.html</loc>
     
     <lastmod>2025-10-31</lastmod>
     
@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://attson.github.io/p/ubuntu-transparent-proxy.html</loc>
+    <loc>https://attson.github.io/p/too-many-open-file.html</loc>
     
     <lastmod>2025-10-31</lastmod>
     
@@ -83,6 +83,24 @@
   </url>
   
   <url>
+    <loc>https://attson.github.io/p/mac-php-xdebug.html</loc>
+    
+    <lastmod>2025-10-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://attson.github.io/p/macos-vbox-ubuntu.html</loc>
+    
+    <lastmod>2025-10-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://attson.github.io/p/golang-container-base-genericity.html</loc>
     
     <lastmod>2025-10-31</lastmod>
@@ -92,7 +110,7 @@
   </url>
   
   <url>
-    <loc>https://attson.github.io/p/golang_date_last_month_error.html</loc>
+    <loc>https://attson.github.io/p/golang-date-add-month-error.html</loc>
     
     <lastmod>2025-10-31</lastmod>
     
@@ -119,24 +137,6 @@
   </url>
   
   <url>
-    <loc>https://attson.github.io/p/mac-php-xdebug.html</loc>
-    
-    <lastmod>2025-10-31</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://attson.github.io/p/macos-vbox-ubuntu.html</loc>
-    
-    <lastmod>2025-10-31</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://attson.github.io/p/gitalk-init.html</loc>
     
     <lastmod>2025-10-31</lastmod>
@@ -155,7 +155,7 @@
   </url>
   
   <url>
-    <loc>https://attson.github.io/p/centos-shadowsocks.html</loc>
+    <loc>https://attson.github.io/p/cloudflare_cdn_proxy.html</loc>
     
     <lastmod>2025-10-31</lastmod>
     
@@ -164,7 +164,7 @@
   </url>
   
   <url>
-    <loc>https://attson.github.io/p/cloudflare_cdn_proxy.html</loc>
+    <loc>https://attson.github.io/p/centos-shadowsocks.html</loc>
     
     <lastmod>2025-10-31</lastmod>
     

@@ -747,9 +747,37 @@ later.</p>
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/p/golang_date_last_month_error.html</url>
-    <content><![CDATA[]]></content>
+    <title>Golang 内置日期函数获取上一个月日期异常</title>
+    <url>/p/golang-date-add-month-error.html</url>
+    <content><![CDATA[<p>今天生产环境出现比较多的异常，挺纳闷的，毕竟最近该服务没有怎么迭代。</p>
+<p>经过排查定位发现，居然是某些特殊日子才会出现的问题。</p>
+<p>RetentionMonths = 3<br>
+MonthTablePrefix = “jobs_”</p>
+<p>代码是一个分表逻辑中，获取最近月份的表，通过 <code>AddDate(0, -i, 0)</code> 函数获取前几个月的表。应返回当前月和前3个月的分表名数组。<code>[jobs_202510 jobs_202509 jobs_202508 jobs_202507]</code>（golang 1.19）</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// GetRecentHotTables 获取最近n个月的热表名称列表</span><br><span class="line">func (j jobPartitionRepositoryImpl) GetRecentHotTables() []string &#123;</span><br><span class="line">	months := RetentionMonths</span><br><span class="line"></span><br><span class="line">	tables := make([]string, 0, months)</span><br><span class="line">	now := time.Now()</span><br><span class="line"></span><br><span class="line">	for i := 0; i &lt;= months; i++ &#123;</span><br><span class="line">		date := now.AddDate(0, -i, 0)</span><br><span class="line">		year := date.Format(&quot;2006&quot;)</span><br><span class="line">		month := date.Format(&quot;01&quot;)</span><br><span class="line">		tableName := fmt.Sprintf(&quot;%s%s%s&quot;, MonthTablePrefix, year, month)</span><br><span class="line">		tables = append(tables, tableName)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return tables</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>光看代码感觉是没啥问题的，为啥怀疑到这段代码，也是通过日志发现，查询表的sql 只查 2025-10, 2025-08, 2025-07 表，缺了2025-09表。</p>
+<p>所以本地验证一番。（单元测试还通过了。。。因为验证的代码和里面一样。。。）</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">=== RUN   TestGetRecentHotTables</span><br><span class="line">--- PASS: TestGetRecentHotTables (0.00s)</span><br><span class="line">=== RUN   TestGetRecentHotTables/默认获取最近3个月表</span><br><span class="line">[jobs_202510 jobs_202510 jobs_202508 jobs_202507]</span><br><span class="line">    --- PASS: TestGetRecentHotTables/默认获取最近3个月表 (0.00s)</span><br><span class="line">PASS</span><br></pre></td></tr></table></figure></div>
+<p>看输出发现 <code>jobs_202510 jobs_202510</code> 有两个，问题就在这里了。</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">now := time.Now()</span><br><span class="line">fmt.Println(now.AddDate(0, -1, 0).Format(&quot;200601&quot;))</span><br></pre></td></tr></table></figure></div>
+<p>预期是输出 202509 的，但现实是 <code>202510</code></p>
+<p>那为什么呢？通过询问google，找到下面相关文章说明，大致意思就是，因为10-31 减去一个月为 09-31, 但是又因为9月没有31号，就将日期标准化为 10-01，保证了time值的有效性。</p>
+<p><a class="link"   href="https://github.com/golang/go/issues/31145" >https://github.com/golang/go/issues/31145<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br>
+<a class="link"   href="https://learnku.com/articles/71760" >https://learnku.com/articles/71760<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>在 learnku 文章中提到php，然后用php类似函数试了一下，也有类似问题（php8.1）</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo date(&#x27;Y-m-d&#x27;, strtotime(&#x27;-1 months&#x27;));</span><br><span class="line"></span><br><span class="line">// 2025-10-01</span><br></pre></td></tr></table></figure></div>
+<p>周五给我整个这个，真是够了。</p>
+<p>修改方案, 减去当前时间的天数，时间调整到上一个月最后一天:</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">now := time.Now()</span><br><span class="line">now.AddDate(0, 0, -now.Day())</span><br></pre></td></tr></table></figure></div>
+<p>js moment 试了是正常的</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(moment(new Date()).subtract(1, &#x27;months&#x27;).format(&#x27;YYYY-MM-DD&#x27;))</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>golang</tag>
+      </tags>
   </entry>
   <entry>
     <title>如何快速学习一门新编程语言</title>

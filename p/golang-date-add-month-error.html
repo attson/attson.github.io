@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="程序员,技术,php,java,golang,javascript,linux,微服务,前端,后端,架构,技术管理">
+    <meta name="keywords" content="golang">
     
     <meta name="author" content="Attson">
     <!-- preconnect -->
@@ -13,7 +13,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://attson.github.io/p/golang_date_last_month_error.html"/>
+    <link rel="canonical" href="https://attson.github.io/p/golang-date-add-month-error.html"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -23,16 +23,16 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://attson.github.io/p/golang_date_last_month_error.html">
+<meta property="og:title" content="Golang 内置日期函数获取上一个月日期异常">
+<meta property="og:url" content="https://attson.github.io/p/golang-date-add-month-error.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://attson.github.io/images/redefine-og.webp">
-<meta property="article:published_time" content="2025-10-31T10:33:46.978Z">
-<meta property="article:modified_time" content="2025-10-31T10:33:46.978Z">
+<meta property="article:published_time" content="2025-10-31T18:42:21.000Z">
+<meta property="article:modified_time" content="2025-10-31T10:50:34.696Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="程序员,技术,php,java,golang,javascript,linux,微服务,前端,后端,架构,技术管理">
+<meta property="article:tag" content="golang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://attson.github.io/images/redefine-og.webp">
     
@@ -46,7 +46,7 @@
     
     <title>
         
-            Attson Thinking - Attson Thinking.
+            Golang 内置日期函数获取上一个月日期异常 | Attson Thinking
         
     </title>
 
@@ -380,7 +380,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3"></h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Golang 内置日期函数获取上一个月日期异常</h1>
 			</div>
 			
 		</div>
@@ -401,27 +401,58 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-10-31 10:33:46</span>
-        <span class="mobile">2025-10-31 10:33:46</span>
+        <span class="desktop">2025-10-31 18:42:21</span>
+        <span class="mobile">2025-10-31 18:42:21</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-10-31 10:33:46</span>
-            <span class="mobile">2025-10-31 10:33:46</span>
+            <span class="desktop">2025-10-31 10:50:34</span>
+            <span class="mobile">2025-10-31 10:50:34</span>
             <span class="hover-info">更新</span>
         </span>
     
 
     
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/golang/">golang</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
     
 
     
     
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>543 字</span>
+        </span>
+    
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>1 分钟</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>2 分钟</span>
         </span>
     
     
@@ -440,25 +471,47 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			
+			<p>今天生产环境出现比较多的异常，挺纳闷的，毕竟最近该服务没有怎么迭代。</p>
+<p>经过排查定位发现，居然是某些特殊日子才会出现的问题。</p>
+<p>RetentionMonths = 3<br>
+MonthTablePrefix = “jobs_”</p>
+<p>代码是一个分表逻辑中，获取最近月份的表，通过 <code>AddDate(0, -i, 0)</code> 函数获取前几个月的表。应返回当前月和前3个月的分表名数组。<code>[jobs_202510 jobs_202509 jobs_202508 jobs_202507]</code>（golang 1.19）</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// GetRecentHotTables 获取最近n个月的热表名称列表</span><br><span class="line">func (j jobPartitionRepositoryImpl) GetRecentHotTables() []string &#123;</span><br><span class="line">	months := RetentionMonths</span><br><span class="line"></span><br><span class="line">	tables := make([]string, 0, months)</span><br><span class="line">	now := time.Now()</span><br><span class="line"></span><br><span class="line">	for i := 0; i &lt;= months; i++ &#123;</span><br><span class="line">		date := now.AddDate(0, -i, 0)</span><br><span class="line">		year := date.Format(&quot;2006&quot;)</span><br><span class="line">		month := date.Format(&quot;01&quot;)</span><br><span class="line">		tableName := fmt.Sprintf(&quot;%s%s%s&quot;, MonthTablePrefix, year, month)</span><br><span class="line">		tables = append(tables, tableName)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return tables</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>光看代码感觉是没啥问题的，为啥怀疑到这段代码，也是通过日志发现，查询表的sql 只查 2025-10, 2025-08, 2025-07 表，缺了2025-09表。</p>
+<p>所以本地验证一番。（单元测试还通过了。。。因为验证的代码和里面一样。。。）</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">=== RUN   TestGetRecentHotTables</span><br><span class="line">--- PASS: TestGetRecentHotTables (0.00s)</span><br><span class="line">=== RUN   TestGetRecentHotTables/默认获取最近3个月表</span><br><span class="line">[jobs_202510 jobs_202510 jobs_202508 jobs_202507]</span><br><span class="line">    --- PASS: TestGetRecentHotTables/默认获取最近3个月表 (0.00s)</span><br><span class="line">PASS</span><br></pre></td></tr></table></figure></div>
+<p>看输出发现 <code>jobs_202510 jobs_202510</code> 有两个，问题就在这里了。</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">now := time.Now()</span><br><span class="line">fmt.Println(now.AddDate(0, -1, 0).Format(&quot;200601&quot;))</span><br></pre></td></tr></table></figure></div>
+<p>预期是输出 202509 的，但现实是 <code>202510</code></p>
+<p>那为什么呢？通过询问google，找到下面相关文章说明，大致意思就是，因为10-31 减去一个月为 09-31, 但是又因为9月没有31号，就将日期标准化为 10-01，保证了time值的有效性。</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/golang/go/issues/31145" >https://github.com/golang/go/issues/31145<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br>
+<a class="link"   target="_blank" rel="noopener" href="https://learnku.com/articles/71760" >https://learnku.com/articles/71760<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>在 learnku 文章中提到php，然后用php类似函数试了一下，也有类似问题（php8.1）</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo date(&#x27;Y-m-d&#x27;, strtotime(&#x27;-1 months&#x27;));</span><br><span class="line"></span><br><span class="line">// 2025-10-01</span><br></pre></td></tr></table></figure></div>
+<p>周五给我整个这个，真是够了。</p>
+<p>修改方案, 减去当前时间的天数，时间调整到上一个月最后一天:</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">now := time.Now()</span><br><span class="line">now.AddDate(0, 0, -now.Day())</span><br></pre></td></tr></table></figure></div>
+<p>js moment 试了是正常的</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(moment(new Date()).subtract(1, &#x27;months&#x27;).format(&#x27;YYYY-MM-DD&#x27;))</span><br></pre></td></tr></table></figure></div>
+
 		</div>
 
 		
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> </li>
+        <li><strong>标题:</strong> Golang 内置日期函数获取上一个月日期异常</li>
         <li><strong>作者:</strong> Attson</li>
         <li><strong>创建于
-                :</strong> 2025-10-31 10:33:46</li>
+                :</strong> 2025-10-31 18:42:21</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-10-31 10:33:46
+                    :</strong> 2025-10-31 10:50:34
             </li>
         
         <li>
-            <strong>链接:</strong> https://attson.github.io/p/golang_date_last_month_error.html
+            <strong>链接:</strong> https://attson.github.io/p/golang-date-add-month-error.html
         </li>
         <li>
             <strong>
@@ -477,6 +530,14 @@
 		
 
 		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/golang/">#golang</a>&nbsp;
+			</li>
+			
+		</ul>
+		
 
 		
   <div class="recommended-article px-2 sm:px-6 md:px-8">
@@ -484,27 +545,27 @@
     <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
     </div>
-    <div class="recommended-article-group"><a class="recommended-article-item" href="/p/asus-ac68u-shadowsocks.html" title="使用华硕AC68u做局域网透明代理" rel="bookmark">
-  <img src="/p/asus-ac68u-shadowsocks/bg.jpeg" alt="使用华硕AC68u做局域网透明代理" class="!max-w-none">
-  <span class="title">使用华硕AC68u做局域网透明代理</span>
-</a><a class="recommended-article-item" href="/p/build-blog.html" title="Hexo 博客搭建" rel="bookmark">
-  <img src="https://evan.beee.top/img/208184324-f2640ade-587a-4f46-8ad1-7b4c1b31394f.png" alt="Hexo 博客搭建" class="!max-w-none">
-  <span class="title">Hexo 博客搭建</span>
-</a><a class="recommended-article-item" href="/p/centos-shadowsocks.html" title="centos 安装 shadowsocks" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="centos 安装 shadowsocks" class="!max-w-none">
-  <span class="title">centos 安装 shadowsocks</span>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/p/mac-php-xdebug.html" title="mac php + xdebug安装" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="mac php + xdebug安装" class="!max-w-none">
+  <span class="title">mac php + xdebug安装</span>
+</a><a class="recommended-article-item" href="/p/golang-container-base-genericity.html" title="基于 Golang 泛型实现的简单容器" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="基于 Golang 泛型实现的简单容器" class="!max-w-none">
+  <span class="title">基于 Golang 泛型实现的简单容器</span>
+</a><a class="recommended-article-item" href="/p/how-to-learn-a-new-program-language.html" title="如何快速学习一门新编程语言" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="如何快速学习一门新编程语言" class="!max-w-none">
+  <span class="title">如何快速学习一门新编程语言</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
    </div>
-   <div class="recommended-article-group"><a class="recommended-article-item" href="/p/asus-ac68u-shadowsocks.html" title="使用华硕AC68u做局域网透明代理" rel="bookmark">
-  <img src="/p/asus-ac68u-shadowsocks/bg.jpeg" alt="使用华硕AC68u做局域网透明代理" class="!max-w-none">
-  <span class="title">使用华硕AC68u做局域网透明代理</span>
-</a><a class="recommended-article-item" href="/p/build-blog.html" title="Hexo 博客搭建" rel="bookmark">
-  <img src="https://evan.beee.top/img/208184324-f2640ade-587a-4f46-8ad1-7b4c1b31394f.png" alt="Hexo 博客搭建" class="!max-w-none">
-  <span class="title">Hexo 博客搭建</span>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/p/mac-php-xdebug.html" title="mac php + xdebug安装" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="mac php + xdebug安装" class="!max-w-none">
+  <span class="title">mac php + xdebug安装</span>
+</a><a class="recommended-article-item" href="/p/golang-container-base-genericity.html" title="基于 Golang 泛型实现的简单容器" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="基于 Golang 泛型实现的简单容器" class="!max-w-none">
+  <span class="title">基于 Golang 泛型实现的简单容器</span>
 </a></div>
    </div>
   </div>
@@ -595,7 +656,7 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
-		<div class="page-title"></div>
+		<div class="page-title">Golang 内置日期函数获取上一个月日期异常</div>
 		
 
 	</div>
@@ -627,7 +688,7 @@
                     </span>
                     
                         <span>
-                            共 21.3k 字
+                            共 21.9k 字
                         </span>
                     
                 </p>
